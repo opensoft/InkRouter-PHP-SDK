@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ship_address>
+  <attention>Attention</attention>
+  <street_address>742 Evergreen Terrace</street_address>
+  <city>Springfield</city>
+  <state>CA</state>
+  <zip>92614</zip>
+  <country>country</country>
+</ship_address>

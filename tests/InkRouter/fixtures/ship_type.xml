@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ship_type>
+  <method>UPS</method>
+  <service_level>GROUND</service_level>
+  <signature>required</signature>
+</ship_type>

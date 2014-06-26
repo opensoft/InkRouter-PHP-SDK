@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<contact>
+    <name>contactName</name>
+    <phone>contactPhone</phone>
+    <email>contactEmail</email>
+</contact>  

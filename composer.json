@@ -1,0 +1,26 @@
+{
+    "name": "opensoft/ink-router-php-sdk",
+    "description": "Small sdk for connecting to OpenSoft Job Submission Interface",
+    "authors": [
+        {
+            "name": "Opensoft",
+            "email": "info@opensoftdev.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "InkRouter_": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "require": {
+        "php": ">=5.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    }
+}

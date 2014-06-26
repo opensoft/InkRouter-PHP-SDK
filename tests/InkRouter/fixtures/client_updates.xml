@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<client_updates>
+    <client_update>
+        <update_id>2</update_id>
+        <update_type>PRINT</update_type>
+        <quantity>500</quantity>
+        <order_item_id>pg4f7969f8a4891</order_item_id>
+        <comment>SHEET ID: '579468'; POSITION: '1'</comment>
+        <replyUrl>http://printserver.com/api/client-updates</replyUrl>
+        <timestamp>123456789</timestamp>
+        <print_customer_invoice>123a33412fg11</print_customer_invoice>
+        <misc>misc</misc>
+        <tracking_number>1234lfdsaj23434</tracking_number>
+        <weight>10.2</weight>
+        <cost>11.1</cost>
+        <print_provider_invoice>1236433fd1123rf</print_provider_invoice>
+    </client_update>
+</client_updates>

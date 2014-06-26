@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<scalar_boolean_attribute>
+    <type>ROUNDING</type>
+    <value>true</value>
+</scalar_boolean_attribute>
