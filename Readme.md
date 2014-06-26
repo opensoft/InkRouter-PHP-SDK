@@ -6,7 +6,7 @@ the InkRouter PHP SDK as documented here.
 
 The InkRouter PHP SDK is a library for easy interaction with the InkRouter interface from PHP.
 
-[![Build Status](https://magnum.travis-ci.com/opensoft/InkRouter-PHP-SDK.png?token=otbbpqUUMBuesyKDQkii&branch=master)](https://magnum.travis-ci.com/opensoft/InkRouter-PHP-SDK)
+[![Build Status](https://travis-ci.org/opensoft/InkRouter-PHP-SDK.svg)](https://travis-ci.org/opensoft/InkRouter-PHP-SDK)
 
 Requirements
 ============
