@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>InkRouter-php-sdk by opensoft</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>InkRouter-php-sdk</h1>
+        <p>PHP SDK for InkRouter</p>
+
+        <p class="view"><a href="https://github.com/opensoft/InkRouter-PHP-SDK">View the Project on GitHub <small>opensoft/InkRouter-PHP-SDK</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/opensoft/InkRouter-PHP-SDK/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/opensoft/InkRouter-PHP-SDK/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/opensoft/InkRouter-PHP-SDK">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p>InkRouter's PHP SDK is the Job Submission interface to the InkRouter Printing Network. To send print orders directly from your website to InkRouter, you will use the InkRouter PHP SDK as documented here.</p>
+
+<p>The InkRouter PHP SDK is a library for easy interaction with the InkRouter interface from PHP.</p>
+
+<p><a href="https://travis-ci.org/opensoft/InkRouter-PHP-SDK"><img src="https://travis-ci.org/opensoft/InkRouter-PHP-SDK.svg?branch=master" alt="Build Status"></a></p>
+
+<h1>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h1>
+
+<p>This SDK requires: </p>
+
+<ul>
+<li>PHP 5.0.x and up</li>
+<li>libxml PHP extension</li>
+</ul><h1>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>With Composer:</p>
+
+<pre><code>$ composer require opensoft/inkrouter-php-sdk
+</code></pre>
+
+<p>Without Composer:</p>
+
+<ul>
+<li>Download a zip <a href="https://github.com/opensoft/InkRouter-PHP-SDK/zipball/1.0">file</a>
+</li>
+<li>Unpack downloaded zip in any directory in your project (for example /path/to/your/project/libs/InkRouter)</li>
+<li>InkRouter PHP SDK can use any PSR0 compatible autoloader, or you can use the one included in <code>tests/bootstrap.php</code>
+with a simple <code>require_once</code> statement</li>
+</ul><h1>
+<a name="inkrouter-workflow" class="anchor" href="#inkrouter-workflow"><span class="octicon octicon-link"></span></a>InkRouter Workflow</h1>
+
+<p>InkRouter interface workflow consists of 6 actions:</p>
+
+<ul>
+<li>Get InkRouter client instance</li>
+<li>Create and fill InkRouter_Models_OrderInfo instance</li>
+<li>Create order to InkRouter</li>
+<li>Update order (optional)</li>
+<li>Place on hold order (optional)</li>
+<li>Remove hold order (optional)</li>
+<li>Cancel order (optional)</li>
+<li>Receive order updates from InkRouter</li>
+</ul><h2>
+<a name="get-inkrouter-client-instance" class="anchor" href="#get-inkrouter-client-instance"><span class="octicon octicon-link"></span></a>Get InkRouter client instance</h2>
+
+<p>Prior to performing any operations, perform get instance of InkRouter client, example:</p>
+
+<pre><code>$InkRouterClient = new InkRouter_Client_Client($wsdl, $printCustomerId, $secretKey);
+</code></pre>
+
+<p>Where:</p>
+
+<ul>
+<li>
+<code>$wsdl</code> is url of InkRouter service</li>
+<li>
+<code>$printCustomerId</code> is your unique identificator from InkRouter</li>
+<li>
+<code>$secretKey</code> is your secret key</li>
+</ul><h2>
+<a name="create-inkrouter_models_orderinfo-instance-with-example-data" class="anchor" href="#create-inkrouter_models_orderinfo-instance-with-example-data"><span class="octicon octicon-link"></span></a>Create InkRouter_Models_OrderInfo instance (with example data)</h2>
+
+<pre><code>$contact = new InkRouter_Models_Contact();
+$contact-&gt;setName('contact_name')
+    -&gt;setPhone('contact_phone')
+    -&gt;setEmail('contact_email');
+
+$headerInfo = new InkRouter_Models_HeaderInfo();
+$headerInfo-&gt;setFromDomain('yoursite.com')
+    -&gt;setFromIdentity('your_identity');
+
+$shipType = new InkRouter_Models_ShipType();
+$shipType-&gt;setMethod('UPS')
+    -&gt;setServiceLevel('GROUND');
+
+$shipAddress = new InkRouter_Models_ShipAddress();
+$shipAddress-&gt;setAttention('Attention')
+    -&gt;setStreetAddress('742 Evergreen Terrace')
+    -&gt;setCity('Springfield')
+    -&gt;setState('CA')
+    -&gt;setZip('1234567')
+    -&gt;setCountry('USA');
+
+$requester = new InkRouter_Models_Requester();
+$requester-&gt;setName('Any Prints')
+    -&gt;setContract('STANDARD')
+    -&gt;setPayTerm('FREE');
+
+$poInfo = new InkRouter_Models_PoInfo();
+$poInfo-&gt;setAgentId('agentId')
+    -&gt;setCurrency('US');
+
+$side = new InkRouter_Models_Side();
+$side-&gt;setPageNumber(10)
+    -&gt;setFileUrl('http://server/img.jpg')
+    -&gt;setFileHash('0a0825909aa15a98b00574661f23aee7')
+    -&gt;setCoating('NONE')
+    -&gt;setOrientation('Landscape');
+
+$attributes = new InkRouter_Models_Attributes_ScalarBooleanAttribute();
+    $attributes-&gt;setType('LABELING');
+    $attributes-&gt;setValue(true);
+
+$orderItem = new InkRouter_Models_OrderItem();
+$orderItem-&gt;setPrintGroupId('pg4f7969f8a4811')
+    -&gt;setProductType('business cards')
+    -&gt;setPaperType('14PT')
+    -&gt;setQuantity(500)
+    -&gt;setRegionSize('US')
+    -&gt;setCost(20.3)
+    -&gt;addAttributes($attributes)
+    -&gt;addSide($side);
+
+$order = new InkRouter_Models_Order();
+$order-&gt;setPrintCustomerInvoice(123456789)
+    -&gt;setTsCreated(date(DATE_ATOM, strtotime('now')))
+    -&gt;setPriority(0)
+    -&gt;setShippingFee(10)
+    -&gt;setProductDiscounts(0)
+    -&gt;setShippingDiscounts(0)
+    -&gt;setVendorId('vendor_id')
+    -&gt;setContact($contact)
+    -&gt;setShipType($shipType)
+    -&gt;setRequester($requester)
+    -&gt;setShipAddress($shipAddress)
+    -&gt;addOrderItem($orderItem);
+
+$orderInfo = new InkRouter_Models_OrderInfo();
+$orderInfo-&gt;setHeaderInfo($headerInfo)
+    -&gt;setPrintCustomerId('ID')
+    -&gt;setPoInfo($poInfo)
+    -&gt;setOrder($order);
+</code></pre>
+
+<h2>
+<a name="create-order-to-inkrouter" class="anchor" href="#create-order-to-inkrouter"><span class="octicon octicon-link"></span></a>Create order to InkRouter</h2>
+
+<p>After creating the instance of InkRouter Models_OrderInfo Create Order to InkRouter as below:</p>
+
+<pre><code>try {
+    $orderId = $InkRouterClient-&gt;createOrder($timestamp, $orderInfo);
+} catch (InkRouter_Exceptions_Exception $e) {
+    echo 'Create operation failed';
+}
+</code></pre>
+
+<p>Where:</p>
+
+<ul>
+<li>
+<code>$timestamp</code> is unix timestamp (result of mktime() function), if your last operation was unsuccessful, you can resend it with same timestamp</li>
+<li>
+<code>$orderInfo</code> is an instance of InkRouter_Models_OrderInfo (see example)</li>
+<li>
+<code>$orderId</code> is an order identification, received from InkRouter</li>
+</ul><h2>
+<a name="update-order" class="anchor" href="#update-order"><span class="octicon octicon-link"></span></a>Update order</h2>
+
+<p>You should first create instance of InkRouter Models OrderInfo and call update method:</p>
+
+<pre><code>try {
+    $InkRouterClient-&gt;updateOrder($orderId, $timestamp, $orderInfo);
+} catch (InkRouter_Exceptions_Exception $e) {
+    echo 'Update operation failed';
+}            
+</code></pre>
+
+<p>Where:</p>
+
+<ul>
+<li>
+<code>$orderId</code> is identifier of order for update</li>
+</ul><h2>
+<a name="place-on-hold-order" class="anchor" href="#place-on-hold-order"><span class="octicon octicon-link"></span></a>Place on hold order</h2>
+
+<p>For place on hold order with id <code>$orderId</code> you should do:</p>
+
+<pre><code>try {
+    $InkRouterClient-&gt;placeOnHold($orderId, $timestamp);
+} catch (InkRouter_Exceptions_Exception $e) {
+    echo 'Place on hold operation failed';
+}  
+</code></pre>
+
+<h2>
+<a name="remove-hold-order" class="anchor" href="#remove-hold-order"><span class="octicon octicon-link"></span></a>Remove hold order</h2>
+
+<p>For remove order from hold with id <code>$orderId</code> you should do:</p>
+
+<pre><code>try {
+    $InkRouterClient-&gt;removeHold($orderId, $timestamp);
+} catch (InkRouter_Exceptions_Exception $e) {
+    echo 'Remove hold operation failed';
+}
+</code></pre>
+
+<h2>
+<a name="cancel-order" class="anchor" href="#cancel-order"><span class="octicon octicon-link"></span></a>Cancel order</h2>
+
+<p>For cancel order with id <code>$orderId</code> you should do:</p>
+
+<pre><code>try {
+    $InkRouterClient-&gt;cancelOrder($orderId, $timestamp);
+} catch (InkRouter_Exceptions_Exception $e) {
+    echo 'Cancel operation failed';
+}
+</code></pre>
+
+<h2>
+<a name="receive-order-updates-from-inkrouter" class="anchor" href="#receive-order-updates-from-inkrouter"><span class="octicon octicon-link"></span></a>Receive order updates from InkRouter</h2>
+
+<p>For successful receiving update messages from InkRouter, you should make any controller, which can receive post requests, add url of this controller in your account through InkRouter-dashboard. Then you can use InkRouter_Response_Response class for parsing xml string from post content:</p>
+
+<pre><code>$updates = InkRouter_Response_Response::fromPack($xml)-&gt;getUpdates();
+</code></pre>
+
+<p>where <code>$updates</code> is array of InkRouter_Response_Update objects and you can use it as you want.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/opensoft">opensoft</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-52338717-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
