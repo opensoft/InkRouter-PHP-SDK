@@ -6,7 +6,7 @@ the InkRouter PHP SDK as documented here.
 
 The InkRouter PHP SDK is a library for easy interaction with the InkRouter interface from PHP.
 
-[![Build Status](https://travis-ci.org/opensoft/InkRouter-PHP-SDK.svg)](https://travis-ci.org/opensoft/InkRouter-PHP-SDK)
+[![Build Status](https://travis-ci.org/opensoft/InkRouter-PHP-SDK.svg?branch=master)](https://travis-ci.org/opensoft/InkRouter-PHP-SDK)
 
 Requirements
 ============
@@ -19,12 +19,16 @@ This SDK requires:
 Installation
 ============
 
+With Composer:
+
+    $ composer require opensoft/inkrouter-php-sdk
+    
+Without Composer:
+
 - Download a zip [file](https://github.com/opensoft/InkRouter-PHP-SDK/zipball/1.0)
 - Unpack downloaded zip in any directory in your project (for example /path/to/your/project/libs/InkRouter)
 - InkRouter PHP SDK can use any PSR0 compatible autoloader, or you can use the one included in `tests/bootstrap.php`
   with a simple `require_once` statement
-
-- It is now ready to use.
 
 InkRouter Workflow
 ==================
@@ -155,7 +159,7 @@ You should first create instance of InkRouter Models OrderInfo and call update m
     
 Where:
 
-- `$orderId` is identificator of order for update
+- `$orderId` is identifier of order for update
 
 Place on hold order
 -------------------

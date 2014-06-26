@@ -1,5 +1,5 @@
 {
-    "name": "opensoft/ink-router-php-sdk",
+    "name": "opensoft/inkrouter-php-sdk",
     "description": "Small sdk for connecting to OpenSoft Job Submission Interface",
     "authors": [
         {
