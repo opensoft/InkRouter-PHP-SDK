@@ -26,6 +26,7 @@ class MailingAttributesTest extends PHPUnit_Framework_TestCase
     {
         $this->attributes = new InkRouter_Models_Attributes_MailingAttributes();
         $this->attributes
+            ->setPoliticalMailer(true)
             ->setMailClass('firstclass')
             ->setCsvUrl('http://csv.url')
             ->setClientInvoice('')
