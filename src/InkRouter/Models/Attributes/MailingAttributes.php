@@ -103,9 +103,9 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
     /**
      * @return string
      */
-    public function getMailPolitical()
+    public function getPoliticalMailer()
     {
-        return $this->mailPolitical;
+        return $this->politicalMailer;
     }
 
     /**
