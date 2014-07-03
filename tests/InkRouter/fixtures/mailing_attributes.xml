@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <mailing_attributes>
     <mail_class>firstclass</mail_class>
+    <political>1</political>
     <csv_url>http://csv.url</csv_url>
     <client_invoice/>
     <ship_extra>1</ship_extra>

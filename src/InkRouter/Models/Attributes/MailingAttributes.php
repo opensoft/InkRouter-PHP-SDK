@@ -19,6 +19,11 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
     /**
      * @var string
      */
+    private $politicalMailer;
+
+    /**
+     * @var string
+     */
     private $csvUrl;
 
     /**
@@ -86,6 +91,24 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
     }
 
     /**
+     * @param string $mailPolitical
+     * @return InkRouter_Models_Attributes_MailingAttributes
+     */
+    public function setPoliticalMailer($politicalMailer)
+    {
+        $this->politicalMailer = $politicalMailer;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPoliticalMailer()
+    {
+        return $this->politicalMailer;
+    }
+
+    /**
      * @param int $shipExtra
      * @return InkRouter_Models_Attributes_MailingAttributes
      */
@@ -121,6 +144,10 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
             $writer->writeElement('mail_class', $this->mailClass);
         }
 
+        if (isset($this->politicalMailer) && $this->politicalMailer) {
+            $writer->writeElement('political', true);
+        }
+        
         if (isset($this->csvUrl)) {
             $writer->writeElement('csv_url', $this->csvUrl);
         }
