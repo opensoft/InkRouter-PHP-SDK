@@ -30,6 +30,7 @@ class SideTest extends PHPUnit_Framework_TestCase
             ->setCoating('NONE')
             ->setOrientation('Landscape')
             ->setSpotUvFileUrl('http://server/images/business_cards/front/spot_uv.tif')
-            ->setSpotUvFileHash('120825909aa15s2b00574661f23aee7');
+            ->setSpotUvFileHash('120825909aa15s2b00574661f23aee7')
+            ->setLaminating('soft touch');
     }
 }
