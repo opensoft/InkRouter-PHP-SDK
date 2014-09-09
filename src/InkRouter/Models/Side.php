@@ -61,6 +61,30 @@ class InkRouter_Models_Side
     private $spotUvFileHash;
 
     /**
+     * @var string
+     */
+    private $laminating;
+
+    /**
+     * @return string
+     */
+    public function getLaminating()
+    {
+        return $this->laminating;
+    }
+
+    /**
+     * @param string $laminate
+     * @return InkRouter_Models_Side
+     */
+    public function setLaminating($laminate)
+    {
+        $this->laminating = $laminate;
+
+        return $this;
+    }
+    
+    /**
      * @return int
      */
     public function getPageNumber()
@@ -226,6 +250,10 @@ class InkRouter_Models_Side
 
         if (isset($this->spotUvFileHash)) {
             $writer->writeElement('spot_uv_file_hash', $this->spotUvFileHash);
+        }
+
+        if (isset($this->laminating)) {
+            $writer->writeElement('laminating', $this->laminating);
         }
         
         $writer->endElement();
