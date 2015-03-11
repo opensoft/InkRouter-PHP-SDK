@@ -12,6 +12,10 @@
  */
 class InkRouter_Models_ShipAddress
 {
+    /**
+     * @var string
+     */
+    private $companyName;
 
     /**
      * A name of the person who need to be informed when the order is delivered.
@@ -54,6 +58,25 @@ class InkRouter_Models_ShipAddress
      * @var string
      */
     private $country;
+
+    /**
+     * @return string
+     */
+    public function getCompanyName()
+    {
+        return $this->companyName;
+    }
+
+    /**
+     * @param string $companyName
+     * @return InkRouter_Models_ShipAddress
+     */
+    public function setCompanyName($companyName)
+    {
+        $this->companyName = $companyName;
+
+        return $this;
+    }
 
     /**
      * @return string
@@ -176,6 +199,10 @@ class InkRouter_Models_ShipAddress
         }
 
         $writer->startElement('ship_address');
+
+        if (isset($this->companyName)) {
+            $writer->writeElement('company_name', $this->companyName);
+        }
 
         if (isset($this->attention)) {
             $writer->writeElement('attention', $this->attention);

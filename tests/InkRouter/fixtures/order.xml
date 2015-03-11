@@ -23,6 +23,7 @@
     <pay_term>FREE</pay_term>
   </requester>
   <ship_address>
+    <company_name>Company Name</company_name>
     <attention>Attention</attention>
     <street_address>742 Evergreen Terrace</street_address>
     <city>Springfield</city>

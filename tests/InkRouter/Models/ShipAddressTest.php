@@ -29,6 +29,7 @@ class ShipAddressTest extends PHPUnit_Framework_TestCase
             ->setCity('Springfield')
             ->setState('CA')
             ->setZip('92614')
-            ->setCountry('country');
+            ->setCountry('country')
+            ->setCompanyName('Company Name');
     }
 }
