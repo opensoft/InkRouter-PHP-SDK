@@ -34,7 +34,8 @@ class OrderTest extends PHPUnit_Framework_TestCase
             ->setServiceLevel('GROUND');
 
         $shipAddress = new InkRouter_Models_ShipAddress();
-        $shipAddress->setAttention('Attention')
+        $shipAddress->setCompanyName('Company Name')
+            ->setAttention('Attention')
             ->setStreetAddress('742 Evergreen Terrace')
             ->setCity('Springfield')
             ->setState('CA')
