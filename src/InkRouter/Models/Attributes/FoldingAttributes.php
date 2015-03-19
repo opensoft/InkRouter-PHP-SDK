@@ -23,6 +23,7 @@ class InkRouter_Models_Attributes_FoldingAttributes implements InkRouter_Models_
 
     /**
      * @var bool
+     * @deprecated
      */
     private $insideOut;
 
@@ -65,6 +66,7 @@ class InkRouter_Models_Attributes_FoldingAttributes implements InkRouter_Models_
     /**
      * @param bool $insideOut
      * @return InkRouter_Models_Attributes_FoldingAttributes
+     * @deprecated
      */
     public function setInsideOut($insideOut)
     {
@@ -74,6 +76,7 @@ class InkRouter_Models_Attributes_FoldingAttributes implements InkRouter_Models_
 
     /**
      * @return bool
+     * @deprecated
      */
     public function getInsideOut()
     {
