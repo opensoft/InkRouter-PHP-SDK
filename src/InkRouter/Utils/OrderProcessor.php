@@ -29,6 +29,7 @@ class InkRouter_Utils_OrderProcessor
                         $newOrderItem->setPrintGroupId($orderItem->getPrintGroupId()."E");
                         $newOrderItem->setProductType(self::getEnvelopeType($orderItem->getProductType()));
                         $newOrderItem->setQuantity($orderItem->getQuantity());
+                        $newOrderItem->setCost(0.0);
                         $envelopeAttribute = new InkRouter_Models_Attributes_ScalarStringAttribute();
                         $envelopeAttribute->setType('MEDIA_COLOR')
                             ->setValue($attribute->getValue());

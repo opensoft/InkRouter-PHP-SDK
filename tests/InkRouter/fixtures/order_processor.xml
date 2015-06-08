@@ -117,6 +117,7 @@
             <print_group_id>pg4f7969f8a4801E</print_group_id>
             <product_type>A4 blank envelopes</product_type>
             <quantity>500</quantity>
+            <cost>0</cost>
             <attributes>
                 <scalar_string_attribute>
                     <type>MEDIA_COLOR</type>
@@ -129,6 +130,7 @@
             <print_group_id>pg4f7969f8a4802E</print_group_id>
             <product_type>A9 blank envelopes</product_type>
             <quantity>500</quantity>
+            <cost>0</cost>
             <attributes>
                 <scalar_string_attribute>
                     <type>MEDIA_COLOR</type>
