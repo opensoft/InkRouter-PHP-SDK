@@ -23,6 +23,14 @@ class SideTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
+        $printAsset = new InkRouter_Models_PrintAsset();
+        $printAsset->setPositionX(4.98)
+            ->setPositionY(3)
+            ->setRotation(-90)
+            ->setType('BARCODE')
+            ->setHeight(3.55)
+            ->setWidth(3.612);
+
         $this->side = new InkRouter_Models_Side();
         $this->side->setPageNumber(10)
             ->setFileUrl('http://server/images/business_cards/front/0.tif')
@@ -31,6 +39,7 @@ class SideTest extends PHPUnit_Framework_TestCase
             ->setOrientation('Landscape')
             ->setSpotUvFileUrl('http://server/images/business_cards/front/spot_uv.tif')
             ->setSpotUvFileHash('120825909aa15s2b00574661f23aee7')
-            ->setLaminating('soft touch');
+            ->setLaminating('soft touch')
+            ->addPrintAsset($printAsset);
     }
 }

@@ -89,12 +89,21 @@ Create InkRouter_Models_OrderInfo instance (with example data)
     $poInfo->setAgentId('agentId')
         ->setCurrency('US');
 
+    $printAsset = new InkRouter_Models_PrintAsset();
+    $printAsset->setPositionX(4.98)
+        ->setPositionY(3)
+        ->setRotation(-90)
+        ->setType('BARCODE')
+        ->setHeight(3.55)
+        ->setWidth(3.612);
+
     $side = new InkRouter_Models_Side();
     $side->setPageNumber(10)
         ->setFileUrl('http://server/img.jpg')
         ->setFileHash('0a0825909aa15a98b00574661f23aee7')
         ->setCoating('NONE')
-        ->setOrientation('Landscape');
+        ->setOrientation('Landscape')
+        ->addPrintAsset($printAsset);
 
     $attributes = new InkRouter_Models_Attributes_ScalarBooleanAttribute();
         $attributes->setType('LABELING');
