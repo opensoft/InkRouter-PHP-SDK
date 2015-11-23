@@ -66,6 +66,11 @@ class InkRouter_Models_Side
     private $laminating;
 
     /**
+     * @var InkRouter_Models_PrintAsset[]
+     */
+    private $printAssets;
+
+    /**
      * @return string
      */
     public function getLaminating()
@@ -211,6 +216,24 @@ class InkRouter_Models_Side
     }
 
     /**
+     * @param InkRouter_Models_PrintAsset $printAsset
+     * @return array
+     */
+    public function addPrintAsset(InkRouter_Models_PrintAsset $printAsset)
+    {
+        $this->printAssets[] = $printAsset;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrintAssets()
+    {
+        return $this->printAssets;
+    }
+
+    /**
      * @param bool $root
      * @return string
      */
@@ -255,11 +278,29 @@ class InkRouter_Models_Side
         if (isset($this->laminating)) {
             $writer->writeElement('laminating', $this->laminating);
         }
-        
+
+        if (isset($this->printAssets)) {
+            $writer->writeRaw($this->packPrintAssets());
+        }
+
         $writer->endElement();
 
         return $writer->outputMemory();
     }
 
+    /**
+     * @return string
+     */
+    private function packPrintAssets()
+    {
+        $writer = new XMLWriter();
+        $writer->openMemory();
+        $writer->startElement('print_assets');
+        foreach ($this->printAssets as $printAsset) {
+            $writer->writeRaw($printAsset->pack());
+        }
+        $writer->endElement();
 
+        return $writer->outputMemory();
+    }
 }

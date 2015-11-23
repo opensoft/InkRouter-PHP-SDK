@@ -82,13 +82,22 @@ class OrderProcessorTest extends PHPUnit_Framework_TestCase
             ->setCost('cost')
             ->addSide($side1);
 
+        $printAsset = new InkRouter_Models_PrintAsset();
+        $printAsset->setPositionX(4.98)
+            ->setPositionY(3)
+            ->setRotation(-90)
+            ->setType('BARCODE')
+            ->setHeight(3.55)
+            ->setWidth(3.612);
+
         // order item with envelopes
         $side2 = new InkRouter_Models_Side();
         $side2->setPageNumber(1)
             ->setFileUrl('http://server/images/front/1.tif')
             ->setFileHash('0a0825909aa15a98b00574661f23aee7')
             ->setCoating('NONE')
-            ->setOrientation('Landscape');
+            ->setOrientation('Landscape')
+            ->addPrintAsset($printAsset);
 
         $envelopeAttribute1 = new InkRouter_Models_Attributes_ScalarStringAttribute();
         $envelopeAttribute1->setType('ENVELOPE_TYPE')

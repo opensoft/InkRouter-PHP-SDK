@@ -7,7 +7,9 @@
 
 class OrderInfoTest extends PHPUnit_Framework_TestCase
 {
-
+    /**
+     * @var InkRouter_Models_OrderInfo
+     */
     private $orderInfo;
 
     public function testPackWithRoot()
@@ -64,6 +66,14 @@ class OrderInfoTest extends PHPUnit_Framework_TestCase
         $poInfo->setAgentId('agentId')
             ->setCurrency('currency');
 
+        $printAsset = new InkRouter_Models_PrintAsset();
+        $printAsset->setPositionX(4.98)
+            ->setPositionY(3)
+            ->setRotation(-90)
+            ->setType('BARCODE')
+            ->setHeight(3.55)
+            ->setWidth(3.612);
+
         $side = new InkRouter_Models_Side();
         $side->setPageNumber(10)
             ->setFileUrl('http://server/images/business_cards/front/0.tif')
@@ -71,8 +81,8 @@ class OrderInfoTest extends PHPUnit_Framework_TestCase
             ->setCoating('NONE')
             ->setOrientation('Landscape')
             ->setSpotUvFileUrl('http://server/images/business_cards/front/spot_uv.tif')
-            ->setSpotUvFileHash('120825909aa15s2b00574661f23aee7');
-
+            ->setSpotUvFileHash('120825909aa15s2b00574661f23aee7')
+            ->addPrintAsset($printAsset);
 
         $attributes = new InkRouter_Models_Attributes_ScalarBooleanAttribute();
         $attributes->setType('LABELING');

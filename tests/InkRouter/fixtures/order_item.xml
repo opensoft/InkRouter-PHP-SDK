@@ -24,6 +24,16 @@
         <orientation>Landscape</orientation>
         <spot_uv_file_url>http://server/images/business_cards/front/spot_uv.tif</spot_uv_file_url>
         <spot_uv_file_hash>120825909aa15s2b00574661f23aee7</spot_uv_file_hash>
+        <print_assets>
+          <print_asset>
+            <position_x>4.98</position_x>
+            <position_y>3</position_y>
+            <width>3</width>
+            <height>3</height>
+            <type>BARCODE</type>
+            <rotation>-90</rotation>
+          </print_asset>
+        </print_assets>
       </side>
     </sides>
 </order_item>     
