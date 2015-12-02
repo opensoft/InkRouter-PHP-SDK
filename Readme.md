@@ -91,11 +91,11 @@ Create InkRouter_Models_OrderInfo instance (with example data)
 
     $printAsset = new InkRouter_Models_PrintAsset();
     $printAsset->setPositionX(4.98)
-        ->setPositionY(3)
+        ->setPositionY(3.1)
         ->setRotation(-90)
         ->setType('BARCODE')
-        ->setHeight(3.55)
-        ->setWidth(3.612);
+        ->setHeight(0.543)
+        ->setWidth(2.12);
 
     $side = new InkRouter_Models_Side();
     $side->setPageNumber(10)

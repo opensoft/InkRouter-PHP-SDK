@@ -29,10 +29,10 @@ class PrintAssetTest extends PHPUnit_Framework_TestCase
     {
         $this->printAsset = new InkRouter_Models_PrintAsset();
         $this->printAsset->setPositionX(4.98)
-            ->setPositionY(3)
+            ->setPositionY(3.1)
             ->setRotation(-90)
             ->setType('BARCODE')
-            ->setHeight(3.55)
-            ->setWidth(3.612);
+            ->setHeight(0.543)
+            ->setWidth(2.12);
     }
 }

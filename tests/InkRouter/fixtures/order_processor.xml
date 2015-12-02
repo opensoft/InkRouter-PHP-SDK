@@ -80,9 +80,9 @@
                     <print_assets>
                       <print_asset>
                         <position_x>4.98</position_x>
-                        <position_y>3</position_y>
-                        <width>3</width>
-                        <height>3</height>
+                        <position_y>3.1</position_y>
+                        <width>2.12</width>
+                        <height>0.543</height>
                         <type>BARCODE</type>
                         <rotation>-90</rotation>
                       </print_asset>
