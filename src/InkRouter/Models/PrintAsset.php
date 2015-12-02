@@ -92,7 +92,7 @@ class InkRouter_Models_PrintAsset
      */
     public function setWidth($width)
     {
-        $this->width = (int) $width;
+        $this->width = $width;
 
         return $this;
     }
@@ -111,7 +111,7 @@ class InkRouter_Models_PrintAsset
      */
     public function setHeight($height)
     {
-        $this->height = (int) $height;
+        $this->height = $height;
 
         return $this;
     }
