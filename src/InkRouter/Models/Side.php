@@ -14,7 +14,6 @@
  */
 class InkRouter_Models_Side
 {
-
     /**
      * Side number
      *
@@ -71,6 +70,16 @@ class InkRouter_Models_Side
     private $printAssets;
 
     /**
+     * @var string
+     */
+    private $variableUvFileUrl;
+
+    /**
+     * @var string
+     */
+    private $variableUvFileHash;
+
+    /**
      * @return string
      */
     public function getLaminating()
@@ -88,7 +97,7 @@ class InkRouter_Models_Side
 
         return $this;
     }
-    
+
     /**
      * @return int
      */
@@ -104,6 +113,7 @@ class InkRouter_Models_Side
     public function setPageNumber($pageNumber)
     {
         $this->pageNumber = $pageNumber;
+
         return $this;
     }
 
@@ -122,6 +132,7 @@ class InkRouter_Models_Side
     public function setFileUrl($fileUrl)
     {
         $this->fileUrl = $fileUrl;
+
         return $this;
     }
 
@@ -140,6 +151,7 @@ class InkRouter_Models_Side
     public function setFileHash($fileHash)
     {
         $this->fileHash = $fileHash;
+
         return $this;
     }
 
@@ -158,6 +170,7 @@ class InkRouter_Models_Side
     public function setCoating($coating)
     {
         $this->coating = $coating;
+
         return $this;
     }
 
@@ -176,6 +189,7 @@ class InkRouter_Models_Side
     public function setOrientation($orientation)
     {
         $this->orientation = $orientation;
+
         return $this;
     }
 
@@ -186,6 +200,7 @@ class InkRouter_Models_Side
     public function setSpotUvFileHash($spotUvFileHash)
     {
         $this->spotUvFileHash = $spotUvFileHash;
+
         return $this;
     }
 
@@ -204,6 +219,7 @@ class InkRouter_Models_Side
     public function setSpotUvFileUrl($spotUvFileUrl)
     {
         $this->spotUvFileUrl = $spotUvFileUrl;
+
         return $this;
     }
 
@@ -217,11 +233,12 @@ class InkRouter_Models_Side
 
     /**
      * @param InkRouter_Models_PrintAsset $printAsset
-     * @return array
+     * @return InkRouter_Models_Side
      */
     public function addPrintAsset(InkRouter_Models_PrintAsset $printAsset)
     {
         $this->printAssets[] = $printAsset;
+
         return $this;
     }
 
@@ -231,6 +248,44 @@ class InkRouter_Models_Side
     public function getPrintAssets()
     {
         return $this->printAssets;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVariableUvFileUrl()
+    {
+        return $this->variableUvFileUrl;
+    }
+
+    /**
+     * @param string $variableUvFileUrl
+     * @return InkRouter_Models_Side
+     */
+    public function setVariableUvFileUrl($variableUvFileUrl)
+    {
+        $this->variableUvFileUrl = $variableUvFileUrl;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVariableUvFileHash()
+    {
+        return $this->variableUvFileUrl;
+    }
+
+    /**
+     * @param string $variableUvFileHash
+     * @return InkRouter_Models_Side
+     */
+    public function setVariableUvFileHash($variableUvFileHash)
+    {
+        $this->variableUvFileHash = $variableUvFileHash;
+
+        return $this;
     }
 
     /**
@@ -248,9 +303,9 @@ class InkRouter_Models_Side
         $writer->startElement('side');
 
         if (isset($this->pageNumber)) {
-           $writer->writeElement('page_number', $this->pageNumber); 
+            $writer->writeElement('page_number', $this->pageNumber);
         }
-        
+
         if (isset($this->fileUrl)) {
             $writer->writeElement('file_url', $this->fileUrl);
         }
@@ -281,6 +336,14 @@ class InkRouter_Models_Side
 
         if (isset($this->printAssets)) {
             $writer->writeRaw($this->packPrintAssets());
+        }
+
+        if (isset($this->variableUvFileUrl)) {
+            $writer->writeElement('variable_uv_file_url', $this->variableUvFileUrl);
+        }
+
+        if (isset($this->variableUvFileHash)) {
+            $writer->writeElement('variable_uv_file_hash', $this->variableUvFileHash);
         }
 
         $writer->endElement();
