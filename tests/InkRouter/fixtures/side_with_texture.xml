@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<side>
+    <page_number>0</page_number>
+    <file_url>http://server/images/business_cards/front/0.tif</file_url>
+    <file_hash>0a0825909aa15a98b00574661f23aee7</file_hash>
+    <coating>NONE</coating>
+    <orientation>Landscape</orientation>
+    <variable_uv_file_url>http://server/images/business_cards/front/spot_uv.tif</variable_uv_file_url>
+    <variable_uv_file_hash>120825909aa15s2b00574661f23aee7</variable_uv_file_hash>
+</side>
