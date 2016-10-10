@@ -40,6 +40,7 @@ class ShipTypeTest extends PHPUnit_Framework_TestCase
         $this->shipType = new InkRouter_Models_ShipType();
         $this->shipType->setMethod('UPS')
             ->setServiceLevel('GROUND')
+            ->setCashOnDelivery(false)
             ->setSignature('required');
     }
 }

@@ -3,4 +3,5 @@
   <method>UPS</method>
   <service_level>GROUND</service_level>
   <signature>required</signature>
+  <cash_on_delivery>false</cash_on_delivery>
 </ship_type>
