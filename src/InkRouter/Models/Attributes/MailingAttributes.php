@@ -149,7 +149,9 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
         }
         
         if (isset($this->csvUrl)) {
-            $writer->writeElement('csv_url', $this->csvUrl);
+            $writer->startElement('csv_url');
+            $writer->writeCdata($this->csvUrl);
+            $writer->endElement();
         }
         
         if (isset($this->clientInvoice)) {
