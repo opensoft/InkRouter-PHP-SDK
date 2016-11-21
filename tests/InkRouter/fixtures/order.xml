@@ -8,6 +8,7 @@
   <product_discounts>0</product_discounts>
   <shipping_discounts>0</shipping_discounts>
   <vendor_id>vendorId</vendor_id>
+  <currency>EUR</currency>
   <contact>
     <name>contactName</name>
     <phone>contactPhone</phone>

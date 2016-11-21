@@ -105,6 +105,13 @@ class InkRouter_Models_Order
     private $orderItems = array();
 
     /**
+     * Order currency
+     *
+     * @var string
+     */
+    private $currency;
+
+    /**
      * @return string
      */
     public function getPrintCustomerInvoice()
@@ -395,6 +402,24 @@ class InkRouter_Models_Order
     }
 
     /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param string $currency
+     * @return InkRouter_Models_Order
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+        return $this;
+    }
+
+    /**
      * @param bool $root
      * @return string
      */
@@ -438,6 +463,10 @@ class InkRouter_Models_Order
 
         if (isset($this->vendorId)) {        
             $writer->writeElement('vendor_id', $this->vendorId);
+        }
+
+        if (isset($this->currency)) {
+            $writer->writeElement('currency', $this->currency);
         }
 
         if (isset($this->contact)) {

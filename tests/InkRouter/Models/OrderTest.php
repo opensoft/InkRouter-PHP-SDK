@@ -99,6 +99,7 @@ class OrderTest extends PHPUnit_Framework_TestCase
             ->setProductDiscounts(0)
             ->setShippingDiscounts(0)
             ->setVendorId('vendorId')
+            ->setCurrency('EUR')
             ->setContact($contact)
             ->setShipType($shipType)
             ->setRequester($requester)

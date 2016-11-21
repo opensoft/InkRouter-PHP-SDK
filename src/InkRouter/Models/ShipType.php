@@ -40,6 +40,11 @@ class InkRouter_Models_ShipType
     private $signature;
 
     /**
+     * @var bool
+     */
+    private $cashOnDelivery;
+
+    /**
      * @return string
      */
     public function getMethod()
@@ -107,6 +112,24 @@ class InkRouter_Models_ShipType
     }
 
     /**
+     * @return bool
+     */
+    public function getCashOnDelivery()
+    {
+        return $this->cashOnDelivery;
+    }
+
+    /**
+     * @param bool $cashOnDelivery
+     * @return InkRouter_Models_ShipType
+     */
+    public function setCashOnDelivery($cashOnDelivery)
+    {
+        $this->cashOnDelivery = $cashOnDelivery;
+        return $this;
+    }
+
+    /**
      * @param bool $root
      * @return string
      */
@@ -131,7 +154,11 @@ class InkRouter_Models_ShipType
         if (isset($this->signature)) {
             $writer->writeElement('signature', $this->signature);
         }
-        
+
+        if (isset($this->cashOnDelivery)) {
+            $writer->writeElement('cash_on_delivery', $this->cashOnDelivery ? 'true' : 'false');
+        }
+
         $writer->endElement();
 
         return $writer->outputMemory();
