@@ -61,6 +61,12 @@ class InkRouter_Models_Order
      * @var string
      */
     private $vendorId;
+    
+    /**
+     * If true, a free tip-in will be shipped with the order
+     * @var bool
+     */
+    private $tipIn;
 
     /**
      * Contains detailed information about a person who is to be notified about the order’s progress
@@ -285,6 +291,24 @@ class InkRouter_Models_Order
         $this->vendorId = $vendorId;
         return $this;
     }
+    
+    /**
+     * @return bool
+     */
+    public function getTipIn()
+    {
+        return $this->tipIn;
+    }
+
+    /**
+     * @param bool $tipIn
+     * @return InkRouter_Models_Order
+     */
+    public function setTipIn($tipIn)
+    {
+        $this->tipIn = $tipIn;
+        return $this;
+    }
 
     /**
      * @return InkRouter_Models_Contact
@@ -438,6 +462,10 @@ class InkRouter_Models_Order
 
         if (isset($this->vendorId)) {        
             $writer->writeElement('vendor_id', $this->vendorId);
+        }
+
+        if (isset($this->tipIn) && $this->tipIn === true) {        
+            $writer->writeElement('tip_in', 'true');
         }
 
         if (isset($this->contact)) {
