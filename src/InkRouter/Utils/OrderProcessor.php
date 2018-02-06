@@ -71,7 +71,8 @@ class InkRouter_Utils_OrderProcessor
             "5.5x8.5 greeting cards" => "A2 blank envelopes",
             "8.5x11 greeting cards" => "A9 blank envelopes",
             "4.25x5.5 stationery" => "A2 blank envelopes",
-            "5.5x8.5 stationery" => "A9 blank envelopes"
+            "5.5x8.5 stationery" => "A9 blank envelopes",
+            "27.5x19 greeting cards" => "jumbo blank envelopes"
         );
         if (array_key_exists($productType, $envelopeTypes)) {
             return $envelopeTypes[$productType];
