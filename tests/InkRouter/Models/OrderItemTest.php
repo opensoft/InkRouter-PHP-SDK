@@ -89,6 +89,7 @@ class OrderItemTest extends PHPUnit_Framework_TestCase
         $this->orderItem->setPrintGroupId('pg4f7969f8a4800')
             ->setProductType('business cards')
             ->setPaperType('14PT')
+            ->setDaVinciDesignId('d9ea738d-a7e8-4f7e-ab36-f1d9284701e2')
             ->setQuantity(500)
             ->setRegionSize('US')
             ->setCost('cost')
