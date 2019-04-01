@@ -72,6 +72,11 @@ class InkRouter_Models_OrderItem
      * @var int
      */
     private $slaPriority;
+    
+    /**
+     * @var string
+     */
+    private $daVinciDesignId;
 
     /**
      * @return string
@@ -279,6 +284,25 @@ class InkRouter_Models_OrderItem
     }
 
     /**
+     * @return string
+     */
+    public function getDaVinciDesignId()
+    {
+        return $this->daVinciDesignId;
+    }
+
+    /**
+     * @param string $daVinciDesignId
+     * @return InkRouter_Models_OrderItem
+     */
+    public function setDaVinciDesignId($daVinciDesignId)
+    {
+        $this->daVinciDesignId = $daVinciDesignId;
+
+        return $this;
+    }
+    
+    /**
      * @return int
      */
     public function getQualityPriority()
@@ -352,6 +376,10 @@ class InkRouter_Models_OrderItem
 
         if (isset($this->generatedId)) {
             $writer->writeElement('generated_id', $this->generatedId);
+        }
+
+        if (isset($this->daVinciDesignId)) {
+            $writer->writeElement('davinci_design_id', $this->daVinciDesignId);
         }
 
         if (isset($this->paperType)) {
