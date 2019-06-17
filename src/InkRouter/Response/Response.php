@@ -34,45 +34,52 @@ class InkRouter_Response_Response
         foreach ($xml->getElementsByTagName('client_update') as $update) {
             $updateObj = new InkRouter_Response_Update();
             foreach ($update->childNodes as $property) {
+                $nodeValue = $property->nodeValue;
+                if ($property->attributes && $property->attributes->length > 0) {
+                    $nil = $property->attributes->getNamedItem('nil');
+                    if ($nil->value === 'true') {
+                        $nodeValue = null;
+                    }
+                }
                 switch ($property->nodeName) {
                     case 'update_id':
-                        $updateObj->setId($property->nodeValue);
+                        $updateObj->setId($nodeValue);
                         break;
                     case 'update_type':
-                        $updateObj->setType($property->nodeValue);
+                        $updateObj->setType($nodeValue);
                         break;
                     case 'quantity':
-                        $updateObj->setQuantity($property->nodeValue);
+                        $updateObj->setQuantity($nodeValue);
                         break;
                     case 'order_item_id':
-                        $updateObj->setOrderItemId($property->nodeValue);
+                        $updateObj->setOrderItemId($nodeValue);
                         break;
                     case 'comment':
-                        $updateObj->setComment($property->nodeValue);
+                        $updateObj->setComment($nodeValue);
                         break;
                     case 'replyUrl':
-                        $updateObj->setReplyUrl($property->nodeValue);
+                        $updateObj->setReplyUrl($nodeValue);
                         break;
                     case 'timestamp':
-                        $updateObj->setTimestamp($property->nodeValue);
+                        $updateObj->setTimestamp($nodeValue);
                         break;
                     case 'print_customer_invoice':
-                        $updateObj->setPrintCustomerInvoice($property->nodeValue);
+                        $updateObj->setPrintCustomerInvoice($nodeValue);
                         break;
                     case 'misc':
-                        $updateObj->setMisc($property->nodeValue);
+                        $updateObj->setMisc($nodeValue);
                         break;
                     case 'tracking_number':
-                        $updateObj->setTrackingNumber($property->nodeValue);
+                        $updateObj->setTrackingNumber($nodeValue);
                         break;
                     case 'weight':
-                        $updateObj->setWeight($property->nodeValue);
+                        $updateObj->setWeight($nodeValue);
                         break;
                     case 'cost':
-                        $updateObj->setCost($property->nodeValue);
+                        $updateObj->setCost($nodeValue);
                         break;
                     case 'print_provider_invoice':
-                        $updateObj->setPrintProviderInvoice($property->nodeValue);
+                        $updateObj->setPrintProviderInvoice($nodeValue);
                         break;
                 }
             }
