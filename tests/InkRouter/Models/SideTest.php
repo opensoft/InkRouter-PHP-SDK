@@ -40,6 +40,7 @@ class SideTest extends PHPUnit_Framework_TestCase
         return array(
             array('side.xml', $this->getSide()),
             array('side_with_texture.xml', $this->getSideWithTexture()),
+            array('side_with_foil.xml', $this->getSideWithFoil()),
         );
     }
 
@@ -83,6 +84,24 @@ class SideTest extends PHPUnit_Framework_TestCase
             ->setOrientation('Landscape')
             ->setVariableUvFileUrl('http://server/images/business_cards/front/spot_uv.tif')
             ->setVariableUvFileHash('120825909aa15s2b00574661f23aee7');
+
+        return $side;
+    }
+
+    /**
+     * @return InkRouter_Models_Side
+     */
+    private function getSideWithFoil()
+    {
+        $side = new InkRouter_Models_Side();
+        $side->setPageNumber(0)
+            ->setFileUrl('http://server/images/business_cards/front/0.tif')
+            ->setFileHash('0a0825909aa15a98b00574661f23aee7')
+            ->setCoating('NONE')
+            ->setOrientation('Landscape')
+            ->setFoilFileUrl('http://server/images/business_cards/front/foil.tif')
+            ->setFoilFileHash('120825909aa15s2b00574661f23aee7')
+            ->setFoilColor('Silver');
 
         return $side;
     }
