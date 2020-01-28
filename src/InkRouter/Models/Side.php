@@ -80,6 +80,21 @@ class InkRouter_Models_Side
     private $variableUvFileHash;
 
     /**
+     * @var string
+     */
+    private $foilFileUrl;
+
+    /**
+     * @var string
+     */
+    private $foilFileHash;
+
+    /**
+     * @var string
+     */
+    private $foilColor;
+
+    /**
      * @return string
      */
     public function getLaminating()
@@ -289,6 +304,63 @@ class InkRouter_Models_Side
     }
 
     /**
+     * @return string
+     */
+    public function getFoilFileUrl()
+    {
+        return $this->foilFileUrl;
+    }
+
+    /**
+     * @param string $foilFileUrl
+     * @return InkRouter_Models_Side
+     */
+    public function setFoilFileUrl($foilFileUrl)
+    {
+        $this->foilFileUrl = $foilFileUrl;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFoilFileHash()
+    {
+        return $this->foilFileHash;
+    }
+
+    /**
+     * @param string $foilFileHash
+     * @return InkRouter_Models_Side
+     */
+    public function setFoilFileHash($foilFileHash)
+    {
+        $this->foilFileHash = $foilFileHash;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFoilColor()
+    {
+        return $this->foilColor;
+    }
+
+    /**
+     * @param string $foilColor
+     * @return InkRouter_Models_Side
+     */
+    public function setFoilColor($foilColor)
+    {
+        $this->foilColor = $foilColor;
+
+        return $this;
+    }
+
+    /**
      * @param bool $root
      * @return string
      */
@@ -344,6 +416,18 @@ class InkRouter_Models_Side
 
         if (isset($this->variableUvFileHash)) {
             $writer->writeElement('variable_uv_file_hash', $this->variableUvFileHash);
+        }
+
+        if (isset($this->foilFileUrl)) {
+            $writer->writeElement('foil_file_url', $this->foilFileUrl);
+        }
+
+        if (isset($this->foilFileHash)) {
+            $writer->writeElement('foil_file_hash', $this->foilFileHash);
+        }
+
+        if (isset($this->foilColor)) {
+            $writer->writeElement('foil_color', $this->foilColor);
         }
 
         $writer->endElement();
