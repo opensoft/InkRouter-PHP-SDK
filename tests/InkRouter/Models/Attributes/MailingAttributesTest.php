@@ -30,6 +30,7 @@ class MailingAttributesTest extends PHPUnit_Framework_TestCase
             ->setMailClass('firstclass')
             ->setCsvUrl('http://csv.url')
             ->setClientInvoice('')
-            ->setShipExtra(1);
+            ->setShipExtra(1)
+            ->setMailingFont('Arial');
     }
 }

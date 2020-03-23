@@ -5,4 +5,5 @@
     <csv_url>http://csv.url</csv_url>
     <client_invoice/>
     <ship_extra>1</ship_extra>
+    <mailing_font>Arial</mailing_font>
 </mailing_attributes>

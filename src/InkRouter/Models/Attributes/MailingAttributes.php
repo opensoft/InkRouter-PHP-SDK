@@ -37,6 +37,11 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
     private $shipExtra;
 
     /**
+     * @var string
+     */
+    private $mailingFont;
+
+    /**
      * @param string $clientInvoice
      * @return InkRouter_Models_Attributes_MailingAttributes
      */
@@ -127,6 +132,25 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
     }
 
     /**
+     * @return string
+     */
+    public function getMailingFont()
+    {
+        return $this->mailingFont;
+    }
+
+    /**
+     * @param string $mailingFont
+     * @return InkRouter_Models_Attributes_MailingAttributes
+     */
+    public function setMailingFont($mailingFont)
+    {
+        $this->mailingFont = $mailingFont;
+
+        return $this;
+    }
+
+    /**
      * @param bool $root
      * @return string
      */
@@ -161,7 +185,11 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
         if (isset($this->shipExtra)) {
             $writer->writeElement('ship_extra', $this->shipExtra);
         }
-        
+
+        if (isset($this->mailingFont)) {
+            $writer->writeElement('mailing_font', $this->mailingFont);
+        }
+
         $writer->endElement();
 
         return $writer->outputMemory();
