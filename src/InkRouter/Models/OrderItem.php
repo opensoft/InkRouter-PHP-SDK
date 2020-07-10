@@ -54,6 +54,11 @@ class InkRouter_Models_OrderItem
     private $sides = array();
 
     /**
+     * @var InkRouter_Models_Face[]
+     */
+    private $faces = array();
+
+    /**
      * @var string
      */
     private $inspection;
@@ -72,7 +77,7 @@ class InkRouter_Models_OrderItem
      * @var int
      */
     private $slaPriority;
-    
+
     /**
      * @var string
      */
@@ -249,6 +254,36 @@ class InkRouter_Models_OrderItem
     }
 
     /**
+     * @return array
+     */
+    public function getFaces()
+    {
+        return $this->faces;
+    }
+
+    /**
+     * @param InkRouter_Models_Face[] $faces
+     * @return InkRouter_Models_OrderItem
+     */
+    public function setFaces(array $faces)
+    {
+        $this->faces = $faces;
+
+        return $this;
+    }
+
+    /**
+     * @param InkRouter_Models_Face $face
+     * @return InkRouter_Models_OrderItem
+     */
+    public function addFace($face)
+    {
+        $this->faces[] = $face;
+
+        return $this;
+    }
+
+    /**
      * @param string $inspection
      */
     public function setInspection($inspection)
@@ -301,7 +336,7 @@ class InkRouter_Models_OrderItem
 
         return $this;
     }
-    
+
     /**
      * @return int
      */
@@ -407,11 +442,19 @@ class InkRouter_Models_OrderItem
         }
 
         $writer->writeRaw($this->packAttributes());
+
+        $writer->startElement('faces');
+        foreach ($this->faces as $face) {
+            $writer->writeRaw($face->pack());
+        }
+        $writer->endElement();
+
         $writer->startElement('sides');
         foreach ($this->sides as $side) {
             $writer->writeRaw($side->pack());
         }
         $writer->endElement();
+
         $writer->endElement();
 
         return $writer->outputMemory();
