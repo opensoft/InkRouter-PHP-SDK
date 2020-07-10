@@ -13,6 +13,7 @@
           <value>true</value>
         </scalar_boolean_attribute>
     </attributes>
+    <faces/>
     <sides>
       <side>
         <page_number>10</page_number>
@@ -24,4 +25,4 @@
         <spot_uv_file_hash>120825909aa15s2b00574661f23aee7</spot_uv_file_hash>
       </side>
     </sides>
-</order_item>     
+</order_item>

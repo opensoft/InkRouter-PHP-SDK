@@ -16,6 +16,7 @@
           <value>true</value>
         </scalar_boolean_attribute>
     </attributes>
+    <faces/>
     <sides>
       <side>
         <page_number>10</page_number>
@@ -37,4 +38,4 @@
         </print_assets>
       </side>
     </sides>
-</order_item>     
+</order_item>

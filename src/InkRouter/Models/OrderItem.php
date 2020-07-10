@@ -77,7 +77,7 @@ class InkRouter_Models_OrderItem
      * @var int
      */
     private $slaPriority;
-    
+
     /**
      * @var string
      */
@@ -336,7 +336,7 @@ class InkRouter_Models_OrderItem
 
         return $this;
     }
-    
+
     /**
      * @return int
      */
@@ -443,22 +443,18 @@ class InkRouter_Models_OrderItem
 
         $writer->writeRaw($this->packAttributes());
 
-        if (!empty($this->faces)) {
-            $writer->startElement('faces');
-
-            foreach ($this->faces as $face) {
-                $writer->writeRaw($face->pack());
-            }
+        $writer->startElement('faces');
+        foreach ($this->faces as $face) {
+            $writer->writeRaw($face->pack());
         }
-        if (!empty($this->sides)) {
-            $writer->startElement('sides');
-
-            foreach ($this->sides as $side) {
-                $writer->writeRaw($side->pack());
-            }
-        }
-
         $writer->endElement();
+
+        $writer->startElement('sides');
+        foreach ($this->sides as $side) {
+            $writer->writeRaw($side->pack());
+        }
+        $writer->endElement();
+
         $writer->endElement();
 
         return $writer->outputMemory();
