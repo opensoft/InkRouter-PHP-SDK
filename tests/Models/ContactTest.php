@@ -19,12 +19,20 @@ class ContactTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/contact.xml', $this->contact->pack(true));
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/contact.xml', $this->contact->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/contact.xml', $this->contact->pack());
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/contact.xml', $this->contact->pack());
+    }
+
+    public function testJsonSerialize()
+    {
+        $this->assertJsonStringEqualsJsonFile(
+            dirname(__FILE__) . '/../fixtures/json/contact.json',
+            json_encode($this->contact)
+        );
     }
 
     protected function setUp(): void

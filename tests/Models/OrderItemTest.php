@@ -27,14 +27,22 @@ class OrderItemTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/order_item.xml',
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/order_item.xml',
             $this->orderItem->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/order_item.xml',
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/order_item.xml',
             $this->orderItem->pack());
+    }
+
+    public function testJsonSerialize()
+    {
+        $this->assertJsonStringEqualsJsonFile(
+            dirname(__FILE__) . '/../fixtures/json/order_item.json',
+            json_encode($this->orderItem)
+        );
     }
 
     public function testMinRangeValueInQualityField()

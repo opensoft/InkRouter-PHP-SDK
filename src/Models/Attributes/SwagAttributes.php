@@ -11,12 +11,13 @@
 
 namespace InkRouter\Models\Attributes;
 
+use InkRouter\Models\XmlSerializable;
 use XMLWriter;
 
 /**
  * @author Kirill Gusakov
  */
-class SwagAttributes implements AttributeInterface
+class SwagAttributes implements XmlSerializable, \JsonSerializable
 {
     /**
      * @var string
@@ -173,5 +174,20 @@ class SwagAttributes implements AttributeInterface
         return $writer->outputMemory();
     }
 
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'swagAttributes' => [
+                'name' => $this->name,
+                'inventoryType' => $this->inventoryType,
+                'cost' => $this->cost,
+                'box' => $this->box,
+                'shippingWeight' => $this->shippingWeight
+            ]
+        ];
+    }
 
 }

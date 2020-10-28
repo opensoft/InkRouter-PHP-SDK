@@ -21,14 +21,22 @@ class HolidayCardAttributesTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/holiday_card_attributes.xml',
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/holiday_card_attributes.xml',
             $this->attributes->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/holiday_card_attributes.xml',
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/holiday_card_attributes.xml',
             $this->attributes->pack());
+    }
+
+    public function testJsonSerialize()
+    {
+        $this->assertJsonStringEqualsJsonFile(
+            dirname(__FILE__) . '/../../fixtures/json/attributes/holiday_card_attributes.json',
+            json_encode($this->attributes)
+        );
     }
 
     protected function setUp(): void
@@ -36,12 +44,15 @@ class HolidayCardAttributesTest extends TestCase
         $returnAddress = new ReturnAddress();
         $returnAddress
             ->setStreetAddress('3911 Viewpark')
-            ->setFirstName('John')
-            ->setMiddleInitial('Jack')
-            ->setLastName('Brown')
+            ->setAttention('John Brown')
             ->setCity('Irvine')
             ->setState('CA')
-            ->setZip('92612');
+            ->setZip('92612')
+            ->setCountry('country')
+            ->setCompanyName('Company Name')
+            ->setPhoneNumber('1111111111')
+            ->setStreet1('Evergreen Terrace')
+            ->setStreet2('742');
 
 
         $this->attributes = new HolidayCardAttributes();

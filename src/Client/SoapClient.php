@@ -21,6 +21,7 @@ use \SoapClient as BaseSoapClient;
 /**
  * Client for sending requests to InkRouter
  *
+ * @deprecated since v2
  * @author Kirill Gusakov
  */
 class SoapClient implements ClientInterface

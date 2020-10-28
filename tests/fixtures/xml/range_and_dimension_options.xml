@@ -8,10 +8,10 @@
     <region_size>US</region_size>
     <cost>cost</cost>
     <attributes>
-        <scalar_boolean_attribute>
+        <scalar_string_attribute>
           <type>LABELING</type>
           <value>true</value>
-        </scalar_boolean_attribute>
+        </scalar_string_attribute>
     </attributes>
     <faces/>
     <sides>

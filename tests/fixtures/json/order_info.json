@@ -1,0 +1,127 @@
+{
+  "poInfo": {
+    "agentId": "agentId",
+    "currency": "currency"
+  },
+  "headerInfo": {
+    "fromDomain": "myprintingdomain.com",
+    "fromIdentity": "BRENT"
+  },
+  "order": {
+    "orderId": 44164524,
+    "customerName": null,
+    "parentReference": null,
+    "orderDate": "2012-04-04T19:25:21+04:00",
+    "orderStatus": null,
+    "deliveryDate": null,
+    "priority": 0,
+    "shippingFee": 10,
+    "productDiscounts": 0,
+    "shippingDiscounts": 0,
+    "vendorId": "vendorId",
+    "currency": null,
+    "tipIn": null,
+    "contact": {
+      "name": "contactName",
+      "phone": "contactPhone",
+      "eMail": "contactEmail"
+    },
+    "shipType": {
+      "signature": null,
+      "shipMethod": "UPS",
+      "shipService": "GROUND",
+      "suggestedShipMethod": null,
+      "suggestedShipService": null,
+      "cashOnDelivery": null
+    },
+    "requester": {
+      "name": "Jaisor Prints",
+      "contract": "STANDARD",
+      "paymentTerm": "FREE"
+    },
+    "shipAddress": {
+      "company": "Company Name",
+      "attention": "Attention",
+      "phoneNumber": null,
+      "street": "742 Evergreen Terrace",
+      "street1": null,
+      "street2": null,
+      "city": "Springfield",
+      "state": "CA",
+      "zip": "92614",
+      "country": "country"
+    },
+    "shiplabelFromAddress": null,
+    "shipReturnAddress": {
+      "company": "Crymerik Industries",
+      "attention": null,
+      "phoneNumber": "8005551234",
+      "street": "3911 Viewpark",
+      "street1": null,
+      "street2": null,
+      "city": "Irvine",
+      "state": "CA",
+      "zip": "92612",
+      "country": "US",
+      "personName": "Roger Heath",
+      "supportEmail": null
+    },
+    "storeAddress": null,
+    "orderItems": [
+      {
+        "orderItemId": "pg4f7969f8a4800",
+        "regionSize": "US",
+        "inspection": null,
+        "cost": "cost",
+        "qualityPriority": null,
+        "slaPriority": null,
+        "generatedId": null,
+        "davinciDesignId": null,
+        "weight": null,
+        "productType": "business cards",
+        "substrate": "14PT",
+        "quantity": 500,
+        "attributes": [
+          {
+            "scalarStringAttribute": {
+              "type": "LABELING",
+              "value": "true"
+            }
+          }
+        ],
+        "sides": [
+          {
+            "sideNumber": 10,
+            "fileUrl": "http:\/\/server\/images\/business_cards\/front\/0.tif",
+            "fileHash": "0a0825909aa15a98b00574661f23aee7",
+            "coating": "NONE",
+            "laminating": null,
+            "foilColor": null,
+            "orientation": "Landscape",
+            "spotUvFileUrl": "http:\/\/server\/images\/business_cards\/front\/spot_uv.tif",
+            "spotUvFileHash": "120825909aa15s2b00574661f23aee7",
+            "variableUvFileUrl": null,
+            "variableUvFileHash": null,
+            "opaqueWhiteFileUrl": null,
+            "opaqueWhiteFileHash": null,
+            "foilFileUrl": null,
+            "foilFileHash": null,
+            "printAssets": [
+              {
+                "positionX": 4.98,
+                "positionY": 3.1,
+                "width": 2.12,
+                "height": 0.543,
+                "type": "BARCODE",
+                "rotation": -90
+              }
+            ]
+          }
+        ],
+        "faces": []
+      }
+    ],
+    "printCustomerId": null
+  },
+  "printCustomerId": "BRENT"
+}

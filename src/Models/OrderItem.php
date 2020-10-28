@@ -11,7 +11,6 @@
 
 namespace InkRouter\Models;
 
-use InkRouter\Models\Attributes\AttributeInterface;
 use InvalidArgumentException;
 use XMLWriter;
 
@@ -20,7 +19,7 @@ use XMLWriter;
  *
  * @author Kirill Gusakov
  */
-class OrderItem
+class OrderItem implements XmlSerializable, \JsonSerializable
 {
 
     /**
@@ -54,7 +53,7 @@ class OrderItem
     private $cost;
 
     /**
-     * @var AttributeInterface[]
+     * @var XmlSerializable[]
      */
     private $attributes = array();
 
@@ -92,6 +91,8 @@ class OrderItem
      * @var string
      */
     private $daVinciDesignId;
+
+    private $weight;
 
     /**
      * @return string
@@ -226,7 +227,7 @@ class OrderItem
         return $this;
     }
 
-    public function addAttributes(AttributeInterface $attribute)
+    public function addAttributes(XmlSerializable $attribute)
     {
         $this->attributes[] = $attribute;
 
@@ -394,6 +395,25 @@ class OrderItem
     }
 
     /**
+     * @return mixed
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @param mixed $weight
+     * @return OrderItem
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+
+        return $this;
+    }
+
+    /**
      * @param bool $root
      * @return string
      */
@@ -468,6 +488,30 @@ class OrderItem
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'orderItemId' => $this->printGroupId,
+            'regionSize' => $this->regionSize,
+            'inspection' => $this->inspection,
+            'cost' => $this->cost,
+            'qualityPriority' => $this->qualityPriority,
+            'slaPriority' => $this->slaPriority,
+            'generatedId' => $this->generatedId,
+            'davinciDesignId' => $this->daVinciDesignId,
+            'weight' => $this->weight,
+            'productType' => $this->productType,
+            'substrate' => $this->paperType,
+            'quantity' => $this->quantity,
+            'attributes' => $this->attributes,
+            'sides' => $this->sides,
+            'faces' => $this->faces
+        ];
     }
 
     private function packAttributes()

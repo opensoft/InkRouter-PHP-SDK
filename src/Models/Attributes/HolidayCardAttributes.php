@@ -11,13 +11,14 @@
 
 namespace InkRouter\Models\Attributes;
 
+use InkRouter\Models\XmlSerializable;
 use InkRouter\Models\ReturnAddress;
 use XMLWriter;
 
 /**
  * @author Kirill Gusakov
  */
-class HolidayCardAttributes implements AttributeInterface
+class HolidayCardAttributes implements XmlSerializable, \JsonSerializable
 {
     /**
      * @var bool
@@ -120,5 +121,19 @@ class HolidayCardAttributes implements AttributeInterface
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'holidayCardAttributes' => [
+                'sendToSelf' => $this->sendToSelf,
+                'stuffing' => $this->stuffing,
+                'returnAddress' => $this->returnAddress
+            ]
+        ];
     }
 }

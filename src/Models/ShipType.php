@@ -19,7 +19,7 @@ use XMLWriter;
  *
  * @author Kirill Gusakov
  */
-class ShipType
+class ShipType implements XmlSerializable, \JsonSerializable
 {
     const SIGNATURE_REQUIRED = "required";
     const SIGNATURE_REQUIRED_ADULT = "required-adult";
@@ -47,6 +47,21 @@ class ShipType
      * @var string
      */
     private $signature;
+
+    /**
+     * @var string|null
+     */
+    private $suggestedShipMethod;
+
+    /**
+     * @var string|null
+     */
+    private $suggestedShipService;
+
+    /**
+     * @var bool|null
+     */
+    private $cashOnDelivery;
 
     /**
      * @return string
@@ -110,6 +125,63 @@ class ShipType
     }
 
     /**
+     * @return string|null
+     */
+    public function getSuggestedShipMethod(): ?string
+    {
+        return $this->suggestedShipMethod;
+    }
+
+    /**
+     * @param string|null $suggestedShipMethod
+     * @return ShipType
+     */
+    public function setSuggestedShipMethod(?string $suggestedShipMethod): ShipType
+    {
+        $this->suggestedShipMethod = $suggestedShipMethod;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSuggestedShipService(): ?string
+    {
+        return $this->suggestedShipService;
+    }
+
+    /**
+     * @param string|null $suggestedShipService
+     * @return ShipType
+     */
+    public function setSuggestedShipService(?string $suggestedShipService): ShipType
+    {
+        $this->suggestedShipService = $suggestedShipService;
+
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getCashOnDelivery(): ?bool
+    {
+        return $this->cashOnDelivery;
+    }
+
+    /**
+     * @param bool|null $cashOnDelivery
+     * @return ShipType
+     */
+    public function setCashOnDelivery(?bool $cashOnDelivery): ShipType
+    {
+        $this->cashOnDelivery = $cashOnDelivery;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function getValidSignatures()
@@ -146,5 +218,20 @@ class ShipType
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'signature' => $this->signature,
+            'shipMethod' => $this->method,
+            'shipService' => $this->serviceLevel,
+            'suggestedShipMethod' => $this->suggestedShipMethod,
+            'suggestedShipService' => $this->suggestedShipService,
+            'cashOnDelivery' => $this->cashOnDelivery
+        ];
     }
 }

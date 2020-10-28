@@ -9,17 +9,15 @@
  * Opensoft is prohibited.
  */
 
-namespace InkRouter\Models\Attributes;
+namespace InkRouter\Request;
 
 /**
- * @author Kirill Gusakov
+ * @author Dmitry Petrov <dmitry.petrov@opensoftdev.com>
  */
-interface AttributeInterface
+class HoldAction extends Action
 {
     /**
-     * @abstract
-     * @param bool $root
-     * @return mixed
+     * @var string
      */
-    public function pack($root = false);
+    protected $status = self::ACTION_HOLD;
 }

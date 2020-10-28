@@ -20,14 +20,22 @@ class ScalarStringAttributeTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/scalar_string_attribute.xml',
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/scalar_string_attribute.xml',
             $this->attribute->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/scalar_string_attribute.xml',
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/scalar_string_attribute.xml',
             $this->attribute->pack());
+    }
+
+    public function testJsonSerialize()
+    {
+        $this->assertJsonStringEqualsJsonFile(
+            dirname(__FILE__) . '/../../fixtures/json/attributes/scalar_string_attribute.json',
+            json_encode($this->attribute)
+        );
     }
 
     protected function setUp(): void

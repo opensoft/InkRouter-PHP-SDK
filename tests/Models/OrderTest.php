@@ -31,12 +31,20 @@ class OrderTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/order.xml', $this->order->pack(true));
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/order.xml', $this->order->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/order.xml', $this->order->pack());
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/order.xml', $this->order->pack());
+    }
+
+    public function testJsonSerialize()
+    {
+        $this->assertJsonStringEqualsJsonFile(
+            dirname(__FILE__) . '/../fixtures/json/order.json',
+            json_encode($this->order)
+        );
     }
 
     protected function setUp(): void
@@ -64,6 +72,7 @@ class OrderTest extends TestCase
         $shipReturnAddress
             ->setCompanyName('Crymerik Industries')
             ->setPersonName('Roger Heath')
+            ->setAttention('Roger Heath')
             ->setPhoneNumber('8005551234')
             ->setStreetAddress('3911 Viewpark')
             ->setCity('Irvine')
@@ -121,6 +130,8 @@ class OrderTest extends TestCase
             ->setShipType($shipType)
             ->setRequester($requester)
             ->setShipAddress($shipAddress)
+            ->setStoreAddress($shipAddress)
+            ->setShiplabelFromAddress($shipReturnAddress)
             ->setShipReturnAddress($shipReturnAddress)
             ->addOrderItem($orderItem);
     }

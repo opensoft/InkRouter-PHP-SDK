@@ -20,14 +20,22 @@ class MailingAttributesTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/mailing_attributes.xml',
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/mailing_attributes.xml',
             $this->attributes->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/mailing_attributes.xml',
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/mailing_attributes.xml',
             $this->attributes->pack());
+    }
+
+    public function testJsonSerialize()
+    {
+        $this->assertJsonStringEqualsJsonFile(
+            dirname(__FILE__) . '/../../fixtures/json/attributes/mailing_attributes.json',
+            json_encode($this->attributes)
+        );
     }
 
     protected function setUp(): void

@@ -14,9 +14,13 @@ namespace InkRouter\Client;
 use InkRouter\Exceptions\Exception;
 use InkRouter\Models\OrderInfo;
 
+/**
+ * @deprecated since v2
+ */
 interface ClientInterface
 {
     /**
+     * @deprecated since v2
      * @param int $timestamp
      * @param OrderInfo $orderInfo
      * @return mixed
@@ -25,6 +29,7 @@ interface ClientInterface
     public function createOrder($timestamp, OrderInfo $orderInfo);
 
     /**
+     * @deprecated since v2
      * @param int $orderId
      * @param int $timestamp
      * @param OrderInfo $orderInfo
@@ -34,6 +39,7 @@ interface ClientInterface
     public function updateOrder($orderId, $timestamp, OrderInfo $orderInfo);
 
     /**
+     * @deprecated since v2
      * @param int $orderId
      * @param int $timestamp
      * @return mixed
@@ -42,6 +48,7 @@ interface ClientInterface
     public function placeOnHold($orderId, $timestamp);
 
     /**
+     * @deprecated since v2
      * @param int $orderId
      * @param int $timestamp
      * @return mixed
@@ -50,6 +57,7 @@ interface ClientInterface
     public function removeHold($orderId, $timestamp);
 
     /**
+     * @deprecated since v2
      * @param int $orderId
      * @param int $timestamp
      * @return mixed

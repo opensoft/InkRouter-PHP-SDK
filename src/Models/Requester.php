@@ -18,7 +18,7 @@ use XMLWriter;
  *
  * @author Kirill Gusakov
  */
-class Requester
+class Requester implements XmlSerializable, \JsonSerializable
 {
 
     /**
@@ -131,4 +131,18 @@ class Requester
 
         return $writer->outputMemory();
     }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'name' => $this->name,
+            'contract' => $this->contract,
+            'paymentTerm' => $this->payTerm,
+        ];
+    }
+
+
 }

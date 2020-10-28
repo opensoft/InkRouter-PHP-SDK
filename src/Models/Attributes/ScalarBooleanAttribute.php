@@ -14,58 +14,11 @@ namespace InkRouter\Models\Attributes;
 use XMLWriter;
 
 /**
+ * @deprecated since API v2
  * @author Kirill Gusakov
  */
-class ScalarBooleanAttribute implements AttributeInterface
+class ScalarBooleanAttribute extends ScalarStringAttribute
 {
-    /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * @var string
-     */
-    private $value;
-
-    /**
-     * @param string $value
-     * @return ScalarBooleanAttribute
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param string $type
-     * @return ScalarBooleanAttribute
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
     /**
      * @param bool $root
      * @return string

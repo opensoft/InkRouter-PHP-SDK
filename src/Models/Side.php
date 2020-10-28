@@ -18,7 +18,7 @@ use XMLWriter;
  *
  * @author Kirill Gusakov
  */
-class Side
+class Side implements XmlSerializable, \JsonSerializable
 {
     /**
      * Side number
@@ -99,6 +99,16 @@ class Side
      * @var string
      */
     private $foilColor;
+
+    /**
+     * @var string|null
+     */
+    private $opaqueWhiteFileUrl;
+
+    /**
+     * @var string|null
+     */
+    private $opaqueWhiteFileHash;
 
     /**
      * @return string
@@ -367,6 +377,44 @@ class Side
     }
 
     /**
+     * @return string|null
+     */
+    public function getOpaqueWhiteFileUrl(): ?string
+    {
+        return $this->opaqueWhiteFileUrl;
+    }
+
+    /**
+     * @param string|null $opaqueWhiteFileUrl
+     * @return Side
+     */
+    public function setOpaqueWhiteFileUrl(?string $opaqueWhiteFileUrl): Side
+    {
+        $this->opaqueWhiteFileUrl = $opaqueWhiteFileUrl;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOpaqueWhiteFileHash(): ?string
+    {
+        return $this->opaqueWhiteFileHash;
+    }
+
+    /**
+     * @param string|null $opaqueWhiteFileHash
+     * @return Side
+     */
+    public function setOpaqueWhiteFileHash(?string $opaqueWhiteFileHash): Side
+    {
+        $this->opaqueWhiteFileHash = $opaqueWhiteFileHash;
+
+        return $this;
+    }
+
+    /**
      * @param bool $root
      * @return string
      */
@@ -439,6 +487,31 @@ class Side
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'sideNumber' => $this->pageNumber,
+            'fileUrl' => $this->fileUrl,
+            'fileHash' => $this->fileHash,
+            'coating' => $this->coating,
+            'laminating' => $this->laminating,
+            'foilColor' => $this->foilColor,
+            'orientation' => $this->orientation,
+            'spotUvFileUrl' => $this->spotUvFileUrl,
+            'spotUvFileHash' => $this->spotUvFileHash,
+            'variableUvFileUrl' => $this->variableUvFileUrl,
+            'variableUvFileHash' => $this->variableUvFileHash,
+            'opaqueWhiteFileUrl' => $this->opaqueWhiteFileUrl,
+            'opaqueWhiteFileHash' => $this->opaqueWhiteFileHash,
+            'foilFileUrl' => $this->foilFileUrl,
+            'foilFileHash' => $this->foilFileHash,
+            'printAssets' => $this->printAssets,
+        ];
     }
 
     /**

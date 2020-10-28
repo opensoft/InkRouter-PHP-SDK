@@ -18,7 +18,7 @@ use XMLWriter;
  *
  * @author Kirill Gusakov
  */
-class Contact
+class Contact implements XmlSerializable, \JsonSerializable
 {
     /**
      * @var string
@@ -121,5 +121,17 @@ class Contact
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'name' => $this->name,
+            'phone' => $this->phone,
+            'eMail' => $this->email
+        ];
     }
 }

@@ -16,202 +16,11 @@ use XMLWriter;
 /**
  * Contains information about the return shipping address
  *
+ * @deprecated since API v2, use ResellerShipAddress
  * @author Richard Fullmer <richard.fullmer@opensoftdev.com>
  */
-class ShipReturnAddress
+class ShipReturnAddress extends ResellerShipAddress
 {
-    /**
-     * @var string
-     */
-    private $personName;
-
-    /**
-     * @var string
-     */
-    private $companyName;
-
-    /**
-     * @var string
-     */
-    private $phoneNumber;
-
-    /**
-     * @var string
-     */
-    private $streetAddress;
-
-    /**
-     * @var string
-     */
-    private $city;
-
-    /**
-     * @var string
-     */
-    private $state;
-
-    /**
-     * @var string
-     */
-    private $zip;
-
-    /**
-     * @var string
-     */
-    private $country;
-
-    /**
-     * @param string $city
-     * @return ShipReturnAddress
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param string $state
-     * @return ShipReturnAddress
-     */
-    public function setState($state)
-    {
-        $this->state = $state;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    /**
-     * @param string $streetAddress
-     * @return ShipReturnAddress
-     */
-    public function setStreetAddress($streetAddress)
-    {
-        $this->streetAddress = $streetAddress;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStreetAddress()
-    {
-        return $this->streetAddress;
-    }
-
-    /**
-     * @param string $zip
-     * @return ShipReturnAddress
-     */
-    public function setZip($zip)
-    {
-        $this->zip = $zip;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getZip()
-    {
-        return $this->zip;
-    }
-
-    /**
-     * @param string $companyName
-     * @return ShipReturnAddress
-     */
-    public function setCompanyName($companyName)
-    {
-        $this->companyName = $companyName;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCompanyName()
-    {
-        return $this->companyName;
-    }
-
-    /**
-     * @param string $country
-     * @return ShipReturnAddress
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * @param string $personName
-     * @return ShipReturnAddress
-     */
-    public function setPersonName($personName)
-    {
-        $this->personName = $personName;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPersonName()
-    {
-        return $this->personName;
-    }
-
-    /**
-     * @param string $phoneNumber
-     * @return ShipReturnAddress
-     */
-    public function setPhoneNumber($phoneNumber)
-    {
-        $this->phoneNumber = $phoneNumber;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhoneNumber()
-    {
-        return $this->phoneNumber;
-    }
-
     /**
      * @param bool $root
      * @return string
@@ -229,6 +38,12 @@ class ShipReturnAddress
         if (isset($this->personName)) {
             $writer->writeElement('person_name', $this->personName);
         }
+        if (isset($this->attention)) {
+            $writer->writeElement('attention', $this->attention);
+        }
+        if (!isset($this->attention) && isset($this->personName)) {
+            $writer->writeElement('attention', $this->personName);
+        }
 
         if (isset($this->companyName)) {
             $writer->writeElement('company_name', $this->companyName);
@@ -240,6 +55,14 @@ class ShipReturnAddress
 
         if (isset($this->streetAddress)) {
             $writer->writeElement('street_address', $this->streetAddress);
+        }
+
+        if (isset($this->street1)) {
+            $writer->writeElement('street_address1', $this->street1);
+        }
+
+        if (isset($this->street2)) {
+            $writer->writeElement('street_address2', $this->street2);
         }
         
         if (isset($this->city)) {
@@ -261,5 +84,19 @@ class ShipReturnAddress
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return array_merge(
+            parent::jsonSerialize(),
+            [
+                'personName' => $this->personName,
+                'supportEmail' => $this->supportEmail
+            ]
+        );
     }
 }

@@ -1,0 +1,18 @@
+{
+  "sideNumber": 0,
+  "fileUrl": "http:\/\/server\/images\/business_cards\/front\/0.tif",
+  "fileHash": "0a0825909aa15a98b00574661f23aee7",
+  "coating": "NONE",
+  "laminating": null,
+  "foilColor": null,
+  "orientation": "Landscape",
+  "spotUvFileUrl": null,
+  "spotUvFileHash": null,
+  "variableUvFileUrl": "http:\/\/server\/images\/business_cards\/front\/spot_uv.tif",
+  "variableUvFileHash": "120825909aa15s2b00574661f23aee7",
+  "opaqueWhiteFileUrl": null,
+  "opaqueWhiteFileHash": null,
+  "foilFileUrl": null,
+  "foilFileHash": null,
+  "printAssets": null
+}

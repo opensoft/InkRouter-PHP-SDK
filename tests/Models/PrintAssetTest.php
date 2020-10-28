@@ -22,12 +22,20 @@ class PrintAssetTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/print_asset.xml', $this->printAsset->pack());
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/print_asset.xml', $this->printAsset->pack());
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/print_asset.xml', $this->printAsset->pack());
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/print_asset.xml', $this->printAsset->pack());
+    }
+
+    public function testJsonSerialize()
+    {
+        $this->assertJsonStringEqualsJsonFile(
+            dirname(__FILE__) . '/../fixtures/json/print_asset.json',
+            json_encode($this->printAsset)
+        );
     }
 
     protected function setUp(): void

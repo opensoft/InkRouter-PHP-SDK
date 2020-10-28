@@ -38,12 +38,20 @@ class OrderProcessorTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/order_processor.xml', $this->order->pack(true));
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/order_processor.xml', $this->order->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/order_processor.xml', $this->order->pack());
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/order_processor.xml', $this->order->pack());
+    }
+
+    public function testJsonSerialize()
+    {
+        $this->assertJsonStringEqualsJsonFile(
+            dirname(__FILE__) . '/../fixtures/json/order_processor.json',
+            json_encode($this->order)
+        );
     }
 
     protected function setUp(): void

@@ -11,12 +11,13 @@
 
 namespace InkRouter\Models\Attributes;
 
+use InkRouter\Models\XmlSerializable;
 use XMLWriter;
 
 /**
  * @author James Taylor <james.taylor@opensoftdev.com>
  */
-class NotepadsAttributes implements AttributeInterface
+class NotepadsAttributes implements XmlSerializable, \JsonSerializable
 {
     /**
      * @var int
@@ -63,5 +64,17 @@ class NotepadsAttributes implements AttributeInterface
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'notepadsAttributes' => [
+                'pageCount' => $this->pages
+            ]
+        ];
     }
 }

@@ -1,0 +1,27 @@
+{
+  "sideNumber": 10,
+  "fileUrl": "http:\/\/server\/images\/business_cards\/front\/0.tif",
+  "fileHash": "0a0825909aa15a98b00574661f23aee7",
+  "coating": "NONE",
+  "laminating": "soft touch",
+  "foilColor": null,
+  "orientation": "Landscape",
+  "spotUvFileUrl": "http:\/\/server\/images\/business_cards\/front\/spot_uv.tif",
+  "spotUvFileHash": "120825909aa15s2b00574661f23aee7",
+  "variableUvFileUrl": null,
+  "variableUvFileHash": null,
+  "opaqueWhiteFileUrl": null,
+  "opaqueWhiteFileHash": null,
+  "foilFileUrl": null,
+  "foilFileHash": null,
+  "printAssets": [
+    {
+      "positionX": 4.98,
+      "positionY": 3.1,
+      "width": 2.12,
+      "height": 0.543,
+      "type": "BARCODE",
+      "rotation": -90
+    }
+  ]
+}

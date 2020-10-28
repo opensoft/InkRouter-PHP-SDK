@@ -16,9 +16,10 @@ use XMLWriter;
 /**
  * Root object
  *
+ * @deprecated since v2
  * @author Kirill Gusakov
  */
-class OrderInfo
+class OrderInfo implements \JsonSerializable, XmlSerializable
 {
     /**
      * Document's header information
@@ -151,5 +152,18 @@ class OrderInfo
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'poInfo' => $this->poInfo,
+            'headerInfo' => $this->headerInfo,
+            'order' => $this->order,
+            'printCustomerId' => $this->printCustomerId
+        ];
     }
 }

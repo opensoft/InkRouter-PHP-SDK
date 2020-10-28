@@ -11,12 +11,13 @@
 
 namespace InkRouter\Models\Attributes;
 
+use InkRouter\Models\XmlSerializable;
 use XMLWriter;
 
 /**
  * @author Kirill Gusakov
  */
-class FoldingAttributes implements AttributeInterface
+class FoldingAttributes implements XmlSerializable, \JsonSerializable
 {
     /**
      * @var string
@@ -121,5 +122,19 @@ class FoldingAttributes implements AttributeInterface
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array[]
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'foldingAttributes' => [
+                'foldingType' => $this->foldingType,
+                'flipTopPanel' => $this->flipTopPanel,
+                'insideOut' => $this->insideOut
+            ]
+        ];
     }
 }

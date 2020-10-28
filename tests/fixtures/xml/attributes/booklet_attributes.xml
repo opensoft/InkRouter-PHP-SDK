@@ -4,7 +4,6 @@
     <binding>saddle</binding>
     <pages>8</pages>
     <tabbing>3</tabbing>
-    <shrink_wrapping>12</shrink_wrapping>
     <hole_making>R3 3/16</hole_making>
     <cover_substrate>14PT</cover_substrate>
 </booklet_attributes>

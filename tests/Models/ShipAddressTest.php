@@ -21,12 +21,20 @@ class ShipAddressTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/ship_address.xml', $this->shipAddress->pack(true));
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_address.xml', $this->shipAddress->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/ship_address.xml', $this->shipAddress->pack());
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_address.xml', $this->shipAddress->pack());
+    }
+
+    public function testJsonSerialize()
+    {
+        $this->assertJsonStringEqualsJsonFile(
+            dirname(__FILE__) . '/../fixtures/json/ship_address.json',
+            json_encode($this->shipAddress)
+        );
     }
 
     protected function setUp(): void
@@ -38,6 +46,9 @@ class ShipAddressTest extends TestCase
             ->setState('CA')
             ->setZip('92614')
             ->setCountry('country')
-            ->setCompanyName('Company Name');
+            ->setCompanyName('Company Name')
+            ->setPhoneNumber('1111111111')
+            ->setStreet1('Evergreen Terrace')
+            ->setStreet2('742');
     }
 }

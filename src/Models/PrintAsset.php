@@ -16,7 +16,7 @@ use XMLWriter;
 /**
  * @author Vladimir Prudilin <vladimir.prudilin@opensoftdev.ru>
  */
-class PrintAsset
+class PrintAsset implements XmlSerializable, \JsonSerializable
 {
     /**
      * @var integer x coordinate in inches
@@ -204,5 +204,20 @@ class PrintAsset
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'positionX' => $this->positionX,
+            'positionY' => $this->positionY,
+            'width' => $this->width,
+            'height' => $this->height,
+            'type' => $this->type,
+            'rotation' => $this->rotation
+        ];
     }
 }

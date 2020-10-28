@@ -18,54 +18,69 @@ use XMLWriter;
  *
  * @author Kirill Gusakov
  */
-class ShipAddress
+class ShipAddress implements XmlSerializable, \JsonSerializable
 {
     /**
      * @var string
      */
-    private $companyName;
+    protected $companyName;
 
     /**
      * A name of the person who need to be informed when the order is delivered.
      *
      * @var string
      */
-    private $attention;
+    protected $attention;
+
+    /**
+     * @var string|null
+     */
+    protected $phoneNumber;
 
     /**
      * Street of the shipping address
      *
      * @var string
      */
-    private $streetAddress;
+    protected $streetAddress;
+
+    /**
+     * @var string|null
+     */
+    protected $street1;
+
+    /**
+     * @var string|null
+     */
+    protected $street2;
 
     /**
      * City of the shipping address
      *
      * @var string
      */
-    private $city;
+    protected $city;
 
     /**
      * State of the shipping address
      *
      * @var string
      */
-    private $state;
+    protected $state;
 
     /**
      * Zip code of the shipping address
      *
      * @var string
      */
-    private $zip;
+    protected $zip;
 
     /**
      * Country of the shipping address
      *
      * @var string
      */
-    private $country;
+    protected $country;
 
     /**
      * @return string
@@ -201,6 +216,63 @@ class ShipAddress
     }
 
     /**
+     * @return string|null
+     */
+    public function getStreet1(): ?string
+    {
+        return $this->street1;
+    }
+
+    /**
+     * @param string|null $street1
+     * @return ShipAddress
+     */
+    public function setStreet1(?string $street1): ShipAddress
+    {
+        $this->street1 = $street1;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStreet2(): ?string
+    {
+        return $this->street2;
+    }
+
+    /**
+     * @param string|null $street2
+     * @return ShipAddress
+     */
+    public function setStreet2(?string $street2): ShipAddress
+    {
+        $this->street2 = $street2;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * @param string|null $phoneNumber
+     * @return ShipAddress
+     */
+    public function setPhoneNumber(?string $phoneNumber): ShipAddress
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
      * @param bool $root
      * @return string
      */
@@ -221,9 +293,21 @@ class ShipAddress
         if (isset($this->attention)) {
             $writer->writeElement('attention', $this->attention);
         }
-        
+
+        if (isset($this->phoneNumber)) {
+            $writer->writeElement('phone_number', $this->phoneNumber);
+        }
+
         if (isset($this->streetAddress)) {
             $writer->writeElement('street_address', $this->streetAddress);
+        }
+
+        if (isset($this->street1)) {
+            $writer->writeElement('street_address1', $this->street1);
+        }
+
+        if (isset($this->street2)) {
+            $writer->writeElement('street_address2', $this->street2);
         }
         
         if (isset($this->city)) {
@@ -245,5 +329,24 @@ class ShipAddress
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'company' => $this->companyName,
+            'attention' => $this->attention,
+            'phoneNumber' => $this->phoneNumber,
+            'street' => $this->streetAddress,
+            'street1' => $this->street1,
+            'street2' => $this->street2,
+            'city' => $this->city,
+            'state' => $this->state,
+            'zip' => $this->zip,
+            'country' => $this->country
+        ];
     }
 }

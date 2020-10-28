@@ -36,12 +36,20 @@ class OrderInfoTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/order_info.xml', $this->orderInfo->pack(true));
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/order_info.xml', $this->orderInfo->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/order_info.xml', $this->orderInfo->pack());
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/order_info.xml', $this->orderInfo->pack());
+    }
+
+    public function testJsonSerialize()
+    {
+        $this->assertJsonStringEqualsJsonFile(
+            dirname(__FILE__) . '/../fixtures/json/order_info.json',
+            json_encode($this->orderInfo)
+        );
     }
 
     protected function setUp(): void

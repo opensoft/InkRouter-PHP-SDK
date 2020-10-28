@@ -11,12 +11,13 @@
 
 namespace InkRouter\Models\Attributes;
 
+use InkRouter\Models\XmlSerializable;
 use XMLWriter;
 
 /**
  * @author Kirill Gusakov
  */
-class MailingAttributes implements AttributeInterface
+class MailingAttributes implements XmlSerializable, \JsonSerializable
 {
     /**
      * @var string
@@ -205,5 +206,22 @@ class MailingAttributes implements AttributeInterface
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'mailingAttributes' => [
+                'mailClass' => $this->mailClass,
+                'political' => $this->politicalMailer,
+                'csvUrl' => $this->csvUrl,
+                'clientInvoice' => $this->clientInvoice,
+                'shipExtra' => $this->shipExtra,
+                'mailingFont' => $this->mailingFont
+            ]
+        ];
     }
 }

@@ -58,7 +58,7 @@ class ResponseTest extends TestCase
 
     protected function setUp(): void
     {
-        $fileName = dirname(__FILE__) . '/../fixtures/client_updates.xml';
+        $fileName = dirname(__FILE__) . '/../fixtures/xml/client_updates.xml';
         $file = fopen($fileName, 'r');
         $this->xml = fread($file, filesize($fileName));
         fclose($file);

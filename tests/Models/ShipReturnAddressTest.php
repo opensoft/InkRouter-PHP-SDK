@@ -20,14 +20,22 @@ class ShipReturnAddressTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/ship_return_address.xml',
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_return_address.xml',
             $this->shipReturnAddress->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/ship_return_address.xml',
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_return_address.xml',
             $this->shipReturnAddress->pack());
+    }
+
+    public function testJsonSerialize()
+    {
+        $this->assertJsonStringEqualsJsonFile(
+            dirname(__FILE__) . '/../fixtures/json/ship_return_address.json',
+            json_encode($this->shipReturnAddress)
+        );
     }
 
     protected function setUp(): void
@@ -38,9 +46,13 @@ class ShipReturnAddressTest extends TestCase
             ->setPersonName('Roger Heath')
             ->setPhoneNumber('8005551234')
             ->setStreetAddress('3911 Viewpark')
+            ->setStreet1('Street 1')
+            ->setStreet2('Street 2')
             ->setCity('Irvine')
             ->setState('CA')
             ->setZip('92612')
-            ->setCountry('US');
+            ->setCountry('US')
+            ->setAttention('Roger Heath')
+            ->setSupportEmail('example@example.com');
     }
 }

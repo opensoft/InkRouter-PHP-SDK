@@ -25,7 +25,7 @@ class SideTest extends TestCase
      */
     public function testPackWithRoot($file, Side $side)
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/' . $file, $side->pack(true));
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/' . $file . '.xml', $side->pack(true));
     }
 
     /**
@@ -36,7 +36,7 @@ class SideTest extends TestCase
      */
     public function testPackWithoutRoot($file, Side $side)
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/' . $file, $side->pack());
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/' . $file . '.xml', $side->pack());
     }
 
     /**
@@ -45,10 +45,21 @@ class SideTest extends TestCase
     public function getSides()
     {
         return array(
-            array('side.xml', $this->getSide()),
-            array('side_with_texture.xml', $this->getSideWithTexture()),
-            array('side_with_foil.xml', $this->getSideWithFoil()),
+            array('side', $this->getSide()),
+            array('side_with_texture', $this->getSideWithTexture()),
+            array('side_with_foil', $this->getSideWithFoil()),
         );
+    }
+
+    /**
+     * @param string $file
+     * @param Side $side
+     *
+     * @dataProvider getSides
+     */
+    public function testJsonSerialize($file, Side $side)
+    {
+        $this->assertJsonStringEqualsJsonFile(dirname(__FILE__) . '/../fixtures/json/' . $file . '.json', json_encode($side));
     }
 
     /**

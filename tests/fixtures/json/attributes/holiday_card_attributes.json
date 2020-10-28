@@ -1,0 +1,18 @@
+{
+  "holidayCardAttributes": {
+    "sendToSelf": true,
+    "stuffing": true,
+    "returnAddress": {
+      "company": "Company Name",
+      "attention": "John Brown",
+      "phoneNumber": "1111111111",
+      "street": "3911 Viewpark",
+      "street1": "Evergreen Terrace",
+      "street2": "742",
+      "city": "Irvine",
+      "state": "CA",
+      "zip": "92612",
+      "country": "country"
+    }
+  }
+}

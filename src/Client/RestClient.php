@@ -21,6 +21,7 @@ use InkRouter\Exceptions\Exception;
 /**
  * Client for sending requests to InkRouter
  *
+ * @deprecated since v2
  * @author Kirill Gusakov
  */
 class RestClient implements ClientInterface

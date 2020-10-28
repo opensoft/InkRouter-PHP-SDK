@@ -16,178 +16,11 @@ use XMLWriter;
 /**
  * Contains information about shipping address
  *
+ * @deprecated since API v2, used ShipAddress
  * @author Kirill Gusakov
  */
-class ReturnAddress
+class ReturnAddress extends ShipAddress
 {
-    /**
-     * @var string
-     */
-    private $streetAddress;
-
-    /**
-     * @var string
-     */
-    private $firstName;
-
-    /**
-     * @var string
-     */
-    private $middleInitial;
-
-    /**
-     * @var string
-     */
-    private $lastName;
-
-    /**
-     * @var string
-     */
-    private $city;
-
-    /**
-     * @var string
-     */
-    private $state;
-
-    /**
-     * @var string
-     */
-    private $zip;
-
-    /**
-     * @param string $city
-     * @return ReturnAddress
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param string $firstName
-     * @return ReturnAddress
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * @param string $lastName
-     * @return ReturnAddress
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param string $middleInitial
-     * @return ReturnAddress
-     */
-    public function setMiddleInitial($middleInitial)
-    {
-        $this->middleInitial = $middleInitial;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMiddleInitial()
-    {
-        return $this->middleInitial;
-    }
-
-    /**
-     * @param string $state
-     * @return ReturnAddress
-     */
-    public function setState($state)
-    {
-        $this->state = $state;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    /**
-     * @param string $streetAddress
-     * @return ReturnAddress
-     */
-    public function setStreetAddress($streetAddress)
-    {
-        $this->streetAddress = $streetAddress;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStreetAddress()
-    {
-        return $this->streetAddress;
-    }
-
-    /**
-     * @param string $zip
-     * @return ReturnAddress
-     */
-    public function setZip($zip)
-    {
-        $this->zip = $zip;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getZip()
-    {
-        return $this->zip;
-    }
-
     /**
      * @param bool $root
      * @return string
@@ -202,32 +35,44 @@ class ReturnAddress
 
         $writer->startElement('return_address');
 
+        if (isset($this->companyName)) {
+            $writer->writeElement('company_name', $this->companyName);
+        }
+
+        if (isset($this->attention)) {
+            $writer->writeElement('attention', $this->attention);
+        }
+
+        if (isset($this->phoneNumber)) {
+            $writer->writeElement('phone_number', $this->phoneNumber);
+        }
+
         if (isset($this->streetAddress)) {
             $writer->writeElement('street_address', $this->streetAddress);
         }
-        
-        if (isset($this->firstName)) {
-            $writer->writeElement('first_name', $this->firstName);
+
+        if (isset($this->street1)) {
+            $writer->writeElement('street_address1', $this->street1);
         }
-        
-        if (isset($this->middleInitial)) {
-            $writer->writeElement('middle_initial', $this->middleInitial);
+
+        if (isset($this->street2)) {
+            $writer->writeElement('street_address2', $this->street2);
         }
-        
-        if (isset($this->lastName)) {
-            $writer->writeElement('last_name', $this->lastName);
-        }
-        
+
         if (isset($this->city)) {
             $writer->writeElement('city', $this->city);
         }
-        
+
         if (isset($this->state)) {
             $writer->writeElement('state', $this->state);
         }
-        
+
         if (isset($this->zip)) {
             $writer->writeElement('zip', $this->zip);
+        }
+
+        if (isset($this->country)) {
+            $writer->writeElement('country', $this->country);
         }
         
         $writer->endElement();

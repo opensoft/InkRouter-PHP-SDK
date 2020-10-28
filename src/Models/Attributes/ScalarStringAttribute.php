@@ -11,22 +11,23 @@
 
 namespace InkRouter\Models\Attributes;
 
+use InkRouter\Models\XmlSerializable;
 use XMLWriter;
 
 /**
  * @author Kirill Gusakov
  */
-class ScalarStringAttribute implements AttributeInterface
+class ScalarStringAttribute implements XmlSerializable, \JsonSerializable
 {
     /**
      * @var string
      */
-    private $type;
+    protected $type;
 
     /**
      * @var string
      */
-    private $value;
+    protected $value;
 
     /**
      * @param string $type
@@ -83,11 +84,33 @@ class ScalarStringAttribute implements AttributeInterface
         }
 
         if (isset($this->value)) {
-            $writer->writeElement('value', $this->value);
+            $value = $this->value;
+            if (is_bool($this->value)) {
+                $value = ($this->value) ? 'true' : 'false';
+            }
+            $writer->writeElement('value', $value);
         }
         
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $value = $this->value;
+        if (is_bool($this->value)) {
+            $value = ($this->value) ? 'true' : 'false';
+        }
+
+        return [
+            'scalarStringAttribute' => [
+                'type' => $this->type,
+                'value' => $value
+            ]
+        ];
     }
 }

@@ -20,7 +20,7 @@ use XMLWriter;
  *
  * @author Kirill Gusakov
  */
-class Order
+class Order implements XmlSerializable, \JsonSerializable
 {
     /**
      * Invoice number that is given to the order by a printing service client
@@ -118,7 +118,17 @@ class Order
      *
      * @var array
      */
-    private $orderItems = array();
+    private $orderItems = [];
+
+    /**
+     * @var ShipAddress|null
+     */
+    private $storeAddress;
+
+    /**
+     * @var ResellerShipAddress|null
+     */
+    private $shiplabelFromAddress;
 
     /**
      * @return string
@@ -425,6 +435,44 @@ class Order
     }
 
     /**
+     * @return ShipAddress|null
+     */
+    public function getStoreAddress(): ?ShipAddress
+    {
+        return $this->storeAddress;
+    }
+
+    /**
+     * @param ShipAddress|null $storeAddress
+     * @return Order
+     */
+    public function setStoreAddress(?ShipAddress $storeAddress): Order
+    {
+        $this->storeAddress = $storeAddress;
+
+        return $this;
+    }
+
+    /**
+     * @return ResellerShipAddress|null
+     */
+    public function getShiplabelFromAddress(): ?ResellerShipAddress
+    {
+        return $this->shiplabelFromAddress;
+    }
+
+    /**
+     * @param ResellerShipAddress|null $shiplabelFromAddress
+     * @return Order
+     */
+    public function setShiplabelFromAddress(?ResellerShipAddress $shiplabelFromAddress): Order
+    {
+        $this->shiplabelFromAddress = $shiplabelFromAddress;
+
+        return $this;
+    }
+
+    /**
      * @param bool $root
      * @return string
      */
@@ -504,5 +552,40 @@ class Order
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $deliveryDate = null;
+        if ($this->deliveryDate !== null){
+            $deliveryDate = $this->deliveryDate->format(DateTime::RFC3339);
+        }
+        return [
+            'orderId' => $this->printCustomerInvoice,
+            'customerName' => null,
+            'parentReference' => null,
+            'orderDate' => $this->tsCreated->format(DateTime::RFC3339),
+            'orderStatus' => null,
+            'deliveryDate' => $deliveryDate,
+            'priority' => $this->priority,
+            'shippingFee' => $this->shippingFee,
+            'productDiscounts' => $this->productDiscounts,
+            'shippingDiscounts' => $this->shippingDiscounts,
+            'vendorId' => $this->vendorId,
+            'currency' => null,
+            'tipIn' => $this->tipIn,
+            'contact' => $this->contact,
+            'shipType' => $this->shipType,
+            'requester' => $this->requester,
+            'shipAddress' => $this->shipAddress,
+            'shiplabelFromAddress' => $this->shiplabelFromAddress,
+            'shipReturnAddress' => $this->shipReturnAddress,
+            'storeAddress' => $this->storeAddress,
+            'orderItems' => $this->orderItems,
+            'printCustomerId' => null,
+        ];
     }
 }

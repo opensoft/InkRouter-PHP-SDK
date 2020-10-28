@@ -1,0 +1,10 @@
+{
+  "mailingAttributes": {
+    "mailClass": "firstclass",
+    "political": true,
+    "csvUrl": "http:\/\/csv.url",
+    "clientInvoice": "",
+    "shipExtra": 1,
+    "mailingFont": "Arial"
+  }
+}

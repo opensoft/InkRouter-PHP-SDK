@@ -11,12 +11,13 @@
 
 namespace InkRouter\Models\Attributes;
 
+use InkRouter\Models\XmlSerializable;
 use XMLWriter;
 
 /**
  * @author Kirill Gusakov
  */
-class BookletAttributes implements AttributeInterface
+class BookletAttributes implements XmlSerializable, \JsonSerializable
 {
     /**
      * @var string
@@ -130,25 +131,6 @@ class BookletAttributes implements AttributeInterface
     }
 
     /**
-     * @param int $shrinkWrapping
-     * @return BookletAttributes
-     */
-    public function setShrinkWrapping($shrinkWrapping)
-    {
-        $this->shrinkWrapping = $shrinkWrapping;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getShrinkWrapping()
-    {
-        return $this->shrinkWrapping;
-    }
-
-    /**
      * @param string $holeMaking
      * @return BookletAttributes
      */
@@ -216,10 +198,6 @@ class BookletAttributes implements AttributeInterface
             $writer->writeElement('tabbing', $this->tabbing);
         }
 
-        if (isset($this->shrinkWrapping)) {
-            $writer->writeElement('shrink_wrapping', $this->shrinkWrapping);
-        }
-
         if (isset($this->holeMaking)) {
             $writer->writeElement('hole_making', $this->holeMaking);
         }
@@ -233,4 +211,20 @@ class BookletAttributes implements AttributeInterface
         return $writer->outputMemory();
     }
 
+    /**
+     * @return array[]
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'bookletAttributes' => [
+                'cover' => $this->cover,
+                'binding' => $this->binding,
+                'pageCount' => $this->pages,
+                'tabbing' => $this->tabbing,
+                'holeMaking' => $this->holeMaking,
+                'coverSubstrate' => $this->coverSubstrate
+            ]
+        ];
+    }
 }

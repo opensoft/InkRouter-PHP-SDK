@@ -18,7 +18,7 @@ use XMLWriter;
  *
  * @author Anton Kalachev
  */
-class Face
+class Face implements XmlSerializable, \JsonSerializable
 {
     /**
      * Face name
@@ -47,11 +47,6 @@ class Face
      * @var string
      */
     private $orientation;
-
-    /**
-     * @var PrintAsset[]
-     */
-    private $printAssets;
 
     /**
      * @return string
@@ -130,25 +125,6 @@ class Face
     }
 
     /**
-     * @param PrintAsset $printAsset
-     * @return Face
-     */
-    public function addPrintAsset(PrintAsset $printAsset)
-    {
-        $this->printAssets[] = $printAsset;
-
-        return $this;
-    }
-
-    /**
-     * @return PrintAsset[]
-     */
-    public function getPrintAssets()
-    {
-        return $this->printAssets;
-    }
-
-    /**
      * @param bool $root
      * @return string
      */
@@ -178,28 +154,21 @@ class Face
             $writer->writeElement('orientation', $this->orientation);
         }
 
-        if (isset($this->printAssets)) {
-            $writer->writeRaw($this->packPrintAssets());
-        }
-
         $writer->endElement();
 
         return $writer->outputMemory();
     }
 
     /**
-     * @return string
+     * @return array
      */
-    private function packPrintAssets()
+    public function jsonSerialize()
     {
-        $writer = new XMLWriter();
-        $writer->openMemory();
-        $writer->startElement('print_assets');
-        foreach ($this->printAssets as $printAsset) {
-            $writer->writeRaw($printAsset->pack());
-        }
-        $writer->endElement();
-
-        return $writer->outputMemory();
+        return [
+            'faceName' => $this->faceName,
+            'fileUrl' => $this->fileUrl,
+            'fileHash' => $this->fileHash,
+            'orientation' => $this->orientation
+        ];
     }
 }

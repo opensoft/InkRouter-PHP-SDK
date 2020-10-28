@@ -11,7 +11,7 @@
 
 namespace InkRouter\Tests\Models;
 
-use InkRouter\Models\Attributes\ScalarBooleanAttribute;
+use InkRouter\Models\Attributes\ScalarStringAttribute;
 use InkRouter\Models\OrderItem;
 use InkRouter\Models\Side;
 use PHPUnit\Framework\TestCase;
@@ -23,14 +23,22 @@ class RangeAndDimensionTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/range_and_dimension_options.xml',
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/range_and_dimension_options.xml',
             $this->orderItem->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/range_and_dimension_options.xml',
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/range_and_dimension_options.xml',
             $this->orderItem->pack());
+    }
+
+    public function testJsonSerialize()
+    {
+        $this->assertJsonStringEqualsJsonFile(
+            dirname(__FILE__) . '/../fixtures/json/range_and_dimension_options.json',
+            json_encode($this->orderItem)
+        );
     }
 
     protected function setUp(): void
@@ -44,7 +52,7 @@ class RangeAndDimensionTest extends TestCase
             ->setSpotUvFileUrl('http://server/images/business_cards/front/spot_uv.tif')
             ->setSpotUvFileHash('120825909aa15s2b00574661f23aee7');
 
-        $attributes = new ScalarBooleanAttribute();
+        $attributes = new ScalarStringAttribute();
         $attributes->setType('LABELING');
         $attributes->setValue(true);
 

@@ -18,7 +18,7 @@ use XMLWriter;
  *
  * @author Kirill Gusakov
  */
-class PoInfo
+class PoInfo implements XmlSerializable, \JsonSerializable
 {
     /**
      * @var string
@@ -94,5 +94,16 @@ class PoInfo
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'agentId' => $this->agentId,
+            'currency' => $this->currency
+        ];
     }
 }

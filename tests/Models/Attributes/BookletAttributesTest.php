@@ -20,12 +20,20 @@ class BookletAttributesTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/booklet_attributes.xml', $this->attributes->pack(true));
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/booklet_attributes.xml', $this->attributes->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/booklet_attributes.xml', $this->attributes->pack());
+        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/booklet_attributes.xml', $this->attributes->pack());
+    }
+
+    public function testJsonSerialize()
+    {
+        $this->assertJsonStringEqualsJsonFile(
+            dirname(__FILE__) . '/../../fixtures/json/attributes/booklet_attributes.json',
+            json_encode($this->attributes)
+        );
     }
 
     protected function setUp(): void
@@ -36,7 +44,6 @@ class BookletAttributesTest extends TestCase
             ->setBinding('saddle')
             ->setPages(8)
             ->setTabbing(3)
-            ->setShrinkWrapping(12)
             ->setHoleMaking('R3 3/16')
             ->setCoverSubstrate('14PT');
     }

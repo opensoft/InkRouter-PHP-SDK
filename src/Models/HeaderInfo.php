@@ -18,7 +18,7 @@ use XMLWriter;
  *
  * @author Kirill Gusakov
  */
-class HeaderInfo
+class HeaderInfo implements XmlSerializable, \JsonSerializable
 {
     /**
      * The field is used for differentiating from which vendor order sent
@@ -97,5 +97,16 @@ class HeaderInfo
         $writer->endElement();
 
         return $writer->outputMemory();
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'fromDomain' => $this->fromDomain,
+            'fromIdentity' => $this->fromIdentity
+        ];
     }
 }
