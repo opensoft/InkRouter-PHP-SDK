@@ -90,14 +90,14 @@ class ApiClient implements ClientInterface
     }
 
     /**
-     * @param $orderId
+     * @param $printCustomerOrderId
      * @param OrderInfo $orderInfo
      * @return UpdateResponse
      */
-    public function update($orderId, OrderInfo $orderInfo): UpdateResponse
+    public function update($printCustomerOrderId, OrderInfo $orderInfo): UpdateResponse
     {
         $response = $this->client->send(
-            sprintf($this->baseUrl . self::UPDATE_PATH, $orderId),
+            sprintf($this->baseUrl . self::UPDATE_PATH, $printCustomerOrderId),
             'POST',
             $this->getHeaders(),
             json_encode($orderInfo)
@@ -107,14 +107,14 @@ class ApiClient implements ClientInterface
     }
 
     /**
-     * @param $orderId
-     * @param $orderItemId
+     * @param $printCustomerOrderId
+     * @param $printCustomerOrderItemId
      * @return UpdateResponse
      */
-    public function cancelOrderItem($orderId, $orderItemId): UpdateResponse
+    public function cancelOrderItem($printCustomerOrderId, $printCustomerOrderItemId): UpdateResponse
     {
         $response = $this->client->send(
-            sprintf($this->baseUrl . self::CANCEL_ORDER_ITEM_PATH, $orderId, $orderItemId),
+            sprintf($this->baseUrl . self::CANCEL_ORDER_ITEM_PATH, $printCustomerOrderId, $printCustomerOrderItemId),
             'POST',
             $this->getHeaders(),
             json_encode(Action::getInstance(Action::ACTION_CANCEL))
@@ -124,14 +124,14 @@ class ApiClient implements ClientInterface
     }
 
     /**
-     * @param $orderId
+     * @param $printCustomerOrderId
      * @param Action $action
      * @return UpdateResponse
      */
-    public function actionByOrder($orderId, Action $action): UpdateResponse
+    public function actionByOrder($printCustomerOrderId, Action $action): UpdateResponse
     {
         $response = $this->client->send(
-            sprintf($this->baseUrl . self::STATUS_PATH, $orderId),
+            sprintf($this->baseUrl . self::STATUS_PATH, $printCustomerOrderId),
             'POST',
             $this->getHeaders(),
             json_encode($action)
@@ -191,58 +191,58 @@ class ApiClient implements ClientInterface
 
     /**
      * @deprecated since v2
-     * @param int $timestamp
+     * @param int $printCustomerOuterOrderId
      * @param ModelOrderInfo $modelOrderInfo
      * @return bool|mixed|string
      */
-    public function createOrder($timestamp, ModelOrderInfo $modelOrderInfo)
+    public function createOrder($printCustomerOuterOrderId, ModelOrderInfo $modelOrderInfo)
     {
         return $this->create(OrderInfoAdapter::adopt($modelOrderInfo));
     }
 
     /**
      * @deprecated since v2
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @param ModelOrderInfo $modelOrderInfo
      * @return bool|mixed|string
      */
-    public function updateOrder($orderId, $timestamp, ModelOrderInfo $modelOrderInfo)
+    public function updateOrder($printProviderOrderId, $printCustomerOuterOrderId, ModelOrderInfo $modelOrderInfo)
     {
-        return $this->update($orderId, OrderInfoAdapter::adopt($modelOrderInfo));
+        return $this->update($modelOrderInfo->getOrder()->getPrintCustomerInvoice(), OrderInfoAdapter::adopt($modelOrderInfo));
     }
 
     /**
      * @deprecated since v2
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @return bool|mixed|string
      */
-    public function placeOnHold($orderId, $timestamp)
+    public function placeOnHold($printProviderOrderId, $printCustomerOuterOrderId)
     {
-        return $this->actionByOrder($orderId, Action::getInstance(Action::ACTION_HOLD));
+        throw new \RuntimeException('Deprecated method, use actionByOrder() method');
     }
 
     /**
      * @deprecated since v2
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @return bool|mixed|string
      */
-    public function removeHold($orderId, $timestamp)
+    public function removeHold($printProviderOrderId, $printCustomerOuterOrderId)
     {
-        return $this->actionByOrder($orderId, Action::getInstance(Action::ACTION_RELEASE));
+        throw new \RuntimeException('Deprecated method, use actionByOrder() method');
     }
 
     /**
      * @deprecated since v2
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @return bool|mixed|string
      */
-    public function cancelOrder($orderId, $timestamp)
+    public function cancelOrder($printProviderOrderId, $printCustomerOuterOrderId)
     {
-        return $this->actionByOrder($orderId, Action::getInstance(Action::ACTION_CANCEL));
+        throw new \RuntimeException('Deprecated method, use actionByOrder() method');
     }
 
     /**

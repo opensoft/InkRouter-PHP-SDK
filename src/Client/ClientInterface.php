@@ -20,48 +20,48 @@ use InkRouter\Models\OrderInfo;
 interface ClientInterface
 {
     /**
+     * @param int $printCustomerOuterOrderId
+     * @param OrderInfo $orderInfo
+     * @return mixed
+     * @throws Exception
+     *@deprecated since v2
+     */
+    public function createOrder($printCustomerOuterOrderId, OrderInfo $orderInfo);
+
+    /**
      * @deprecated since v2
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @param OrderInfo $orderInfo
      * @return mixed
      * @throws Exception
      */
-    public function createOrder($timestamp, OrderInfo $orderInfo);
+    public function updateOrder($printProviderOrderId, $printCustomerOuterOrderId, OrderInfo $orderInfo);
 
     /**
      * @deprecated since v2
-     * @param int $orderId
-     * @param int $timestamp
-     * @param OrderInfo $orderInfo
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @return mixed
      * @throws Exception
      */
-    public function updateOrder($orderId, $timestamp, OrderInfo $orderInfo);
+    public function placeOnHold($printProviderOrderId, $printCustomerOuterOrderId);
 
     /**
      * @deprecated since v2
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @return mixed
      * @throws Exception
      */
-    public function placeOnHold($orderId, $timestamp);
+    public function removeHold($printProviderOrderId, $printCustomerOuterOrderId);
 
     /**
      * @deprecated since v2
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @return mixed
      * @throws Exception
      */
-    public function removeHold($orderId, $timestamp);
-
-    /**
-     * @deprecated since v2
-     * @param int $orderId
-     * @param int $timestamp
-     * @return mixed
-     * @throws Exception
-     */
-    public function cancelOrder($orderId, $timestamp);
+    public function cancelOrder($printProviderOrderId, $printCustomerOuterOrderId);
 }

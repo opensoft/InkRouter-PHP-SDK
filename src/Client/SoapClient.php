@@ -89,12 +89,12 @@ class SoapClient implements ClientInterface
     }
 
     /**
-     * @param int $timestamp
+     * @param int $printCustomerOuterOrderId
      * @param OrderInfo $orderInfo
      * @return mixed
      * @throws Exception
      */
-    public function createOrder($timestamp, OrderInfo $orderInfo)
+    public function createOrder($printCustomerOuterOrderId, OrderInfo $orderInfo)
     {
         $this->connect();
 
@@ -102,7 +102,7 @@ class SoapClient implements ClientInterface
             return $this->soapClient->createOrder(array(
                 'arg0' => $this->printCustomerId, 
                 'arg1' => $this->secretKey, 
-                'arg2' => $timestamp, 
+                'arg2' => $printCustomerOuterOrderId,
                 'arg3' => $orderInfo->pack(true)))->return; 
         } catch (SoapFault $e) {
             throw SoapFaultAdapter::valueOf($e)->getException();
@@ -110,13 +110,13 @@ class SoapClient implements ClientInterface
     }
 
     /**
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @param OrderInfo $orderInfo
      * @return mixed
      * @throws Exception
      */
-    public function updateOrder($orderId, $timestamp, OrderInfo $orderInfo)
+    public function updateOrder($printProviderOrderId, $printCustomerOuterOrderId, OrderInfo $orderInfo)
     {
         $this->connect();
 
@@ -124,8 +124,8 @@ class SoapClient implements ClientInterface
             return $this->soapClient->updateOrder(array(
                 'arg0' => $this->printCustomerId,
                 'arg1' => $this->secretKey,
-                'arg2' => $orderId,
-                'arg3' => $timestamp,
+                'arg2' => $printProviderOrderId,
+                'arg3' => $printCustomerOuterOrderId,
                 'arg4' => $orderInfo->pack()))->return;
         } catch (SoapFault $e) {
             throw SoapFaultAdapter::valueOf($e)->getException();
@@ -133,12 +133,12 @@ class SoapClient implements ClientInterface
     }
 
     /**
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @return mixed
      * @throws Exception
      */
-    public function placeOnHold($orderId, $timestamp)
+    public function placeOnHold($printProviderOrderId, $printCustomerOuterOrderId)
     {
         $this->connect();
 
@@ -146,8 +146,8 @@ class SoapClient implements ClientInterface
             return $this->soapClient->placeOnHold(array(
                 'arg0' => $this->printCustomerId,
                 'arg1' => $this->secretKey,
-                'arg2' => $orderId,
-                'arg3' => $timestamp
+                'arg2' => $printProviderOrderId,
+                'arg3' => $printCustomerOuterOrderId
             ))->return;
         } catch (SoapFault $e) {
             throw SoapFaultAdapter::valueOf($e)->getException();
@@ -155,12 +155,12 @@ class SoapClient implements ClientInterface
     }
 
     /**
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @return mixed
      * @throws Exception
      */
-    public function removeHold($orderId, $timestamp)
+    public function removeHold($printProviderOrderId, $printCustomerOuterOrderId)
     {
         $this->connect();
 
@@ -168,8 +168,8 @@ class SoapClient implements ClientInterface
             return $this->soapClient->removeHold(array(
                 'arg0' => $this->printCustomerId,
                 'arg1' => $this->secretKey,
-                'arg2' => $orderId,
-                'arg3' => $timestamp
+                'arg2' => $printProviderOrderId,
+                'arg3' => $printCustomerOuterOrderId
             ))->return;
         } catch (SoapFault $e) {
             throw SoapFaultAdapter::valueOf($e)->getException();
@@ -177,12 +177,12 @@ class SoapClient implements ClientInterface
     }
 
     /**
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @return mixed
      * @throws Exception
      */
-    public function cancelOrder($orderId, $timestamp)
+    public function cancelOrder($printProviderOrderId, $printCustomerOuterOrderId)
     {
         $this->connect();
 
@@ -190,8 +190,8 @@ class SoapClient implements ClientInterface
             return $this->soapClient->cancelOrder([
                 'arg0' => $this->printCustomerId,
                 'arg1' => $this->secretKey,
-                'arg2' => $orderId,
-                'arg3' => $timestamp
+                'arg2' => $printProviderOrderId,
+                'arg3' => $printCustomerOuterOrderId
             ])->return;
         } catch (SoapFault $e) {
             throw SoapFaultAdapter::valueOf($e)->getException();

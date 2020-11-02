@@ -65,63 +65,63 @@ class RestClient implements ClientInterface
     }
 
     /**
-     * @param int $timestamp
+     * @param int $printCustomerOuterOrderId
      * @param OrderInfo $orderInfo
      * @return mixed
      * @throws Exception
      */
-    public function createOrder($timestamp, OrderInfo $orderInfo)
+    public function createOrder($printCustomerOuterOrderId, OrderInfo $orderInfo)
     {
-        return $this->sendRequest(sprintf($this->baseUrl . self::$CREATE_PATH, $timestamp), 'POST', 
+        return $this->sendRequest(sprintf($this->baseUrl . self::$CREATE_PATH, $printCustomerOuterOrderId), 'POST',
             array('Content-Type: application/xml'), $orderInfo->pack());
     }
 
     /**
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @param OrderInfo $orderInfo
      * @return mixed
      * @throws Exception
      */
-    public function updateOrder($orderId, $timestamp, OrderInfo $orderInfo)
+    public function updateOrder($printProviderOrderId, $printCustomerOuterOrderId, OrderInfo $orderInfo)
     {
-        return $this->sendRequest(sprintf($this->baseUrl . self::$UPDATE_PATH, $orderId, $timestamp), 'PUT',
+        return $this->sendRequest(sprintf($this->baseUrl . self::$UPDATE_PATH, $printProviderOrderId, $printCustomerOuterOrderId), 'PUT',
             array('Content-Type: application/xml'), $orderInfo->pack());
     }
 
     /**
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @return mixed
      * @throws Exception
      */
-    public function placeOnHold($orderId, $timestamp)
+    public function placeOnHold($printProviderOrderId, $printCustomerOuterOrderId)
     {
-        return $this->sendRequest(sprintf($this->baseUrl . self::$HOLD_PATH, $orderId, $timestamp), 'PUT',
+        return $this->sendRequest(sprintf($this->baseUrl . self::$HOLD_PATH, $printProviderOrderId, $printCustomerOuterOrderId), 'PUT',
             array('Content-Type: text/plain'), '');
     }
 
     /**
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @return mixed
      * @throws Exception
      */
-    public function removeHold($orderId, $timestamp)
+    public function removeHold($printProviderOrderId, $printCustomerOuterOrderId)
     {
-        return $this->sendRequest(sprintf($this->baseUrl . self::$REMOVE_HOLD_PATH, $orderId, $timestamp), 'PUT',
+        return $this->sendRequest(sprintf($this->baseUrl . self::$REMOVE_HOLD_PATH, $printProviderOrderId, $printCustomerOuterOrderId), 'PUT',
             array('Content-Type: text/plain'), '');
     }
 
     /**
-     * @param int $orderId
-     * @param int $timestamp
+     * @param int $printProviderOrderId
+     * @param int $printCustomerOuterOrderId
      * @return mixed
      * @throws Exception
      */
-    public function cancelOrder($orderId, $timestamp)
+    public function cancelOrder($printProviderOrderId, $printCustomerOuterOrderId)
     {
-        return $this->sendRequest(sprintf($this->baseUrl . self::$CANCEL_PATH, $orderId, $timestamp), 'DELETE',
+        return $this->sendRequest(sprintf($this->baseUrl . self::$CANCEL_PATH, $printProviderOrderId, $printCustomerOuterOrderId), 'DELETE',
             array('Content-Type: text/plain'), '');
     }
 
@@ -132,7 +132,8 @@ class RestClient implements ClientInterface
      * @param null $body
      * @return bool|string
      */
-    private function sendRequest($url, $httpMethod, $headers, $body = null) {
+    private function sendRequest($url, $httpMethod, $headers, $body = null)
+    {
         $curlResource = curl_init();
         if ($body !== null) {
             switch ($httpMethod) {

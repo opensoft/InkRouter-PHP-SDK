@@ -61,7 +61,7 @@ class CurlClient implements HttpClientInterface
 
         $decodedResponse = json_decode($responseMessage, true);
         if ($decodedResponse === null) {
-            throw new ProcessingException();
+            throw new InkRouterNotAvailableException();
         }
 
         return new CurlResponse($decodedResponse, $statusCode);
