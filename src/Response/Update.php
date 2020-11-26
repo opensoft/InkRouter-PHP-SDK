@@ -15,6 +15,7 @@ namespace InkRouter\Response;
  * Information about update from InkRouter
  *
  * @author Kirill Gusakov
+ * @deprecated
  */
 class Update
 {

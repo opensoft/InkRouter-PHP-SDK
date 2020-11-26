@@ -17,6 +17,7 @@ use DOMDocument;
  * Class for parsing response from InkRouter to http service
  *
  * @author Kirill Gusakov
+ * @deprecated
  */
 class Response
 {

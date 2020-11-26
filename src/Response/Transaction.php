@@ -71,7 +71,7 @@ class Transaction
         $response->printProviderOrderId = $data['printProviderOrderId'] ?? null;
         $response->printCustomerOrderId = $data['printCustomerOrderId'] ?? null;
         $response->updateId = $data['updateId'] ?? null;
-        $response->createDate = new DateTime($data['createDate']) ?? null;
+        $response->createDate = isset($data['createDate']) ? new DateTime($data['createDate']) : null;
 
         return $response;
     }

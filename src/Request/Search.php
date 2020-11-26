@@ -47,7 +47,7 @@ class Search implements \JsonSerializable
         $request->transactionId = $data['transactionId'] ?? null;
         $request->printProviderOrderId = $data['printProviderOrderId'] ?? null;
         $request->printCustomerOrderId = $data['printCustomerOrderId'] ?? null;
-        $request->from = new DateTime($data['from']) ?? null;
+        $request->from = isset($data['from']) ? new DateTime($data['from']) : null;
 
         return $request;
     }
