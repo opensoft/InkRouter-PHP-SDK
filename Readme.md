@@ -208,3 +208,12 @@ For successful receiving update messages from InkRouter, you should make any con
 
 where `$updates` is array of InkRouter_Response_Update objects and you can use it as you want.
 
+
+Receive Tracking API updates from InkRouter
+-------------------------------------------
+For successful receiving tracking update messages from InkRouter, you should make any controller, which can receive post requests, add url of this controller in your account through InkRouter-dashboard. 
+Then you can use InkRouter\Response\TrackingRequest class for parsing json string from post content:
+
+    $updates = InkRouter\Response\TrackingRequest::fromArray(json_decode($json, true));
+
+ 
