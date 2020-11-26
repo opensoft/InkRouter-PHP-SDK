@@ -31,7 +31,7 @@ class CreateResponse
     /**
      * @var Error|null
      */
-    public $errors;
+    public $error;
 
     /**
      * @var boolean
@@ -55,7 +55,7 @@ class CreateResponse
         $response->success = (bool) $data['success'];
         $response->transactionId = $data['transactionId'] ?? null;
         $response->reference = $data['reference'] ?? null;
-        $response->errors = isset($data['errors']) ? Error::fromArray($data['errors']) : null;
+        $response->error = isset($data['error']) ? Error::fromArray($data['error']) : null;
 
         return $response;
     }

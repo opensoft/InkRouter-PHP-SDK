@@ -24,7 +24,7 @@ class GetResponse
     /**
      * @var Error|null
      */
-    public $errors;
+    public $error;
 
     /**
      * @var boolean
@@ -46,7 +46,7 @@ class GetResponse
         $response = new self();
         $response->status = $status;
         $response->success = (bool) $data['success'];
-        $response->errors = isset($data['errors']) ? Error::fromArray($data['errors']) : null;
+        $response->error = isset($data['error']) ? Error::fromArray($data['error']) : null;
         if (!empty($data['data'])) {
             $response->data = [];
             foreach ($data['data'] as $item) {

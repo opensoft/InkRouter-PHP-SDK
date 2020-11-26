@@ -51,7 +51,7 @@ class Transaction
     /**
      * @var Error|null
      */
-    public $errors;
+    public $error;
 
     /**
      * @var boolean
@@ -66,7 +66,7 @@ class Transaction
     {
         $response = new self();
         $response->success = (bool) $data['success'];
-        $response->errors = isset($data['errors']) ? Error::fromArray($data['errors']) : null;
+        $response->error = isset($data['error']) ? Error::fromArray($data['error']) : null;
         $response->transactionId = $data['transactionId'] ?? null;
         $response->printProviderOrderId = $data['printProviderOrderId'] ?? null;
         $response->printCustomerOrderId = $data['printCustomerOrderId'] ?? null;
