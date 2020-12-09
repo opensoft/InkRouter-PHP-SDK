@@ -23,10 +23,16 @@ class ActivityTest extends TestCase
     public function testFromArray()
     {
         $tracking = Activity::fromArray(json_decode($this->json, true));
-        $this->assertEquals('2020-11-19T04:08:00+00:00', $tracking->created->format(DateTime::RFC3339));
-        $this->assertEquals('InTransit', $tracking->status);
-        $this->assertEquals('Departed from Facility', $tracking->description);
-        $this->assertInstanceOf(TrackingAddress::class, $tracking->address);
+        self::assertEquals('2020-11-19T04:08:00+00:00', $tracking->created->format(DateTime::RFC3339));
+        self::assertEquals('InTransit', $tracking->status);
+        self::assertEquals('Departed from Facility', $tracking->description);
+        self::assertInstanceOf(TrackingAddress::class, $tracking->address);
+    }
+
+    public function testToArray()
+    {
+        $tracking = Activity::fromArray(json_decode($this->json, true));
+        self::assertJsonStringEqualsJsonString($this->json, json_encode($tracking->toArray()));
     }
 
     protected function setUp(): void

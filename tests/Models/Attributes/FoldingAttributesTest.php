@@ -20,17 +20,17 @@ class FoldingAttributesTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/folding_attributes.xml', $this->attributes->pack(true));
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/folding_attributes.xml', $this->attributes->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/folding_attributes.xml', $this->attributes->pack());
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/folding_attributes.xml', $this->attributes->pack());
     }
 
     public function testJsonSerialize()
     {
-        $this->assertJsonStringEqualsJsonFile(
+        self::assertJsonStringEqualsJsonFile(
             dirname(__FILE__) . '/../../fixtures/json/attributes/folding_attributes.json',
             json_encode($this->attributes)
         );

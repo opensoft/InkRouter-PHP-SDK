@@ -20,17 +20,17 @@ class BookletAttributesTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/booklet_attributes.xml', $this->attributes->pack(true));
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/booklet_attributes.xml', $this->attributes->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/booklet_attributes.xml', $this->attributes->pack());
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/xml/attributes/booklet_attributes.xml', $this->attributes->pack());
     }
 
     public function testJsonSerialize()
     {
-        $this->assertJsonStringEqualsJsonFile(
+        self::assertJsonStringEqualsJsonFile(
             dirname(__FILE__) . '/../../fixtures/json/attributes/booklet_attributes.json',
             json_encode($this->attributes)
         );

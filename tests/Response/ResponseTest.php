@@ -52,8 +52,8 @@ class ResponseTest extends TestCase
             ->setCost(null)
             ->setPrintProviderInvoice('1236433fd1123rf');
         
-        $this->assertEquals(array($update, $updateShip), $response->getUpdates());
-        $this->assertNull($response->getUpdates()[1]->getCost());
+        self::assertEquals(array($update, $updateShip), $response->getUpdates());
+        self::assertNull($response->getUpdates()[1]->getCost());
     }
 
     protected function setUp(): void

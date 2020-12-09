@@ -21,19 +21,19 @@ class RequesterTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/requester.xml',
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/requester.xml',
             $this->requester->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/requester.xml',
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/requester.xml',
             $this->requester->pack());
     }
 
     public function testJsonSerialize()
     {
-        $this->assertJsonStringEqualsJsonFile(
+        self::assertJsonStringEqualsJsonFile(
             dirname(__FILE__) . '/../fixtures/json/requester.json',
             json_encode($this->requester)
         );

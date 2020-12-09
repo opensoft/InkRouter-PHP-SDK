@@ -22,12 +22,12 @@ class ShipTypeTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_type.xml', $this->shipType->pack(true));
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_type.xml', $this->shipType->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_type.xml', $this->shipType->pack());
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_type.xml', $this->shipType->pack());
     }
 
     public function testPackNotValidSignature()
@@ -39,14 +39,14 @@ class ShipTypeTest extends TestCase
     public function testPackValidSignature()
     {
         $this->shipType->setSignature('required');
-        $this->assertSame('required', $this->shipType->getSignature());
+        self::assertSame('required', $this->shipType->getSignature());
         $this->shipType->setSignature('required-adult');
-        $this->assertSame('required-adult', $this->shipType->getSignature());
+        self::assertSame('required-adult', $this->shipType->getSignature());
     }
 
     public function testJsonSerialize()
     {
-        $this->assertJsonStringEqualsJsonFile(dirname(__FILE__) . '/../fixtures/json/ship_type.json', json_encode($this->shipType));
+        self::assertJsonStringEqualsJsonFile(dirname(__FILE__) . '/../fixtures/json/ship_type.json', json_encode($this->shipType));
     }
 
     protected function setUp(): void

@@ -19,17 +19,17 @@ class HeaderInfoTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/header_info.xml', $this->headerInfo->pack(true));
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/header_info.xml', $this->headerInfo->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/header_info.xml', $this->headerInfo->pack());
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/header_info.xml', $this->headerInfo->pack());
     }
 
     public function testJsonSerialize()
     {
-        $this->assertJsonStringEqualsJsonFile(
+        self::assertJsonStringEqualsJsonFile(
             dirname(__FILE__) . '/../fixtures/json/header_info.json',
             json_encode($this->headerInfo)
         );

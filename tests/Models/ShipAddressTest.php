@@ -21,17 +21,17 @@ class ShipAddressTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_address.xml', $this->shipAddress->pack(true));
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_address.xml', $this->shipAddress->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_address.xml', $this->shipAddress->pack());
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_address.xml', $this->shipAddress->pack());
     }
 
     public function testJsonSerialize()
     {
-        $this->assertJsonStringEqualsJsonFile(
+        self::assertJsonStringEqualsJsonFile(
             dirname(__FILE__) . '/../fixtures/json/ship_address.json',
             json_encode($this->shipAddress)
         );

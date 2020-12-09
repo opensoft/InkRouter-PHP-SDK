@@ -44,4 +44,16 @@ class TrackingAddress
 
         return $trackingAddress;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'city' => $this->city,
+            'state' => $this->state,
+            'country' => $this->country
+        ];
+    }
 }

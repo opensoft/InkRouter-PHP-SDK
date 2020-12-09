@@ -71,6 +71,22 @@ class TrackingRequest
         return $trackingRequest;
     }
 
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'updateType' => $this->updateType ?? null,
+            'trackingNumber' => $this->trackingNumber ?? null,
+            'weight' => $this->weight ?? null,
+            'expectedDeliveryDate' => isset($this->expectedDeliveryDate) ? $this->expectedDeliveryDate->format(DateTime::RFC3339) : null,
+            'serviceCode' => $this->serviceCode ?? null,
+            'shipperType' => $this->shipperType ?? null,
+            'activity' => $this->exportActivities()
+        ];
+    }
+
     private function fillActivity($data)
     {
         if (!isset($data['activity'])) {
@@ -81,5 +97,21 @@ class TrackingRequest
             $activities[] = Activity::fromArray($activityData);
         }
         $this->activity = $activities;
+    }
+
+    /**
+     * @return array|null
+     */
+    private function exportActivities(): ?array
+    {
+        if (!isset($this->activity)) {
+            return null;
+        }
+        $activities = [];
+        foreach ($this->activity as $activity) {
+            $activities[] = $activity->toArray();
+        }
+
+        return $activities;
     }
 }

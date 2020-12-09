@@ -21,9 +21,9 @@ class TrackingAddressTest extends TestCase
     public function testFromArray()
     {
         $tracking = TrackingAddress::fromArray(json_decode($this->json, true));
-        $this->assertEquals('Louisville', $tracking->city);
-        $this->assertEquals('KY', $tracking->state);
-        $this->assertEquals('US', $tracking->country);
+        self::assertEquals('Louisville', $tracking->city);
+        self::assertEquals('KY', $tracking->state);
+        self::assertEquals('US', $tracking->country);
     }
 
     protected function setUp(): void

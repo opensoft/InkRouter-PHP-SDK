@@ -23,14 +23,14 @@ class TrackingRequestTest extends TestCase
     public function testFromArray()
     {
         $tracking = TrackingRequest::fromArray(json_decode($this->json, true));
-        $this->assertEquals('SHIP_TRACKING', $tracking->updateType);
-        $this->assertEquals('1Z7R05701397525595', $tracking->trackingNumber);
-        $this->assertEquals(0.3, $tracking->weight);
-        $this->assertEquals('2020-11-19T00:00:00+00:00', $tracking->expectedDeliveryDate->format(DateTime::RFC3339));
-        $this->assertEquals('013', $tracking->serviceCode);
-        $this->assertEquals('UPS', $tracking->shipperType);
-        $this->assertNotEmpty($tracking->activity);
-        $this->assertContainsOnlyInstancesOf(Activity::class, $tracking->activity);
+        self::assertEquals('SHIP_TRACKING', $tracking->updateType);
+        self::assertEquals('1Z7R05701397525595', $tracking->trackingNumber);
+        self::assertEquals(0.3, $tracking->weight);
+        self::assertEquals('2020-11-19T00:00:00+00:00', $tracking->expectedDeliveryDate->format(DateTime::RFC3339));
+        self::assertEquals('013', $tracking->serviceCode);
+        self::assertEquals('UPS', $tracking->shipperType);
+        self::assertNotEmpty($tracking->activity);
+        self::assertContainsOnlyInstancesOf(Activity::class, $tracking->activity);
     }
 
     protected function setUp(): void

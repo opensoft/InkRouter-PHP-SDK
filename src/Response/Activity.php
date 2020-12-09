@@ -52,4 +52,17 @@ class Activity
 
         return $activity;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'created' => isset($this->created) ? $this->created->format(DateTime::RFC3339) : null,
+            'status' => $this->status,
+            'description' => $this->description,
+            'address' => isset($this->address) ? $this->address->toArray() : null
+        ];
+    }
 }

@@ -20,19 +20,19 @@ class ReturnAddressTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/return_address.xml',
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/return_address.xml',
             $this->returnAddress->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/return_address.xml',
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/return_address.xml',
             $this->returnAddress->pack());
     }
 
     public function testJsonSerialize()
     {
-        $this->assertJsonStringEqualsJsonFile(
+        self::assertJsonStringEqualsJsonFile(
             dirname(__FILE__) . '/../fixtures/json/return_address.json',
             json_encode($this->returnAddress)
         );

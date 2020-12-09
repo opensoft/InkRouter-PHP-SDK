@@ -20,19 +20,19 @@ class ShipReturnAddressTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_return_address.xml',
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_return_address.xml',
             $this->shipReturnAddress->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_return_address.xml',
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/ship_return_address.xml',
             $this->shipReturnAddress->pack());
     }
 
     public function testJsonSerialize()
     {
-        $this->assertJsonStringEqualsJsonFile(
+        self::assertJsonStringEqualsJsonFile(
             dirname(__FILE__) . '/../fixtures/json/ship_return_address.json',
             json_encode($this->shipReturnAddress)
         );

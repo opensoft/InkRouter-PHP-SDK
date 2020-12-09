@@ -23,19 +23,19 @@ class RangeAndDimensionTest extends TestCase
 
     public function testPackWithRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/range_and_dimension_options.xml',
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/range_and_dimension_options.xml',
             $this->orderItem->pack(true));
     }
 
     public function testPackWithoutRoot()
     {
-        $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/range_and_dimension_options.xml',
+        self::assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/xml/range_and_dimension_options.xml',
             $this->orderItem->pack());
     }
 
     public function testJsonSerialize()
     {
-        $this->assertJsonStringEqualsJsonFile(
+        self::assertJsonStringEqualsJsonFile(
             dirname(__FILE__) . '/../fixtures/json/range_and_dimension_options.json',
             json_encode($this->orderItem)
         );
