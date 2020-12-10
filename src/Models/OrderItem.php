@@ -499,7 +499,7 @@ class OrderItem implements XmlSerializable, \JsonSerializable
             'orderItemId' => $this->printGroupId,
             'regionSize' => $this->regionSize,
             'inspection' => $this->inspection,
-            'cost' => $this->cost,
+            'cost' => (float) $this->cost,
             'qualityPriority' => $this->qualityPriority,
             'slaPriority' => $this->slaPriority,
             'generatedId' => $this->generatedId,

@@ -183,7 +183,7 @@ class SwagAttributes implements XmlSerializable, \JsonSerializable
             'swagAttributes' => [
                 'name' => $this->name,
                 'inventoryType' => $this->inventoryType,
-                'cost' => $this->cost,
+                'cost' => (float) $this->cost,
                 'box' => $this->box,
                 'shippingWeight' => $this->shippingWeight
             ]

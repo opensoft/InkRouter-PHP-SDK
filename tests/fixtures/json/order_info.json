@@ -18,7 +18,6 @@
     "shippingFee": 10,
     "productDiscounts": 0,
     "shippingDiscounts": 0,
-    "vendorId": "vendorId",
     "currency": null,
     "tipIn": null,
     "contact": {
@@ -72,7 +71,7 @@
         "orderItemId": "pg4f7969f8a4800",
         "regionSize": "US",
         "inspection": null,
-        "cost": "cost",
+        "cost": 7.75,
         "qualityPriority": null,
         "slaPriority": null,
         "generatedId": null,
@@ -120,8 +119,7 @@
         ],
         "faces": []
       }
-    ],
-    "printCustomerId": null
+    ]
   },
   "printCustomerId": "BRENT"
 }

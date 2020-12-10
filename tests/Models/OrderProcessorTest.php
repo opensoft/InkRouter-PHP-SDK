@@ -108,7 +108,7 @@ class OrderProcessorTest extends TestCase
             ->setPaperType('14PT')
             ->setQuantity(500)
             ->setRegionSize('US')
-            ->setCost('cost')
+            ->setCost('7.75')
             ->addSide($side1);
 
         $printAsset = new PrintAsset();
@@ -138,7 +138,7 @@ class OrderProcessorTest extends TestCase
             ->setPaperType('14PT')
             ->setQuantity(500)
             ->setRegionSize('US')
-            ->setCost('cost')
+            ->setCost(7.75)
             ->addAttributes($envelopeAttribute1)
             ->addSide($side2);
 
@@ -171,7 +171,7 @@ class OrderProcessorTest extends TestCase
             ->setPaperType('14PT')
             ->setQuantity(500)
             ->setRegionSize('US')
-            ->setCost('cost')
+            ->setCost('7.75')
             ->addAttributes($booleanAttribute)
             ->addAttributes($mailingAttributes)
             ->addAttributes($envelopeAttribute2)

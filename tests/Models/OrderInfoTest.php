@@ -124,7 +124,7 @@ class OrderInfoTest extends TestCase
             ->setPaperType('14PT')
             ->setQuantity(500)
             ->setRegionSize('US')
-            ->setCost('cost')
+            ->setCost(7.75)
             ->addAttributes($attributes)
             ->addSide($side);
 

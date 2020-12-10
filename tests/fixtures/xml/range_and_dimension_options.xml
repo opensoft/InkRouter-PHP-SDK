@@ -6,7 +6,7 @@
     <paper_type>14PT</paper_type>
     <quantity>500</quantity>
     <region_size>US</region_size>
-    <cost>cost</cost>
+    <cost>7.75</cost>
     <attributes>
         <scalar_string_attribute>
           <type>LABELING</type>

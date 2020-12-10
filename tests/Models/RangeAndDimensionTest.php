@@ -62,7 +62,7 @@ class RangeAndDimensionTest extends TestCase
             ->setPaperType('14PT')
             ->setQuantity(500)
             ->setRegionSize('US')
-            ->setCost('cost')
+            ->setCost('7.75')
             ->addAttributes($attributes)
             ->addSide($side)
             ->setInspection('Inspect this item');

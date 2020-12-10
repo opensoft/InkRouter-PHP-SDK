@@ -68,6 +68,7 @@ class Order implements XmlSerializable, \JsonSerializable
     private $shippingDiscounts;
 
     /**
+     * @deprecated
      * @var string
      */
     private $vendorId;
@@ -574,7 +575,6 @@ class Order implements XmlSerializable, \JsonSerializable
             'shippingFee' => $this->shippingFee,
             'productDiscounts' => $this->productDiscounts,
             'shippingDiscounts' => $this->shippingDiscounts,
-            'vendorId' => $this->vendorId,
             'currency' => null,
             'tipIn' => $this->tipIn,
             'contact' => $this->contact,
