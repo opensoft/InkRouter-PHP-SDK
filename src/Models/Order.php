@@ -584,8 +584,7 @@ class Order implements XmlSerializable, \JsonSerializable
             'shiplabelFromAddress' => $this->shiplabelFromAddress,
             'shipReturnAddress' => $this->shipReturnAddress,
             'storeAddress' => $this->storeAddress,
-            'orderItems' => $this->orderItems,
-            'printCustomerId' => null,
+            'orderItems' => $this->orderItems
         ];
     }
 }
