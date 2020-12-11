@@ -217,7 +217,7 @@ class BookletAttributes implements XmlSerializable, \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'bookletAttributes' => [
+            'bookletAttribute' => [
                 'cover' => $this->cover,
                 'binding' => $this->binding,
                 'pageCount' => $this->pages,

@@ -130,7 +130,7 @@ class FoldingAttributes implements XmlSerializable, \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'foldingAttributes' => [
+            'foldingAttribute' => [
                 'foldingType' => $this->foldingType,
                 'flipTopPanel' => $this->flipTopPanel,
                 'insideOut' => $this->insideOut

@@ -1,5 +1,5 @@
 {
-  "mailingAttributes": {
+  "mailingAttribute": {
     "mailClass": "firstclass",
     "political": true,
     "csvUrl": "http:\/\/csv.url",

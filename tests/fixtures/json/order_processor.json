@@ -167,7 +167,7 @@
           }
         },
         {
-          "mailingAttributes": {
+          "mailingAttribute": {
             "mailClass": "firstclass",
             "political": null,
             "csvUrl": "http:\/\/csv.url",

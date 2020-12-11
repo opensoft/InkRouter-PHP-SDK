@@ -180,12 +180,12 @@ class SwagAttributes implements XmlSerializable, \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'swagAttributes' => [
+            'swagAttribute' => [
                 'name' => $this->name,
                 'inventoryType' => $this->inventoryType,
                 'cost' => (float) $this->cost,
                 'box' => $this->box,
-                'shippingWeight' => $this->shippingWeight
+                'shippingWeight' => (float) $this->shippingWeight
             ]
         ];
     }

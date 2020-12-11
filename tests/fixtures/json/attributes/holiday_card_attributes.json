@@ -1,5 +1,5 @@
 {
-  "holidayCardAttributes": {
+  "holidayCardAttribute": {
     "sendToSelf": true,
     "stuffing": true,
     "returnAddress": {

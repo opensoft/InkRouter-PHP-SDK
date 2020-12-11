@@ -214,7 +214,7 @@ class MailingAttributes implements XmlSerializable, \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'mailingAttributes' => [
+            'mailingAttribute' => [
                 'mailClass' => $this->mailClass,
                 'political' => $this->politicalMailer,
                 'csvUrl' => $this->csvUrl,

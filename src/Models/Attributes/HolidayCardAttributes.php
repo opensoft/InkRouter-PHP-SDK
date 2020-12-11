@@ -129,7 +129,7 @@ class HolidayCardAttributes implements XmlSerializable, \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'holidayCardAttributes' => [
+            'holidayCardAttribute' => [
                 'sendToSelf' => $this->sendToSelf,
                 'stuffing' => $this->stuffing,
                 'returnAddress' => $this->returnAddress

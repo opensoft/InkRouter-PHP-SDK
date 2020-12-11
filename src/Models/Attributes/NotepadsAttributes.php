@@ -72,8 +72,8 @@ class NotepadsAttributes implements XmlSerializable, \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'notepadsAttributes' => [
-                'pageCount' => $this->pages
+            'notepadsAttribute' => [
+                'pageCount' => (int)$this->pages
             ]
         ];
     }
