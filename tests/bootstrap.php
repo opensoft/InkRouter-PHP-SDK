@@ -2,7 +2,10 @@
 /**
  * This file is part of InkRouter-PHP-SDK.
  *
- * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
+ * Copyright (c) Opensoft (http://opensoftdev.com)
+ *
+ * The unauthorized use of this code outside the boundaries of
+ * Opensoft is prohibited.
  */
 
 function autoloadSDK($class)

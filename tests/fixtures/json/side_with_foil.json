@@ -1,0 +1,18 @@
+{
+  "sideNumber": 0,
+  "fileUrl": "http:\/\/server\/images\/business_cards\/front\/0.tif",
+  "fileHash": "0a0825909aa15a98b00574661f23aee7",
+  "coating": "NONE",
+  "laminating": null,
+  "foilColor": "Silver",
+  "orientation": "Landscape",
+  "spotUvFileUrl": null,
+  "spotUvFileHash": null,
+  "variableUvFileUrl": null,
+  "variableUvFileHash": null,
+  "opaqueWhiteFileUrl": null,
+  "opaqueWhiteFileHash": null,
+  "foilFileUrl": "http:\/\/server\/images\/business_cards\/front\/foil.tif",
+  "foilFileHash": "120825909aa15s2b00574661f23aee7",
+  "printAssets": null
+}

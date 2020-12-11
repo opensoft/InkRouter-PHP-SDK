@@ -1,0 +1,8 @@
+{
+  "signature": "required",
+  "shipMethod": "UPS",
+  "shipService": "GROUND",
+  "suggestedShipMethod": null,
+  "suggestedShipService": null,
+  "cashOnDelivery": null
+}

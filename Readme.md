@@ -36,7 +36,7 @@ InkRouter Workflow
 InkRouter interface workflow consists of 6 actions:
 
 - Get InkRouter client instance
-- Create and fill InkRouter_Models_OrderInfo instance
+- Create and fill OrderInfo instance
 - Create order to InkRouter
 - Update order (optional)
 - Place on hold order (optional)
@@ -56,23 +56,23 @@ Where:
 - `$printCustomerId` is your unique identificator from InkRouter
 - `$secretKey` is your secret key
 
-Create InkRouter_Models_OrderInfo instance (with example data)
+Create OrderInfo instance (with example data)
 ---------------------------------
 
-    $contact = new InkRouter_Models_Contact();
+    $contact = new Contact();
     $contact->setName('contact_name')
         ->setPhone('contact_phone')
         ->setEmail('contact_email');
 
-    $headerInfo = new InkRouter_Models_HeaderInfo();
+    $headerInfo = new HeaderInfo();
     $headerInfo->setFromDomain('yoursite.com')
         ->setFromIdentity('your_identity');
 
-    $shipType = new InkRouter_Models_ShipType();
+    $shipType = new ShipType();
     $shipType->setMethod('UPS')
         ->setServiceLevel('GROUND');
 
-    $shipAddress = new InkRouter_Models_ShipAddress();
+    $shipAddress = new ShipAddress();
     $shipAddress->setAttention('Attention')
         ->setStreetAddress('742 Evergreen Terrace')
         ->setCity('Springfield')
@@ -80,16 +80,16 @@ Create InkRouter_Models_OrderInfo instance (with example data)
         ->setZip('1234567')
         ->setCountry('USA');
 
-    $requester = new InkRouter_Models_Requester();
+    $requester = new Requester();
     $requester->setName('Any Prints')
         ->setContract('STANDARD')
         ->setPayTerm('FREE');
 
-    $poInfo = new InkRouter_Models_PoInfo();
+    $poInfo = new PoInfo();
     $poInfo->setAgentId('agentId')
         ->setCurrency('US');
 
-    $printAsset = new InkRouter_Models_PrintAsset();
+    $printAsset = new PrintAsset();
     $printAsset->setPositionX(4.98)
         ->setPositionY(3.1)
         ->setRotation(-90)
@@ -97,7 +97,7 @@ Create InkRouter_Models_OrderInfo instance (with example data)
         ->setHeight(0.543)
         ->setWidth(2.12);
 
-    $side = new InkRouter_Models_Side();
+    $side = new Side();
     $side->setPageNumber(10)
         ->setFileUrl('http://server/img.jpg')
         ->setFileHash('0a0825909aa15a98b00574661f23aee7')
@@ -105,11 +105,11 @@ Create InkRouter_Models_OrderInfo instance (with example data)
         ->setOrientation('Landscape')
         ->addPrintAsset($printAsset);
 
-    $attributes = new InkRouter_Models_Attributes_ScalarBooleanAttribute();
+    $attributes = new ScalarBooleanAttribute();
         $attributes->setType('LABELING');
         $attributes->setValue(true);
             
-    $orderItem = new InkRouter_Models_OrderItem();
+    $orderItem = new OrderItem();
     $orderItem->setPrintGroupId('pg4f7969f8a4811')
         ->setProductType('business cards')
         ->setPaperType('14PT')
@@ -119,7 +119,7 @@ Create InkRouter_Models_OrderInfo instance (with example data)
         ->addAttributes($attributes)
         ->addSide($side);
 
-    $order = new InkRouter_Models_Order();
+    $order = new Order();
     $order->setPrintCustomerInvoice(123456789)
         ->setTsCreated(date(DATE_ATOM, strtotime('now')))
         ->setPriority(0)
@@ -133,7 +133,7 @@ Create InkRouter_Models_OrderInfo instance (with example data)
         ->setShipAddress($shipAddress)
         ->addOrderItem($orderItem);
 
-    $orderInfo = new InkRouter_Models_OrderInfo();
+    $orderInfo = new OrderInfo();
     $orderInfo->setHeaderInfo($headerInfo)
         ->setPrintCustomerId('ID')
         ->setPoInfo($poInfo)
@@ -145,7 +145,7 @@ After creating the instance of InkRouter Models_OrderInfo Create Order to InkRou
 
     try {
         $orderId = $InkRouterClient->createOrder($timestamp, $orderInfo);
-    } catch (InkRouter_Exceptions_Exception $e) {
+    } catch (Exception $e) {
         echo 'Create operation failed';
     }
     
@@ -153,7 +153,7 @@ After creating the instance of InkRouter Models_OrderInfo Create Order to InkRou
 Where:
 
 - `$timestamp` is unix timestamp (result of mktime() function), if your last operation was unsuccessful, you can resend it with same timestamp
-- `$orderInfo` is an instance of InkRouter_Models_OrderInfo (see example)
+- `$orderInfo` is an instance of OrderInfo (see example)
 - `$orderId` is an order identification, received from InkRouter
 
 Update order
@@ -162,7 +162,7 @@ You should first create instance of InkRouter Models OrderInfo and call update m
 
     try {
         $InkRouterClient->updateOrder($orderId, $timestamp, $orderInfo);
-    } catch (InkRouter_Exceptions_Exception $e) {
+    } catch (Exception $e) {
         echo 'Update operation failed';
     }            
     
@@ -176,7 +176,7 @@ For place on hold order with id `$orderId` you should do:
     
     try {
         $InkRouterClient->placeOnHold($orderId, $timestamp);
-    } catch (InkRouter_Exceptions_Exception $e) {
+    } catch (Exception $e) {
         echo 'Place on hold operation failed';
     }  
 
@@ -186,7 +186,7 @@ For remove order from hold with id `$orderId` you should do:
 
     try {
         $InkRouterClient->removeHold($orderId, $timestamp);
-    } catch (InkRouter_Exceptions_Exception $e) {
+    } catch (Exception $e) {
         echo 'Remove hold operation failed';
     }
 
@@ -196,7 +196,7 @@ For cancel order with id `$orderId` you should do:
 
     try {
         $InkRouterClient->cancelOrder($orderId, $timestamp);
-    } catch (InkRouter_Exceptions_Exception $e) {
+    } catch (Exception $e) {
         echo 'Cancel operation failed';
     }
 
@@ -208,3 +208,12 @@ For successful receiving update messages from InkRouter, you should make any con
 
 where `$updates` is array of InkRouter_Response_Update objects and you can use it as you want.
 
+
+Receive Tracking API updates from InkRouter
+-------------------------------------------
+For successful receiving tracking update messages from InkRouter, you should make any controller, which can receive post requests, add url of this controller in your account through InkRouter-dashboard. 
+Then you can use InkRouter\Response\TrackingRequest class for parsing json string from post content:
+
+    $updates = InkRouter\Response\TrackingRequest::fromArray(json_decode($json, true));
+
+ 

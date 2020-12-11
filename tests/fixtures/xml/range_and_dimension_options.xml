@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<order_item>
+    <print_group_id>pg4f7969f8a4800</print_group_id>
+    <product_type>business cards</product_type>
+    <inspection>Inspect this item</inspection>
+    <paper_type>14PT</paper_type>
+    <quantity>500</quantity>
+    <region_size>US</region_size>
+    <cost>7.75</cost>
+    <attributes>
+        <scalar_string_attribute>
+          <type>LABELING</type>
+          <value>true</value>
+        </scalar_string_attribute>
+    </attributes>
+    <faces/>
+    <sides>
+      <side>
+        <page_number>10</page_number>
+        <file_url>http://server/images/business_cards/front/0.tif</file_url>
+        <file_hash>0a0825909aa15a98b00574661f23aee7</file_hash>
+        <coating>NONE</coating>
+        <orientation>Landscape</orientation>
+        <spot_uv_file_url>http://server/images/business_cards/front/spot_uv.tif</spot_uv_file_url>
+        <spot_uv_file_hash>120825909aa15s2b00574661f23aee7</spot_uv_file_hash>
+      </side>
+    </sides>
+</order_item>

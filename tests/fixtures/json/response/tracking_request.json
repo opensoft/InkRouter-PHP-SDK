@@ -1,0 +1,38 @@
+{
+  "updateType": "SHIP_TRACKING",
+  "trackingNumber": "1Z7R05701397525595",
+  "weight": 0.3,
+  "activity": [
+    {
+      "created": "2020-11-18T17:26:03",
+      "status": "PreTransit",
+      "description": "Shipper created a label, UPS has not received the package yet.",
+      "address": {
+        "country": "US"
+      }
+    },
+    {
+      "created": "2020-11-19T01:35:07",
+      "status": "PreTransit",
+      "description": "Origin Scan",
+      "address": {
+        "city": "Louisville",
+        "state": "KY",
+        "country": "US"
+      }
+    },
+    {
+      "created": "2020-11-19T04:08:00",
+      "status": "InTransit",
+      "description": "Departed from Facility",
+      "address": {
+        "city": "Louisville",
+        "state": "KY",
+        "country": "US"
+      }
+    }
+  ],
+  "expectedDeliveryDate": "2020-11-19T00:00:00",
+  "serviceCode": "013",
+  "shipperType": "UPS"
+}

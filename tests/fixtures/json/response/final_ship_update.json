@@ -1,0 +1,13 @@
+{
+  "updateType": "FINAL_SHIP",
+  "printProviderOrderId": "1000630984",
+  "printCustomerOrderId": "605390636",
+  "printCustomerOrderItemId": "pg5f85f318c97f1",
+  "note": "SHIPPING_VENDOR: 'UPS'; SHIP_TYPE: 'NEXT DAY AIR SAVER'; BOX ID: 'PRODBOX-192-36100';",
+  "quantity": 120,
+  "weight": 0.268,
+  "cost": 20.96,
+  "trackingNumber": "1Z7R05701397525595",
+  "updateId": 637413352374116506,
+  "createDate": "2020-11-18T22:27:17.4116471Z"
+}

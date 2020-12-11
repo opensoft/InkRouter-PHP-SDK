@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<return_address>
+    <company_name>Company Name</company_name>
+    <attention>John Brown</attention>
+    <phone_number>1111111111</phone_number>
+    <street_address>3911 Viewpark</street_address>
+    <street_address1>Evergreen Terrace</street_address1>
+    <street_address2>742</street_address2>
+    <city>Irvine</city>
+    <state>CA</state>
+    <zip>92612</zip>
+    <country>country</country>
+</return_address>
