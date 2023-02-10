@@ -49,6 +49,11 @@ class InkRouter_Models_OrderItem
     private $attributes = array();
 
     /**
+     * @var InkRouter_Models_Price[]
+     */
+    private $prices = array();
+
+    /**
      * @var InkRouter_Models_Side[]
      */
     private $sides = array();
@@ -226,6 +231,32 @@ class InkRouter_Models_OrderItem
     /**
      * @return array
      */
+    public function getPrices()
+    {
+        return $this->prices;
+    }
+
+    /**
+     * @param array $prices array of InkRouter_Models_Price
+     * @return InkRouter_Models_OrderItem
+     */
+    public function setPrices(array $prices)
+    {
+        $this->prices = $prices;
+
+        return $this;
+    }
+
+    public function addPrice(InkRouter_Models_Price $price)
+    {
+        $this->prices[] = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
     public function getSides()
     {
         return $this->sides;
@@ -285,10 +316,13 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param string $inspection
+     * @return InkRouter_Models_OrderItem
      */
     public function setInspection($inspection)
     {
         $this->inspection = $inspection;
+
+        return $this;
     }
 
     /**
@@ -443,6 +477,8 @@ class InkRouter_Models_OrderItem
 
         $writer->writeRaw($this->packAttributes());
 
+        $writer->writeRaw($this->packPrices());
+
         $writer->startElement('faces');
         foreach ($this->faces as $face) {
             $writer->writeRaw($face->pack());
@@ -460,16 +496,28 @@ class InkRouter_Models_OrderItem
         return $writer->outputMemory();
     }
 
-    private function packAttributes()
+    private function packattributes()
     {
-        $writer = new XMLWriter();
-        $writer->openMemory();
-        $writer->startElement('attributes');
+        $writer = new xmlwriter();
+        $writer->openmemory();
+        $writer->startelement('attributes');
         foreach ($this->attributes as $attribute) {
-            $writer->writeRaw($attribute->pack());
+            $writer->writeraw($attribute->pack());
         }
-        $writer->endElement();
+        $writer->endelement();
 
-        return $writer->outputMemory();
+        return $writer->outputmemory();
+    }
+    private function packPrices()
+    {
+        $writer = new xmlwriter();
+        $writer->openmemory();
+        $writer->startelement('prices');
+        foreach ($this->prices as $price) {
+            $writer->writeraw($price->pack());
+        }
+        $writer->endelement();
+
+        return $writer->outputmemory();
     }
 }

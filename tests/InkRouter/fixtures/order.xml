@@ -5,6 +5,7 @@
   <delivery_date>2013-05-20T10:20:25+04:00</delivery_date>
   <priority>0</priority>
   <shipping_fee>10</shipping_fee>
+  <tax>1</tax>
   <product_discounts>0</product_discounts>
   <shipping_discounts>0</shipping_discounts>
   <vendor_id>vendorId</vendor_id>
@@ -55,6 +56,7 @@
           <value>true</value>
         </scalar_boolean_attribute>
       </attributes>
+      <prices/>
       <faces/>
       <sides>
         <side>

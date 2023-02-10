@@ -50,6 +50,7 @@
             <region_size>US</region_size>
             <cost>cost</cost>
             <attributes/>
+            <prices/>
             <faces/>
             <sides>
                 <side>
@@ -71,6 +72,7 @@
             <region_size>US</region_size>
             <cost>cost</cost>
             <attributes/>
+            <prices/>
             <faces/>
             <sides>
                 <side>
@@ -115,6 +117,7 @@
                     <value>pg4f7969f8a4802E</value>
                 </scalar_string_attribute>
             </attributes>
+            <prices/>
             <faces/>
             <sides>
                 <side>
@@ -137,6 +140,7 @@
                     <value>white</value>
                 </scalar_string_attribute>
             </attributes>
+            <prices/>
             <faces/>
             <sides/>
         </order_item>
@@ -155,6 +159,7 @@
                     <ship_extra>10</ship_extra>
                 </mailing_attributes>
             </attributes>
+            <prices/>
             <faces/>
             <sides/>
         </order_item>

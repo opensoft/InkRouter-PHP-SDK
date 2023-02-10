@@ -96,6 +96,7 @@ class OrderTest extends PHPUnit_Framework_TestCase
             ->setDeliveryDateAsDate(new DateTime('2013-05-20T10:20:25', new DateTimeZone('Europe/Moscow')))
             ->setPriority(0)
             ->setShippingFee(10)
+            ->setTax(1)
             ->setProductDiscounts(0)
             ->setShippingDiscounts(0)
             ->setVendorId('vendorId')

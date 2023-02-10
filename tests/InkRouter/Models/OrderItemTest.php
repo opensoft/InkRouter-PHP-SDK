@@ -85,6 +85,13 @@ class OrderItemTest extends PHPUnit_Framework_TestCase
         $attributes->setType('LABELING');
         $attributes->setValue(true);
 
+        $price1 = new InkRouter_Models_Price();
+        $price1->setType('COATING_SPOT_FRONT');
+        $price1->setValue(5);
+        $price2 = new InkRouter_Models_Price();
+        $price2->setType('COATING_SPOT_BACK');
+        $price2->setValue(10);
+
         $this->orderItem = new InkRouter_Models_OrderItem();
         $this->orderItem->setPrintGroupId('pg4f7969f8a4800')
             ->setProductType('business cards')
@@ -97,6 +104,9 @@ class OrderItemTest extends PHPUnit_Framework_TestCase
             ->setSlaPriority(7)
             ->addAttributes($attributes)
             ->addSide($side)
-            ->setInspection('Inspect this item');
+            ->setInspection('Inspect this item')
+            ->addPrice($price1)
+            ->addPrice($price2)
+        ;
     }
 }

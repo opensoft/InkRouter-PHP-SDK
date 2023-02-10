@@ -104,6 +104,11 @@ class InkRouter_Models_Order
     private $shipReturnAddress;
 
     /**
+     * @var float
+     */
+    private $tax;
+
+    /**
      * Contains information about order items. Can include one or more order items.
      *
      * @var array
@@ -401,6 +406,25 @@ class InkRouter_Models_Order
     }
 
     /**
+     * @return float
+     */
+    public function getTax()
+    {
+        return $this->tax;
+    }
+
+    /**
+     * @param float $tax
+     * @return self
+     */
+    public function setTax($tax)
+    {
+        $this->tax = $tax;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function getOrderItems()
@@ -450,6 +474,10 @@ class InkRouter_Models_Order
 
         if (isset($this->shippingFee)) {
             $writer->writeElement('shipping_fee', $this->shippingFee);
+        }
+
+        if (isset($this->tax)) {
+            $writer->writeElement('tax', $this->tax);
         }
 
         if (isset($this->productDiscounts)) {
