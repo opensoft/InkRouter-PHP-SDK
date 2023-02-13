@@ -16,6 +16,16 @@
           <value>true</value>
         </scalar_boolean_attribute>
     </attributes>
+    <prices>
+        <price>
+            <type>COATING_SPOT_FRONT</type>
+            <value>5</value>
+        </price>
+        <price>
+            <type>COATING_SPOT_BACK</type>
+            <value>10</value>
+        </price>
+    </prices>
     <faces/>
     <sides>
       <side>
