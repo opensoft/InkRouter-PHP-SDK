@@ -5,12 +5,16 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \XMLWriter;
+
 /**
  * Contains detailed information about a person who is to be notified about the order’s progress
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Models_Contact
+class Contact
 {
     /**
      * @var string
@@ -37,7 +41,7 @@ class InkRouter_Models_Contact
 
     /**
      * @param string $name
-     * @return InkRouter_Models_Contact
+     * @return Contact
      */
     public function setName($name)
     {
@@ -55,7 +59,7 @@ class InkRouter_Models_Contact
 
     /**
      * @param string $phone
-     * @return InkRouter_Models_Contact
+     * @return Contact
      */
     public function setPhone($phone)
     {
@@ -73,7 +77,7 @@ class InkRouter_Models_Contact
 
     /**
      * @param string $email
-     * @return InkRouter_Models_Contact
+     * @return Contact
      */
     public function setEmail($email)
     {

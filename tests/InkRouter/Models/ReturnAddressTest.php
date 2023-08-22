@@ -6,7 +6,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class ReturnAddressTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models;
+
+use Opensoft\InkRouterSdk\Models\ReturnAddress;
+use PHPUnit\Framework\TestCase;
+
+class ReturnAddressTest extends TestCase
 {
     private $returnAddress;
 
@@ -22,9 +27,9 @@ class ReturnAddressTest extends PHPUnit_Framework_TestCase
             $this->returnAddress->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->returnAddress = new InkRouter_Models_ReturnAddress();
+        $this->returnAddress = new ReturnAddress();
         $this->returnAddress
             ->setStreetAddress('3911 Viewpark')
             ->setFirstName('John')

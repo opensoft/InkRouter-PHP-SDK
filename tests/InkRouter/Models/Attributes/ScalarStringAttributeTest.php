@@ -6,7 +6,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class ScalarStringAttributeTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models\Attributes;
+
+use Opensoft\InkRouterSdk\Models\Attributes\ScalarStringAttribute;
+use PHPUnit\Framework\TestCase;
+
+class ScalarStringAttributeTest extends TestCase
 {
     private $attribute;
 
@@ -22,9 +27,9 @@ class ScalarStringAttributeTest extends PHPUnit_Framework_TestCase
             $this->attribute->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->attribute = new InkRouter_Models_Attributes_ScalarStringAttribute();
+        $this->attribute = new ScalarStringAttribute();
         $this->attribute
             ->setType('TSHIRT')
             ->setValue('TSHIRT');

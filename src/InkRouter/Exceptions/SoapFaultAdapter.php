@@ -5,12 +5,16 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Exceptions;
+
+use \SoapFault;
+
 /**
  * Adapter for receiving real exception from SoapFault
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Exceptions_SoapFaultAdapter
+class SoapFaultAdapter
 {
     const AUTHENTICATION_EXCEPTION = 'AuthenticationException';
     const PROCESSING_EXCEPTION = 'ProcessingException';
@@ -36,7 +40,7 @@ class InkRouter_Exceptions_SoapFaultAdapter
 
     /**
      * @param SoapFault $fault
-     * @return InkRouter_Exceptions_SoapFaultAdapter
+     * @return SoapFaultAdapter
      */
     public static function valueOf(SoapFault $fault)
     {
@@ -44,7 +48,7 @@ class InkRouter_Exceptions_SoapFaultAdapter
     }
 
     /**
-     * @return InkRouter_Exceptions_Exception
+     * @return Exception
      */
     public function getException()
     {
@@ -54,20 +58,20 @@ class InkRouter_Exceptions_SoapFaultAdapter
                 $classProps = array_keys($classVars);
                 switch ($classProps[0]) {
                     case self::AUTHENTICATION_EXCEPTION:
-                        $this->exception = new InkRouter_Exceptions_AuthenticationException($this->fault->getMessage());
+                        $this->exception = new AuthenticationException($this->fault->getMessage());
                         break;
                     case self::PROCESSING_EXCEPTION:
-                        $this->exception = new InkRouter_Exceptions_ProcessingException($this->fault->getMessage());
+                        $this->exception = new ProcessingException($this->fault->getMessage());
                         break;
                     case self::REJECTION_EXCEPTION:
-                        $this->exception = new InkRouter_Exceptions_RejectionException($this->fault->getMessage());
+                        $this->exception = new RejectionException($this->fault->getMessage());
                         break;
                     default:
-                        $this->exception = new InkRouter_Exceptions_InkRouterNotAvailableException($this->fault->getMessage());
+                        $this->exception = new InkRouterNotAvailableException($this->fault->getMessage());
                         break;
                 }
             } else {
-                $this->exception = new InkRouter_Exceptions_InkRouterNotAvailableException($this->fault->getMessage());
+                $this->exception = new InkRouterNotAvailableException($this->fault->getMessage());
             }
         }
 

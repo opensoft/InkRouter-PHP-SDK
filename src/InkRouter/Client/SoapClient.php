@@ -5,13 +5,23 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Client;
+
+use \SoapFault;
+use Opensoft\InkRouterSdk\Exceptions\Exception;
+use Opensoft\InkRouterSdk\Exceptions\AuthenticationException;
+use Opensoft\InkRouterSdk\Exceptions\InkRouterNotAvailableException;
+use Opensoft\InkRouterSdk\Exceptions\ProcessingException;
+use Opensoft\InkRouterSdk\Exceptions\RejectionException;
+use Opensoft\InkRouterSdk\Exceptions\SoapFaultAdapter;
+use Opensoft\InkRouterSdk\Models\OrderInfo;
 
 /**
  * Client for sending requests to InkRouter
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Client_SoapClient implements InkRouter_Client_ClientInterface
+class SoapClient implements ClientInterface
 {
 
     /**
@@ -58,7 +68,7 @@ class InkRouter_Client_SoapClient implements InkRouter_Client_ClientInterface
     }
 
     /**
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException
+     * @throws InkRouterNotAvailableException|Exception
      */
     public function connect()
     {
@@ -66,7 +76,7 @@ class InkRouter_Client_SoapClient implements InkRouter_Client_ClientInterface
             try {
                 $this->soapClient = @new SoapClient($this->wsdl);
             } catch (SoapFault $e) {
-                throw InkRouter_Exceptions_SoapFaultAdapter::valueOf($e)->getException();
+                throw SoapFaultAdapter::valueOf($e)->getException();
             }
         }
 
@@ -77,11 +87,11 @@ class InkRouter_Client_SoapClient implements InkRouter_Client_ClientInterface
 
     /**
      * @param int $timestamp
-     * @param InkRouter_Models_OrderInfo $orderInfo
+     * @param OrderInfo $orderInfo
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
-    public function createOrder($timestamp, InkRouter_Models_OrderInfo $orderInfo)
+    public function createOrder($timestamp, OrderInfo $orderInfo)
     {
         $this->connect();
 
@@ -92,18 +102,18 @@ class InkRouter_Client_SoapClient implements InkRouter_Client_ClientInterface
                 'arg2' => $timestamp, 
                 'arg3' => $orderInfo->pack(true)))->return; 
         } catch (SoapFault $e) {
-            throw InkRouter_Exceptions_SoapFaultAdapter::valueOf($e)->getException();
+            throw SoapFaultAdapter::valueOf($e)->getException();
         }
     }
 
     /**
      * @param int $orderId
      * @param int $timestamp
-     * @param InkRouter_Models_OrderInfo $orderInfo
+     * @param OrderInfo $orderInfo
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
-    public function updateOrder($orderId, $timestamp, InkRouter_Models_OrderInfo $orderInfo)
+    public function updateOrder($orderId, $timestamp, OrderInfo $orderInfo)
     {
         $this->connect();
 
@@ -115,7 +125,7 @@ class InkRouter_Client_SoapClient implements InkRouter_Client_ClientInterface
                 'arg3' => $timestamp,
                 'arg4' => $orderInfo->pack()))->return;
         } catch (SoapFault $e) {
-            throw InkRouter_Exceptions_SoapFaultAdapter::valueOf($e)->getException();
+            throw SoapFaultAdapter::valueOf($e)->getException();
         }
     }
 
@@ -123,7 +133,7 @@ class InkRouter_Client_SoapClient implements InkRouter_Client_ClientInterface
      * @param int $orderId
      * @param int $timestamp
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
     public function placeOnHold($orderId, $timestamp)
     {
@@ -137,7 +147,7 @@ class InkRouter_Client_SoapClient implements InkRouter_Client_ClientInterface
                 'arg3' => $timestamp
             ))->return;
         } catch (SoapFault $e) {
-            throw InkRouter_Exceptions_SoapFaultAdapter::valueOf($e)->getException();
+            throw SoapFaultAdapter::valueOf($e)->getException();
         }
     }
 
@@ -145,7 +155,7 @@ class InkRouter_Client_SoapClient implements InkRouter_Client_ClientInterface
      * @param int $orderId
      * @param int $timestamp
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
     public function removeHold($orderId, $timestamp)
     {
@@ -159,7 +169,7 @@ class InkRouter_Client_SoapClient implements InkRouter_Client_ClientInterface
                 'arg3' => $timestamp
             ))->return;
         } catch (SoapFault $e) {
-            throw InkRouter_Exceptions_SoapFaultAdapter::valueOf($e)->getException();
+            throw SoapFaultAdapter::valueOf($e)->getException();
         }
     }
 
@@ -167,7 +177,7 @@ class InkRouter_Client_SoapClient implements InkRouter_Client_ClientInterface
      * @param int $orderId
      * @param int $timestamp
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
     public function cancelOrder($orderId, $timestamp)
     {
@@ -181,7 +191,7 @@ class InkRouter_Client_SoapClient implements InkRouter_Client_ClientInterface
                 'arg3' => $timestamp
             ))->return;
         } catch (SoapFault $e) {
-            throw InkRouter_Exceptions_SoapFaultAdapter::valueOf($e)->getException();
+            throw SoapFaultAdapter::valueOf($e)->getException();
         }
     }
 }

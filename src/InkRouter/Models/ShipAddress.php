@@ -5,12 +5,16 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \XMLWriter;
+
 /**
  * Contains information about shipping address
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Models_ShipAddress
+class ShipAddress
 {
     /**
      * @var string
@@ -69,7 +73,7 @@ class InkRouter_Models_ShipAddress
 
     /**
      * @param string $companyName
-     * @return InkRouter_Models_ShipAddress
+     * @return ShipAddress
      */
     public function setCompanyName($companyName)
     {
@@ -88,7 +92,7 @@ class InkRouter_Models_ShipAddress
 
     /**
      * @param string $attention
-     * @return InkRouter_Models_ShipAddress
+     * @return ShipAddress
      */
     public function setAttention($attention)
     {
@@ -106,7 +110,7 @@ class InkRouter_Models_ShipAddress
 
     /**
      * @param string $streetAddress
-     * @return InkRouter_Models_ShipAddress
+     * @return ShipAddress
      */
     public function setStreetAddress($streetAddress)
     {
@@ -124,7 +128,7 @@ class InkRouter_Models_ShipAddress
 
     /**
      * @param string $city
-     * @return InkRouter_Models_ShipAddress
+     * @return ShipAddress
      */
     public function setCity($city)
     {
@@ -142,7 +146,7 @@ class InkRouter_Models_ShipAddress
 
     /**
      * @param string $state
-     * @return InkRouter_Models_ShipAddress
+     * @return ShipAddress
      */
     public function setState($state)
     {
@@ -160,7 +164,7 @@ class InkRouter_Models_ShipAddress
 
     /**
      * @param string $zip
-     * @return InkRouter_Models_ShipAddress
+     * @return ShipAddress
      */
     public function setZip($zip)
     {
@@ -178,7 +182,7 @@ class InkRouter_Models_ShipAddress
 
     /**
      * @param string $country
-     * @return InkRouter_Models_ShipAddress
+     * @return ShipAddress
      */
     public function setCountry($country)
     {

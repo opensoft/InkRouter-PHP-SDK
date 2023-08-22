@@ -6,7 +6,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class FoldingAttributesTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models\Attributes;
+
+use Opensoft\InkRouterSdk\Models\Attributes\FoldingAttributes;
+use PHPUnit\Framework\TestCase;
+
+class FoldingAttributesTest extends TestCase
 {
     private $attributes;
 
@@ -20,9 +25,9 @@ class FoldingAttributesTest extends PHPUnit_Framework_TestCase
         $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/folding_attributes.xml', $this->attributes->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->attributes = new InkRouter_Models_Attributes_FoldingAttributes();
+        $this->attributes = new FoldingAttributes();
         $this->attributes
             ->setFoldingType('F-4')
             ->setFlipTopPanel(true)

@@ -5,28 +5,32 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \XMLWriter;
+
 /**
  * Root object
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Models_OrderInfo
+class OrderInfo
 {
 
     /**
      * Document's header information
      *
-     * @var InkRouter_Models_HeaderInfo
+     * @var HeaderInfo
      */
     private $headerInfo;
 
     /**
-     * @var InkRouter_Models_PoInfo
+     * @var PoInfo
      */
     private $poInfo;
 
     /**
-     * @var InkRouter_Models_Order
+     * @var Order
      */
     private $order;
 
@@ -36,7 +40,7 @@ class InkRouter_Models_OrderInfo
     private $printCustomerId;
 
     /**
-     * @return InkRouter_Models_HeaderInfo
+     * @return HeaderInfo
      */
     public function getHeaderInfo()
     {
@@ -44,17 +48,17 @@ class InkRouter_Models_OrderInfo
     }
 
     /**
-     * @param InkRouter_Models_HeaderInfo $headerInfo
-     * @return InkRouter_Models_OrderInfo
+     * @param HeaderInfo $headerInfo
+     * @return OrderInfo
      */
-    public function setHeaderInfo(InkRouter_Models_HeaderInfo $headerInfo)
+    public function setHeaderInfo(HeaderInfo $headerInfo)
     {
         $this->headerInfo = $headerInfo;
         return $this;
     }
 
     /**
-     * @return InkRouter_Models_PoInfo
+     * @return PoInfo
      */
     public function getPoInfo()
     {
@@ -62,17 +66,17 @@ class InkRouter_Models_OrderInfo
     }
 
     /**
-     * @param InkRouter_Models_PoInfo $poInfo
-     * @return InkRouter_Models_OrderInfo
+     * @param PoInfo $poInfo
+     * @return OrderInfo
      */
-    public function setPoInfo(InkRouter_Models_PoInfo $poInfo)
+    public function setPoInfo(PoInfo $poInfo)
     {
         $this->poInfo = $poInfo;
         return $this;
     }
 
     /**
-     * @return InkRouter_Models_Order
+     * @return Order
      */
     public function getOrder()
     {
@@ -80,10 +84,10 @@ class InkRouter_Models_OrderInfo
     }
 
     /**
-     * @param InkRouter_Models_Order $order
-     * @return InkRouter_Models_OrderInfo
+     * @param Order $order
+     * @return OrderInfo
      */
-    public function setOrder(InkRouter_Models_Order $order)
+    public function setOrder(Order $order)
     {
         $this->order = $order;
         return $this;
@@ -99,7 +103,7 @@ class InkRouter_Models_OrderInfo
 
     /**
      * @param string $printCustomerId
-     * @return InkRouter_Models_OrderInfo
+     * @return OrderInfo
      */
     public function setPrintCustomerId($printCustomerId)
     {

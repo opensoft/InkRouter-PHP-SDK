@@ -5,10 +5,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Exceptions;
+
 /**
  * @author Richard Fullmer <richard.fullmer@opensoftdev.com>
  */
-interface InkRouter_Exceptions_Exception
+interface Exception
 {
 
 }

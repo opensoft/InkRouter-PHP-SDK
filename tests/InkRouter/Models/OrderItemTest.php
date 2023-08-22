@@ -6,10 +6,20 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class OrderItemTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models;
+
+use \InvalidArgumentException;
+use Opensoft\InkRouterSdk\Models\Attributes\ScalarBooleanAttribute;
+use Opensoft\InkRouterSdk\Models\OrderItem;
+use Opensoft\InkRouterSdk\Models\Price;
+use Opensoft\InkRouterSdk\Models\PrintAsset;
+use Opensoft\InkRouterSdk\Models\Side;
+use PHPUnit\Framework\TestCase;
+
+class OrderItemTest extends TestCase
 {
     /**
-     * @var \InkRouter_Models_OrderItem
+     * @var OrderItem
      */
     private $orderItem;
 
@@ -25,45 +35,37 @@ class OrderItemTest extends PHPUnit_Framework_TestCase
             $this->orderItem->pack());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage The specified value for qualityPriority is not valid
-     */
     public function testMinRangeValueInQualityField()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The specified value for qualityPriority is not valid');
         $this->orderItem->setQualityPriority(0);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage The specified value for qualityPriority is not valid
-     */
     public function testMaxRangeValueInQualityField()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The specified value for qualityPriority is not valid');
         $this->orderItem->setQualityPriority(11);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage The specified value for slaPriority is not valid
-     */
     public function testMinRangeValueInSlaField()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The specified value for slaPriority is not valid');
         $this->orderItem->setSlaPriority(0);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage The specified value for slaPriority is not valid
-     */
     public function testMaxRangeValueInSlaField()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The specified value for slaPriority is not valid');
         $this->orderItem->setSlaPriority(11);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $printAsset = new InkRouter_Models_PrintAsset();
+        $printAsset = new PrintAsset();
         $printAsset->setPositionX(4.98)
             ->setPositionY(3.1)
             ->setRotation(-90)
@@ -71,7 +73,7 @@ class OrderItemTest extends PHPUnit_Framework_TestCase
             ->setHeight(0.543)
             ->setWidth(2.12);
 
-        $side = new InkRouter_Models_Side();
+        $side = new Side();
         $side->setPageNumber(10)
             ->setFileUrl('http://server/images/business_cards/front/0.tif')
             ->setFileHash('0a0825909aa15a98b00574661f23aee7')
@@ -81,18 +83,18 @@ class OrderItemTest extends PHPUnit_Framework_TestCase
             ->setSpotUvFileHash('120825909aa15s2b00574661f23aee7')
             ->addPrintAsset($printAsset);
 
-        $attributes = new InkRouter_Models_Attributes_ScalarBooleanAttribute();
+        $attributes = new ScalarBooleanAttribute();
         $attributes->setType('LABELING');
         $attributes->setValue(true);
 
-        $price1 = new InkRouter_Models_Price();
+        $price1 = new Price();
         $price1->setType('COATING_SPOT_FRONT');
         $price1->setValue(5);
-        $price2 = new InkRouter_Models_Price();
+        $price2 = new Price();
         $price2->setType('COATING_SPOT_BACK');
         $price2->setValue(10);
 
-        $this->orderItem = new InkRouter_Models_OrderItem();
+        $this->orderItem = new OrderItem();
         $this->orderItem->setPrintGroupId('pg4f7969f8a4800')
             ->setProductType('business cards')
             ->setPaperType('14PT')

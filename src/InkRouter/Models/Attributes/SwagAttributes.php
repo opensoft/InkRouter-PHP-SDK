@@ -6,10 +6,14 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models\Attributes;
+
+use \XMLWriter;
+
 /**
  * @author Kirill Gusakov
  */
-class InkRouter_Models_Attributes_SwagAttributes implements InkRouter_Models_Attributes_AttributeInterface
+class SwagAttributes implements AttributeInterface
 {
     /**
      * @var string
@@ -38,7 +42,7 @@ class InkRouter_Models_Attributes_SwagAttributes implements InkRouter_Models_Att
 
     /**
      * @param string $box
-     * @return InkRouter_Models_Attributes_SwagAttributes
+     * @return SwagAttributes
      */
     public function setBox($box)
     {
@@ -56,7 +60,7 @@ class InkRouter_Models_Attributes_SwagAttributes implements InkRouter_Models_Att
 
     /**
      * @param float $cost
-     * @return InkRouter_Models_Attributes_SwagAttributes
+     * @return SwagAttributes
      */
     public function setCost($cost)
     {
@@ -74,7 +78,7 @@ class InkRouter_Models_Attributes_SwagAttributes implements InkRouter_Models_Att
 
     /**
      * @param string $inventoryType
-     * @return InkRouter_Models_Attributes_SwagAttributes
+     * @return SwagAttributes
      */
     public function setInventoryType($inventoryType)
     {
@@ -92,7 +96,7 @@ class InkRouter_Models_Attributes_SwagAttributes implements InkRouter_Models_Att
 
     /**
      * @param string $name
-     * @return InkRouter_Models_Attributes_SwagAttributes
+     * @return SwagAttributes
      */
     public function setName($name)
     {
@@ -110,7 +114,7 @@ class InkRouter_Models_Attributes_SwagAttributes implements InkRouter_Models_Att
 
     /**
      * @param float $shippingWeight
-     * @return InkRouter_Models_Attributes_SwagAttributes
+     * @return SwagAttributes
      */
     public function setShippingWeight($shippingWeight)
     {

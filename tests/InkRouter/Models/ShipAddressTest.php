@@ -6,7 +6,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class ShipAddressTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models;
+
+use Opensoft\InkRouterSdk\Models\ShipAddress;
+use PHPUnit\Framework\TestCase;
+
+class ShipAddressTest extends TestCase
 {
 
     private $shipAddress;
@@ -21,9 +26,9 @@ class ShipAddressTest extends PHPUnit_Framework_TestCase
         $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/ship_address.xml', $this->shipAddress->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->shipAddress = new InkRouter_Models_ShipAddress();
+        $this->shipAddress = new ShipAddress();
         $this->shipAddress->setAttention('Attention')
             ->setStreetAddress('742 Evergreen Terrace')
             ->setCity('Springfield')

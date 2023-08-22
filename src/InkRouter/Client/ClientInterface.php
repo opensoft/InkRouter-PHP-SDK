@@ -5,30 +5,38 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-interface InkRouter_Client_ClientInterface {
+namespace Opensoft\InkRouterSdk\Client;
+
+use Opensoft\InkRouterSdk\Exceptions\AuthenticationException;
+use Opensoft\InkRouterSdk\Exceptions\InkRouterNotAvailableException;
+use Opensoft\InkRouterSdk\Exceptions\ProcessingException;
+use Opensoft\InkRouterSdk\Exceptions\RejectionException;
+use Opensoft\InkRouterSdk\Models\OrderInfo;
+
+interface ClientInterface {
 	
 	/**
      * @param int $timestamp
-     * @param InkRouter_Models_OrderInfo $orderInfo
+     * @param OrderInfo $orderInfo
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
-    public function createOrder($timestamp, InkRouter_Models_OrderInfo $orderInfo);
+    public function createOrder($timestamp, OrderInfo $orderInfo);
 
     /**
      * @param int $orderId
      * @param int $timestamp
-     * @param InkRouter_Models_OrderInfo $orderInfo
+     * @param OrderInfo $orderInfo
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
-    public function updateOrder($orderId, $timestamp, InkRouter_Models_OrderInfo $orderInfo);
+    public function updateOrder($orderId, $timestamp, OrderInfo $orderInfo);
 
     /**
      * @param int $orderId
      * @param int $timestamp
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
     public function placeOnHold($orderId, $timestamp);
 
@@ -36,7 +44,7 @@ interface InkRouter_Client_ClientInterface {
      * @param int $orderId
      * @param int $timestamp
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
     public function removeHold($orderId, $timestamp);
 
@@ -44,7 +52,7 @@ interface InkRouter_Client_ClientInterface {
      * @param int $orderId
      * @param int $timestamp
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
     public function cancelOrder($orderId, $timestamp);
 }

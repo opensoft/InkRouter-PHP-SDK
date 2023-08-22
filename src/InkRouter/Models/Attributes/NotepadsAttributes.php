@@ -1,9 +1,13 @@
 <?php
 
+namespace Opensoft\InkRouterSdk\Models\Attributes;
+
+use \XMLWriter;
+
 /**
  * @author James Taylor <james.taylor@opensoftdev.com>
  */
-class InkRouter_Models_Attributes_NotepadsAttributes implements InkRouter_Models_Attributes_AttributeInterface
+class NotepadsAttributes implements AttributeInterface
 {
     /**
      * @var int
@@ -12,7 +16,7 @@ class InkRouter_Models_Attributes_NotepadsAttributes implements InkRouter_Models
 
     /**
      * @param int $pages
-     * @return InkRouter_Models_Attributes_NotepadsAttributes
+     * @return NotepadsAttributes
      */
     public function setPages($pages)
     {

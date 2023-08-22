@@ -6,7 +6,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class RequesterTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models;
+
+use Opensoft\InkRouterSdk\Models\Requester;
+use PHPUnit\Framework\TestCase;
+
+class RequesterTest extends TestCase
 {
 
     private $requester;
@@ -23,9 +28,9 @@ class RequesterTest extends PHPUnit_Framework_TestCase
             $this->requester->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->requester = new InkRouter_Models_Requester();
+        $this->requester = new Requester();
         $this->requester->setName('Jaisor Prints')
             ->setContract('STANDARD')
             ->setPayTerm('FREE');

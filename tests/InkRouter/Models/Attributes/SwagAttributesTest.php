@@ -6,7 +6,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class SwagAttributesTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models\Attributes;
+
+use Opensoft\InkRouterSdk\Models\Attributes\SwagAttributes;
+use PHPUnit\Framework\TestCase;
+
+class SwagAttributesTest extends TestCase
 {
     private $attributes;
 
@@ -22,9 +27,9 @@ class SwagAttributesTest extends PHPUnit_Framework_TestCase
             $this->attributes->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->attributes = new InkRouter_Models_Attributes_SwagAttributes();
+        $this->attributes = new SwagAttributes();
         $this->attributes
             ->setName('')
             ->setInventoryType('')

@@ -8,10 +8,16 @@
 /**
   * @author Vladimir Prudilin <vladimir.prudilin@opensoftdev.ru>
   */
-class PrintAssetTest extends PHPUnit_Framework_TestCase
+
+namespace Tests\InkRouter\Models;
+
+use Opensoft\InkRouterSdk\Models\PrintAsset;
+use PHPUnit\Framework\TestCase;
+
+class PrintAssetTest extends TestCase
 {
     /**
-     * @var InkRouter_Models_PrintAsset
+     * @var PrintAsset
      */
     private $printAsset;
 
@@ -25,9 +31,9 @@ class PrintAssetTest extends PHPUnit_Framework_TestCase
         $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/print_asset.xml', $this->printAsset->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->printAsset = new InkRouter_Models_PrintAsset();
+        $this->printAsset = new PrintAsset();
         $this->printAsset->setPositionX(4.98)
             ->setPositionY(3.1)
             ->setRotation(-90)

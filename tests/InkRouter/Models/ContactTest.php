@@ -5,7 +5,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class ContactTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models;
+
+use Opensoft\InkRouterSdk\Models\Contact;
+use PHPUnit\Framework\TestCase;
+
+class ContactTest extends TestCase
 {
 
     private $contact;
@@ -20,9 +25,9 @@ class ContactTest extends PHPUnit_Framework_TestCase
         $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/contact.xml', $this->contact->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->contact = new InkRouter_Models_Contact();
+        $this->contact = new Contact();
         $this->contact->setName('contactName')
             ->setPhone('contactPhone')
             ->setEmail('contactEmail');

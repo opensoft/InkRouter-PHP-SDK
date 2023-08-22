@@ -6,7 +6,13 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class ShipTypeTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models;
+
+use \InvalidArgumentException;
+use Opensoft\InkRouterSdk\Models\ShipType;
+use PHPUnit\Framework\TestCase;
+
+class ShipTypeTest extends TestCase
 {
 
     private $shipType;
@@ -21,23 +27,23 @@ class ShipTypeTest extends PHPUnit_Framework_TestCase
         $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/ship_type.xml', $this->shipType->pack());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testPackNotValidSignature()
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->shipType->setSignature('wow');
     }
 
     public function testPackValidSignature()
     {
         $this->shipType->setSignature('required');
+        $this->assertEquals('required', $this->shipType->getSignature());
         $this->shipType->setSignature('required-adult');
+        $this->assertEquals('required-adult', $this->shipType->getSignature());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->shipType = new InkRouter_Models_ShipType();
+        $this->shipType = new ShipType();
         $this->shipType->setMethod('UPS')
             ->setServiceLevel('GROUND')
             ->setSignature('required');

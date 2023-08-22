@@ -6,10 +6,14 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models\Attributes;
+
+use \XMLWriter;
+
 /**
  * @author Kirill Gusakov
  */
-class InkRouter_Models_Attributes_BookletAttributes implements InkRouter_Models_Attributes_AttributeInterface
+class BookletAttributes implements AttributeInterface
 {
     /**
      * @var string
@@ -48,7 +52,7 @@ class InkRouter_Models_Attributes_BookletAttributes implements InkRouter_Models_
 
     /**
      * @param string $cover
-     * @return InkRouter_Models_Attributes_BookletAttributes
+     * @return BookletAttributes
      */
     public function setCover($cover) 
     {
@@ -66,7 +70,7 @@ class InkRouter_Models_Attributes_BookletAttributes implements InkRouter_Models_
 
     /**
      * @param string $binding
-     * @return InkRouter_Models_Attributes_BookletAttributes
+     * @return BookletAttributes
      */
     public function setBinding($binding) 
     {
@@ -84,7 +88,7 @@ class InkRouter_Models_Attributes_BookletAttributes implements InkRouter_Models_
 
     /**
      * @param int $pages
-     * @return InkRouter_Models_Attributes_BookletAttributes
+     * @return BookletAttributes
      */
     public function setPages($pages) 
     {
@@ -102,7 +106,7 @@ class InkRouter_Models_Attributes_BookletAttributes implements InkRouter_Models_
 
     /**
      * @param int $tabbing
-     * @return InkRouter_Models_Attributes_BookletAttributes
+     * @return BookletAttributes
      */
     public function setTabbing($tabbing) 
     {
@@ -120,7 +124,7 @@ class InkRouter_Models_Attributes_BookletAttributes implements InkRouter_Models_
 
     /**
      * @param int $shrinkWrapping
-     * @return InkRouter_Models_Attributes_BookletAttributes
+     * @return BookletAttributes
      */
     public function setShrinkWrapping($shrinkWrapping)
     {
@@ -138,7 +142,7 @@ class InkRouter_Models_Attributes_BookletAttributes implements InkRouter_Models_
 
     /**
      * @param string $holeMaking
-     * @return InkRouter_Models_Attributes_BookletAttributes
+     * @return BookletAttributes
      */
     public function setHoleMaking($holeMaking)
     {
@@ -156,7 +160,7 @@ class InkRouter_Models_Attributes_BookletAttributes implements InkRouter_Models_
 
     /**
      * @param string $coverSubstrate
-     * @return InkRouter_Models_Attributes_BookletAttributes
+     * @return BookletAttributes
      */
     public function setCoverSubstrate($coverSubstrate)
     {

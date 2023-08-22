@@ -6,7 +6,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class ScalarBooleanAttributeTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models\Attributes;
+
+use Opensoft\InkRouterSdk\Models\Attributes\ScalarBooleanAttribute;
+use PHPUnit\Framework\TestCase;
+
+class ScalarBooleanAttributeTest extends TestCase
 {
     private $attribute;
 
@@ -22,9 +27,9 @@ class ScalarBooleanAttributeTest extends PHPUnit_Framework_TestCase
             $this->attribute->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->attribute = new InkRouter_Models_Attributes_ScalarBooleanAttribute();
+        $this->attribute = new ScalarBooleanAttribute();
         $this->attribute
             ->setType('ROUNDING')
             ->setValue(true);
