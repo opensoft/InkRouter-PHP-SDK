@@ -6,11 +6,16 @@
  * Copyright (c) 2023 Opensoft (http://opensoftdev.com)
  */
 
-class PriceTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models;
+
+use Opensoft\InkRouterSdk\Models\Price;
+use PHPUnit\Framework\TestCase;
+
+class PriceTest extends TestCase
 {
     public function testPrice()
     {
-        $price = new InkRouter_Models_Price();
+        $price = new Price();
         $price
             ->setType('COATING_SPOT_FRONT')
             ->setValue(5)

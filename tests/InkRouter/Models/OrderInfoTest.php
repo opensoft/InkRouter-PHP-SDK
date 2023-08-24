@@ -5,10 +5,27 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class OrderInfoTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models;
+
+use Opensoft\InkRouterSdk\Models\Attributes\ScalarBooleanAttribute;
+use Opensoft\InkRouterSdk\Models\Contact;
+use Opensoft\InkRouterSdk\Models\HeaderInfo;
+use Opensoft\InkRouterSdk\Models\Order;
+use Opensoft\InkRouterSdk\Models\OrderInfo;
+use Opensoft\InkRouterSdk\Models\OrderItem;
+use Opensoft\InkRouterSdk\Models\PoInfo;
+use Opensoft\InkRouterSdk\Models\PrintAsset;
+use Opensoft\InkRouterSdk\Models\Requester;
+use Opensoft\InkRouterSdk\Models\ShipAddress;
+use Opensoft\InkRouterSdk\Models\ShipReturnAddress;
+use Opensoft\InkRouterSdk\Models\ShipType;
+use Opensoft\InkRouterSdk\Models\Side;
+use PHPUnit\Framework\TestCase;
+
+class OrderInfoTest extends TestCase
 {
     /**
-     * @var InkRouter_Models_OrderInfo
+     * @var OrderInfo
      */
     private $orderInfo;
 
@@ -22,22 +39,22 @@ class OrderInfoTest extends PHPUnit_Framework_TestCase
         $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/order_info.xml', $this->orderInfo->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $contact = new InkRouter_Models_Contact();
+        $contact = new Contact();
         $contact->setName('contactName')
             ->setPhone('contactPhone')
             ->setEmail('contactEmail');
 
-        $headerInfo = new InkRouter_Models_HeaderInfo();
+        $headerInfo = new HeaderInfo();
         $headerInfo->setFromDomain('myprintingdomain.com')
             ->setFromIdentity('BRENT');
 
-        $shipType = new InkRouter_Models_ShipType();
+        $shipType = new ShipType();
         $shipType->setMethod('UPS')
             ->setServiceLevel('GROUND');
 
-        $shipAddress = new InkRouter_Models_ShipAddress();
+        $shipAddress = new ShipAddress();
         $shipAddress->setCompanyName('Company Name')
             ->setAttention('Attention')
             ->setStreetAddress('742 Evergreen Terrace')
@@ -46,7 +63,7 @@ class OrderInfoTest extends PHPUnit_Framework_TestCase
             ->setZip('92614')
             ->setCountry('country');
 
-        $shipReturnAddress = new InkRouter_Models_ShipReturnAddress();
+        $shipReturnAddress = new ShipReturnAddress();
         $shipReturnAddress
             ->setCompanyName('Crymerik Industries')
             ->setPersonName('Roger Heath')
@@ -57,16 +74,16 @@ class OrderInfoTest extends PHPUnit_Framework_TestCase
             ->setZip('92612')
             ->setCountry('US');
 
-        $requester = new InkRouter_Models_Requester();
+        $requester = new Requester();
         $requester->setName('Jaisor Prints')
             ->setContract('STANDARD')
             ->setPayTerm('FREE');
 
-        $poInfo = new InkRouter_Models_PoInfo();
+        $poInfo = new PoInfo();
         $poInfo->setAgentId('agentId')
             ->setCurrency('currency');
 
-        $printAsset = new InkRouter_Models_PrintAsset();
+        $printAsset = new PrintAsset();
         $printAsset->setPositionX(4.98)
             ->setPositionY(3.1)
             ->setRotation(-90)
@@ -74,7 +91,7 @@ class OrderInfoTest extends PHPUnit_Framework_TestCase
             ->setHeight(0.543)
             ->setWidth(2.12);
 
-        $side = new InkRouter_Models_Side();
+        $side = new Side();
         $side->setPageNumber(10)
             ->setFileUrl('http://server/images/business_cards/front/0.tif')
             ->setFileHash('0a0825909aa15a98b00574661f23aee7')
@@ -84,11 +101,11 @@ class OrderInfoTest extends PHPUnit_Framework_TestCase
             ->setSpotUvFileHash('120825909aa15s2b00574661f23aee7')
             ->addPrintAsset($printAsset);
 
-        $attributes = new InkRouter_Models_Attributes_ScalarBooleanAttribute();
+        $attributes = new ScalarBooleanAttribute();
         $attributes->setType('LABELING');
         $attributes->setValue(true);
 
-        $orderItem = new InkRouter_Models_OrderItem();
+        $orderItem = new OrderItem();
         $orderItem->setPrintGroupId('pg4f7969f8a4800')
             ->setProductType('business cards')
             ->setPaperType('14PT')
@@ -98,7 +115,7 @@ class OrderInfoTest extends PHPUnit_Framework_TestCase
             ->addAttributes($attributes)
             ->addSide($side);
 
-        $order = new InkRouter_Models_Order();
+        $order = new Order();
         $order->setPrintCustomerInvoice(44164524)
             ->setTsCreated('2012-04-04T19:25:21+04:00')
             ->setPriority(0)
@@ -113,7 +130,7 @@ class OrderInfoTest extends PHPUnit_Framework_TestCase
             ->setShipReturnAddress($shipReturnAddress)
             ->addOrderItem($orderItem);
 
-        $orderInfo = new InkRouter_Models_OrderInfo();
+        $orderInfo = new OrderInfo();
         $orderInfo->setHeaderInfo($headerInfo)
             ->setPrintCustomerId('BRENT')
             ->setPoInfo($poInfo)

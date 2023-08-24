@@ -5,12 +5,16 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \XMLWriter;
+
 /**
  * Contains purchase order information
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Models_PoInfo
+class PoInfo
 {
 
     /**
@@ -36,7 +40,7 @@ class InkRouter_Models_PoInfo
 
     /**
      * @param string $agentId
-     * @return InkRouter_Models_PoInfo
+     * @return PoInfo
      */
     public function setAgentId($agentId)
     {
@@ -54,7 +58,7 @@ class InkRouter_Models_PoInfo
 
     /**
      * @param string $currency
-     * @return InkRouter_Models_PoInfo
+     * @return PoInfo
      */
     public function setCurrency($currency)
     {

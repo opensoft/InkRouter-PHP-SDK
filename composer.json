@@ -8,8 +8,13 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "InkRouter_": "src/"
+        "psr-4": {
+            "Opensoft\\InkRouterSdk\\": "src/InkRouter/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
     },
     "extra": {
@@ -18,9 +23,13 @@
         }
     },
     "require": {
-        "php": ">=5.0.0"
+        "php": ">=7.2.0",
+        "ext-curl": ">=7.2",
+        "ext-dom": "20031129",
+        "ext-soap": ">=7.2.0",
+        "ext-xmlwriter": ">=7.2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "5.7.*"
+        "phpunit/phpunit": "8.*"
     }
 }

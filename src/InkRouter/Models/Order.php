@@ -5,12 +5,19 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \DateTime;
+use \DateTimeZone;
+use \XMLWriter;
+use Opensoft\InkRouterSdk\Utils\OrderProcessor;
+
 /**
  * Contains information about order
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Models_Order
+class Order
 {
     /**
      * Invoice number that is given to the order by a printing service client
@@ -71,35 +78,35 @@ class InkRouter_Models_Order
     /**
      * Contains detailed information about a person who is to be notified about the order’s progress
      *
-     * @var InkRouter_Models_Contact
+     * @var Contact
      */
     private $contact;
 
     /**
      * Contains information about shipping
      *
-     * @var InkRouter_Models_ShipType
+     * @var ShipType
      */
     private $shipType;
 
     /**
      * Contains information about the contract under which the request is being made.
      *
-     * @var InkRouter_Models_Requester
+     * @var Requester
      */
     private $requester;
 
     /**
      * Contains information about shipping address
      *
-     * @var InkRouter_Models_ShipAddress
+     * @var ShipAddress
      */
     private $shipAddress;
 
     /**
      * Contains information about return shipping address
      *
-     * @var InkRouter_Models_ShipReturnAddress
+     * @var ShipReturnAddress
      */
     private $shipReturnAddress;
 
@@ -125,7 +132,7 @@ class InkRouter_Models_Order
 
     /**
      * @param string $printCustomerInvoice
-     * @return InkRouter_Models_Order
+     * @return Order
      */
     public function setPrintCustomerInvoice($printCustomerInvoice) 
     {
@@ -153,7 +160,7 @@ class InkRouter_Models_Order
     /**
      * @deprecated This method will be removed in version 2.0.0. Use method setTsCreatedAsDate instead this one.
      * @param string $tsCreated
-     * @return InkRouter_Models_Order
+     * @return Order
      */
     public function setTsCreated($tsCreated)
     {
@@ -161,10 +168,10 @@ class InkRouter_Models_Order
     }
 
     /**
-     * @param \DateTime $tsCreated
-     * @return InkRouter_Models_Order
+     * @param DateTime $tsCreated
+     * @return Order
      */
-    public function setTsCreatedAsDate(\DateTime $tsCreated)
+    public function setTsCreatedAsDate(DateTime $tsCreated)
     {
         $this->tsCreated = $tsCreated;
         return $this;
@@ -180,7 +187,7 @@ class InkRouter_Models_Order
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDeliveryDateAsDate()
     {
@@ -190,7 +197,7 @@ class InkRouter_Models_Order
     /**
      * @deprecated This method will be removed in version 2.0.0. Use method setDeliveryDateAsDate instead this one.
      * @param string $deliveryDate
-     * @return InkRouter_Models_Order
+     * @return Order
      */
     public function setDeliveryDate($deliveryDate)
     {
@@ -198,10 +205,10 @@ class InkRouter_Models_Order
     }
 
     /**
-     * @param \DateTime $deliveryDate
-     * @return InkRouter_Models_Order
+     * @param DateTime $deliveryDate
+     * @return Order
      */
-    public function setDeliveryDateAsDate(\DateTime $deliveryDate)
+    public function setDeliveryDateAsDate(DateTime $deliveryDate)
     {
         $this->deliveryDate = $deliveryDate;
         return $this;
@@ -217,7 +224,7 @@ class InkRouter_Models_Order
 
     /**
      * @param int $priority
-     * @return InkRouter_Models_Order
+     * @return Order
      */
     public function setPriority($priority)
     {
@@ -235,7 +242,7 @@ class InkRouter_Models_Order
 
     /**
      * @param float $shippingFee
-     * @return InkRouter_Models_Order
+     * @return Order
      */
     public function setShippingFee($shippingFee)
     {
@@ -253,7 +260,7 @@ class InkRouter_Models_Order
 
     /**
      * @param int $productDiscounts
-     * @return InkRouter_Models_Order
+     * @return Order
      */
     public function setProductDiscounts($productDiscounts)
     {
@@ -271,7 +278,7 @@ class InkRouter_Models_Order
 
     /**
      * @param int $shippingDiscounts
-     * @return InkRouter_Models_Order
+     * @return Order
      */
     public function setShippingDiscounts($shippingDiscounts)
     {
@@ -289,7 +296,7 @@ class InkRouter_Models_Order
 
     /**
      * @param string $vendorId
-     * @return InkRouter_Models_Order
+     * @return Order
      */
     public function setVendorId($vendorId)
     {
@@ -307,7 +314,7 @@ class InkRouter_Models_Order
 
     /**
      * @param bool $tipIn
-     * @return InkRouter_Models_Order
+     * @return Order
      */
     public function setTipIn($tipIn)
     {
@@ -316,7 +323,7 @@ class InkRouter_Models_Order
     }
 
     /**
-     * @return InkRouter_Models_Contact
+     * @return Contact
      */
     public function getContact()
     {
@@ -324,17 +331,17 @@ class InkRouter_Models_Order
     }
 
     /**
-     * @param InkRouter_Models_Contact $contact
-     * @return InkRouter_Models_Order
+     * @param Contact $contact
+     * @return Order
      */
-    public function setContact(InkRouter_Models_Contact $contact)
+    public function setContact(Contact $contact)
     {
         $this->contact = $contact;
         return $this;
     }
 
     /**
-     * @return InkRouter_Models_ShipType
+     * @return ShipType
      */
     public function getShipType()
     {
@@ -342,17 +349,17 @@ class InkRouter_Models_Order
     }
 
     /**
-     * @param InkRouter_Models_ShipType $shipType
-     * @return InkRouter_Models_Order
+     * @param ShipType $shipType
+     * @return Order
      */
-    public function setShipType(InkRouter_Models_ShipType $shipType)
+    public function setShipType(ShipType $shipType)
     {
         $this->shipType = $shipType;
         return $this;
     }
 
     /**
-     * @return InkRouter_Models_Requester
+     * @return Requester
      */
     public function getRequester()
     {
@@ -360,17 +367,17 @@ class InkRouter_Models_Order
     }
 
     /**
-     * @param InkRouter_Models_Requester $requester
-     * @return InkRouter_Models_Order
+     * @param Requester $requester
+     * @return Order
      */
-    public function setRequester(InkRouter_Models_Requester $requester)
+    public function setRequester(Requester $requester)
     {
         $this->requester = $requester;
         return $this;
     }
 
     /**
-     * @return InkRouter_Models_ShipAddress
+     * @return ShipAddress
      */
     public function getShipAddress()
     {
@@ -378,27 +385,27 @@ class InkRouter_Models_Order
     }
 
     /**
-     * @param InkRouter_Models_ShipAddress $shipAddress
-     * @return InkRouter_Models_Order
+     * @param ShipAddress $shipAddress
+     * @return Order
      */
-    public function setShipAddress(InkRouter_Models_ShipAddress $shipAddress)
+    public function setShipAddress(ShipAddress $shipAddress)
     {
         $this->shipAddress = $shipAddress;
         return $this;
     }
 
     /**
-     * @param InkRouter_Models_ShipReturnAddress $shipReturnAddress
-     * @return InkRouter_Models_Order
+     * @param ShipReturnAddress $shipReturnAddress
+     * @return Order
      */
-    public function setShipReturnAddress(InkRouter_Models_ShipReturnAddress $shipReturnAddress)
+    public function setShipReturnAddress(ShipReturnAddress $shipReturnAddress)
     {
         $this->shipReturnAddress = $shipReturnAddress;
         return $this;
     }
 
     /**
-     * @return InkRouter_Models_ShipReturnAddress
+     * @return ShipReturnAddress
      */
     public function getShipReturnAddress()
     {
@@ -433,10 +440,10 @@ class InkRouter_Models_Order
     }
 
     /**
-     * @param InkRouter_Models_OrderItem $orderItem
-     * @return InkRouter_Models_Order
+     * @param OrderItem $orderItem
+     * @return Order
      */
-    public function addOrderItem(InkRouter_Models_OrderItem $orderItem)
+    public function addOrderItem(OrderItem $orderItem)
     {
         $this->orderItems[] = $orderItem;
         return $this;
@@ -516,7 +523,7 @@ class InkRouter_Models_Order
             $writer->writeRaw($this->shipReturnAddress->pack());
         }
 
-        InkRouter_Utils_OrderProcessor::transform($this);
+        OrderProcessor::transform($this);
 
         $writer->startElement('order_items');
         foreach ($this->orderItems as $orderItem) {

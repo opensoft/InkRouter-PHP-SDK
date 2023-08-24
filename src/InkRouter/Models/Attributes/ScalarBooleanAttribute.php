@@ -1,5 +1,9 @@
 <?php
 
+namespace Opensoft\InkRouterSdk\Models\Attributes;
+
+use \XMLWriter;
+
 /*
  * This file is part of InkRouter-PHP-SDK.
  *
@@ -9,7 +13,7 @@
 /**
  * @author Kirill Gusakov
  */
-class InkRouter_Models_Attributes_ScalarBooleanAttribute implements InkRouter_Models_Attributes_AttributeInterface
+class ScalarBooleanAttribute implements AttributeInterface
 {
     /**
      * @var string
@@ -23,7 +27,7 @@ class InkRouter_Models_Attributes_ScalarBooleanAttribute implements InkRouter_Mo
 
     /**
      * @param string $value
-     * @return InkRouter_Models_Attributes_ScalarBooleanAttribute
+     * @return ScalarBooleanAttribute
      */
     public function setValue($value)
     {
@@ -41,7 +45,7 @@ class InkRouter_Models_Attributes_ScalarBooleanAttribute implements InkRouter_Mo
 
     /**
      * @param string $type
-     * @return InkRouter_Models_Attributes_ScalarBooleanAttribute
+     * @return ScalarBooleanAttribute
      */
     public function setType($type)
     {

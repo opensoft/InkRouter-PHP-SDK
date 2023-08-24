@@ -6,10 +6,14 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models\Attributes;
+
+use \XMLWriter;
+
 /**
  * @author Kirill Gusakov
  */
-class InkRouter_Models_Attributes_ScalarStringAttribute implements InkRouter_Models_Attributes_AttributeInterface
+class ScalarStringAttribute implements AttributeInterface
 {
     /**
      * @var string
@@ -23,7 +27,7 @@ class InkRouter_Models_Attributes_ScalarStringAttribute implements InkRouter_Mod
 
     /**
      * @param string $type
-     * @return InkRouter_Models_Attributes_ScalarStringAttribute
+     * @return ScalarStringAttribute
      */
     public function setType($type)
     {
@@ -41,7 +45,7 @@ class InkRouter_Models_Attributes_ScalarStringAttribute implements InkRouter_Mod
 
     /**
      * @param string $value
-     * @return InkRouter_Models_Attributes_ScalarStringAttribute
+     * @return ScalarStringAttribute
      */
     public function setValue($value)
     {

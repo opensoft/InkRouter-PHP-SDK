@@ -5,12 +5,16 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \XMLWriter;
+
 /**
  * Document's header information
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Models_HeaderInfo
+class HeaderInfo
 {
     /**
      * The field is used for differentiating from which vendor order sent
@@ -36,7 +40,7 @@ class InkRouter_Models_HeaderInfo
 
     /**
      * @param string $fromDomain
-     * @return InkRouter_Models_HeaderInfo
+     * @return HeaderInfo
      */
     public function setFromDomain($fromDomain)
     {
@@ -54,7 +58,7 @@ class InkRouter_Models_HeaderInfo
 
     /**
      * @param string $fromIdentity
-     * @return InkRouter_Models_HeaderInfo
+     * @return HeaderInfo
      */
     public function setFromIdentity($fromIdentity)
     {

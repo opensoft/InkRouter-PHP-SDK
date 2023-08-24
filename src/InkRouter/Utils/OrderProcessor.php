@@ -5,41 +5,48 @@
  * Copyright (c) 2013 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Utils;
+
+use Opensoft\InkRouterSdk\Models\Order;
+use Opensoft\InkRouterSdk\Models\OrderItem;
+use Opensoft\InkRouterSdk\Models\Attributes\MailingAttributes;
+use Opensoft\InkRouterSdk\Models\Attributes\ScalarStringAttribute;
+
 /**
  * @author Alexey Nikolaev <alexey.nikolaev@opensoftdev.ru>
  */
-class InkRouter_Utils_OrderProcessor
+class OrderProcessor
 {
     /**
-     * @param InkRouter_Models_Order $order
+     * @param Order $order
      */
-    public static function transform(InkRouter_Models_Order $order)
+    public static function transform(Order $order)
     {
         $orderItems = $order->getOrderItems();
         foreach ($orderItems as &$orderItem) {
-            /**@var InkRouter_Models_OrderItem $orderItem */
+            /**@var OrderItem $orderItem */
             $newOrderItem = null;
             $mailingAttributes = null;
             $attributes = array();
             foreach ($orderItem->getAttributes() as $attribute) {
-                if ($attribute instanceof InkRouter_Models_Attributes_ScalarStringAttribute) {
+                if ($attribute instanceof ScalarStringAttribute) {
                     /** InkRouter_Models_Attributes_ScalarStringAttribute $attribute */
                     if ($attribute->getType() == 'ENVELOPE_TYPE') {
-                        $newOrderItem = new InkRouter_Models_OrderItem();
+                        $newOrderItem = new OrderItem();
                         $newOrderItem->setPrintGroupId($orderItem->getPrintGroupId()."E");
                         $newOrderItem->setProductType(self::getEnvelopeType($orderItem->getProductType()));
                         $newOrderItem->setQuantity($orderItem->getQuantity());
                         $newOrderItem->setCost(0.0);
-                        $envelopeAttribute = new InkRouter_Models_Attributes_ScalarStringAttribute();
+                        $envelopeAttribute = new ScalarStringAttribute();
                         $envelopeAttribute->setType('MEDIA_COLOR')
                             ->setValue($attribute->getValue());
                         $newOrderItem->addAttributes($envelopeAttribute);
                     } else {
                         $attributes[] = $attribute;
                     }
-                } else if ($attribute instanceof InkRouter_Models_Attributes_MailingAttributes) {
-                    /**@var InkRouter_Models_Attributes_MailingAttributes $attribute */
-                    $mailingAttributes = new InkRouter_Models_Attributes_MailingAttributes();
+                } else if ($attribute instanceof MailingAttributes) {
+                    /**@var MailingAttributes $attribute */
+                    $mailingAttributes = new MailingAttributes();
                     $mailingAttributes->setMailClass($attribute->getMailClass());
                     $mailingAttributes->setShipExtra($attribute->getShipExtra());
                     $attributes[] = $attribute;
@@ -51,7 +58,7 @@ class InkRouter_Utils_OrderProcessor
             if ($newOrderItem != null) {
                 if ($mailingAttributes != null) {
                     $newOrderItem->addAttributes($mailingAttributes);
-                    $idAttribute = new InkRouter_Models_Attributes_ScalarStringAttribute();
+                    $idAttribute = new ScalarStringAttribute();
                     $idAttribute->setType('ENVELOPE_ORDER_ITEM')->setValue($newOrderItem->getPrintGroupId());
                     $orderItem->addAttributes($idAttribute);
                 }

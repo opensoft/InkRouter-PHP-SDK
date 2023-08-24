@@ -5,12 +5,16 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \XMLWriter;
+
 /**
  * Contains information about the return shipping address
  *
  * @author Richard Fullmer <richard.fullmer@opensoftdev.com>
  */
-class InkRouter_Models_ShipReturnAddress
+class ShipReturnAddress
 {
     /**
      * @var string
@@ -54,7 +58,7 @@ class InkRouter_Models_ShipReturnAddress
 
     /**
      * @param string $city
-     * @return InkRouter_Models_ShipReturnAddress
+     * @return ShipReturnAddress
      */
     public function setCity($city)
     {
@@ -72,7 +76,7 @@ class InkRouter_Models_ShipReturnAddress
 
     /**
      * @param string $state
-     * @return InkRouter_Models_ShipReturnAddress
+     * @return ShipReturnAddress
      */
     public function setState($state)
     {
@@ -90,7 +94,7 @@ class InkRouter_Models_ShipReturnAddress
 
     /**
      * @param string $streetAddress
-     * @return InkRouter_Models_ShipReturnAddress
+     * @return ShipReturnAddress
      */
     public function setStreetAddress($streetAddress)
     {
@@ -108,7 +112,7 @@ class InkRouter_Models_ShipReturnAddress
 
     /**
      * @param string $zip
-     * @return InkRouter_Models_ShipReturnAddress
+     * @return ShipReturnAddress
      */
     public function setZip($zip)
     {
@@ -126,7 +130,7 @@ class InkRouter_Models_ShipReturnAddress
 
     /**
      * @param string $companyName
-     * @return InkRouter_Models_ShipReturnAddress
+     * @return ShipReturnAddress
      */
     public function setCompanyName($companyName)
     {
@@ -145,7 +149,7 @@ class InkRouter_Models_ShipReturnAddress
 
     /**
      * @param string $country
-     * @return InkRouter_Models_ShipReturnAddress
+     * @return ShipReturnAddress
      */
     public function setCountry($country)
     {
@@ -164,7 +168,7 @@ class InkRouter_Models_ShipReturnAddress
 
     /**
      * @param string $personName
-     * @return InkRouter_Models_ShipReturnAddress
+     * @return ShipReturnAddress
      */
     public function setPersonName($personName)
     {
@@ -183,7 +187,7 @@ class InkRouter_Models_ShipReturnAddress
 
     /**
      * @param string $phoneNumber
-     * @return InkRouter_Models_ShipReturnAddress
+     * @return ShipReturnAddress
      */
     public function setPhoneNumber($phoneNumber)
     {

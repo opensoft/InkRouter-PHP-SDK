@@ -5,10 +5,14 @@
  * Copyright (c) Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \XMLWriter;
+
 /**
  * @author Vladimir Prudilin <vladimir.prudilin@opensoftdev.ru>
  */
-class InkRouter_Models_PrintAsset
+class PrintAsset
 {
     /**
      * @var integer x coordinate in inches
@@ -50,7 +54,7 @@ class InkRouter_Models_PrintAsset
 
     /**
      * @param integer $positionX
-     * @return InkRouter_Models_PrintAsset
+     * @return PrintAsset
      */
     public function setPositionX($positionX)
     {
@@ -69,7 +73,7 @@ class InkRouter_Models_PrintAsset
 
     /**
      * @param integer $positionY
-     * @return InkRouter_Models_PrintAsset
+     * @return PrintAsset
      */
     public function setPositionY($positionY)
     {
@@ -88,7 +92,7 @@ class InkRouter_Models_PrintAsset
 
     /**
      * @param integer $width
-     * @return InkRouter_Models_PrintAsset
+     * @return PrintAsset
      */
     public function setWidth($width)
     {
@@ -107,7 +111,7 @@ class InkRouter_Models_PrintAsset
 
     /**
      * @param integer $height
-     * @return InkRouter_Models_PrintAsset
+     * @return PrintAsset
      */
     public function setHeight($height)
     {
@@ -126,7 +130,7 @@ class InkRouter_Models_PrintAsset
 
     /**
      * @param string $type
-     * @return InkRouter_Models_PrintAsset
+     * @return PrintAsset
      */
     public function setType($type)
     {
@@ -145,7 +149,7 @@ class InkRouter_Models_PrintAsset
 
     /**
      * @param integer $rotation
-     * @return InkRouter_Models_PrintAsset
+     * @return PrintAsset
      */
     public function setRotation($rotation)
     {

@@ -6,13 +6,16 @@
  * Copyright (c) Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \XMLWriter;
 
 /**
  * Contains information about one face of product
  *
  * @author Anton Kalachev
  */
-class InkRouter_Models_Face
+class Face
 {
     /**
      * Face name
@@ -43,7 +46,7 @@ class InkRouter_Models_Face
     private $orientation;
 
     /**
-     * @var InkRouter_Models_PrintAsset[]
+     * @var PrintAsset[]
      */
     private $printAssets;
 
@@ -57,7 +60,7 @@ class InkRouter_Models_Face
 
     /**
      * @param string $pageNumber
-     * @return InkRouter_Models_Face
+     * @return Face
      */
     public function setFaceName($faceName)
     {
@@ -76,7 +79,7 @@ class InkRouter_Models_Face
 
     /**
      * @param string $fileUrl
-     * @return InkRouter_Models_Side
+     * @return Face
      */
     public function setFileUrl($fileUrl)
     {
@@ -95,7 +98,7 @@ class InkRouter_Models_Face
 
     /**
      * @param string $fileHash
-     * @return InkRouter_Models_Side
+     * @return Face
      */
     public function setFileHash($fileHash)
     {
@@ -114,7 +117,7 @@ class InkRouter_Models_Face
 
     /**
      * @param string $orientation
-     * @return InkRouter_Models_Side
+     * @return Face
      */
     public function setOrientation($orientation)
     {
@@ -124,10 +127,10 @@ class InkRouter_Models_Face
     }
 
     /**
-     * @param InkRouter_Models_PrintAsset $printAsset
-     * @return InkRouter_Models_Side
+     * @param PrintAsset $printAsset
+     * @return Face
      */
-    public function addPrintAsset(InkRouter_Models_PrintAsset $printAsset)
+    public function addPrintAsset(PrintAsset $printAsset)
     {
         $this->printAssets[] = $printAsset;
 

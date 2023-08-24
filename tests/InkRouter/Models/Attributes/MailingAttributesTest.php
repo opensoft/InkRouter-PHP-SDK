@@ -6,7 +6,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class MailingAttributesTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models\Attributes;
+
+use Opensoft\InkRouterSdk\Models\Attributes\MailingAttributes;
+use PHPUnit\Framework\TestCase;
+
+class MailingAttributesTest extends TestCase
 {
     private $attributes;
 
@@ -22,9 +27,9 @@ class MailingAttributesTest extends PHPUnit_Framework_TestCase
             $this->attributes->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->attributes = new InkRouter_Models_Attributes_MailingAttributes();
+        $this->attributes = new MailingAttributes();
         $this->attributes
             ->setPoliticalMailer(true)
             ->setMailClass('firstclass')

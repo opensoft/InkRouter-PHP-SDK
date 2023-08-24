@@ -8,26 +8,32 @@
  * Opensoft is prohibited.
  */
 
-class SideTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models;
+
+use Opensoft\InkRouterSdk\Models\PrintAsset;
+use Opensoft\InkRouterSdk\Models\Side;
+use PHPUnit\Framework\TestCase;
+
+class SideTest extends TestCase
 {
     /**
      * @param string $file
-     * @param InkRouter_Models_Side $side
+     * @param Side $side
      *
      * @dataProvider getSides
      */
-    public function testPackWithRoot($file, InkRouter_Models_Side $side)
+    public function testPackWithRoot($file, Side $side)
     {
         $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/' . $file, $side->pack(true));
     }
 
     /**
      * @param string $file
-     * @param InkRouter_Models_Side $side
+     * @param Side $side
      *
      * @dataProvider getSides
      */
-    public function testPackWithoutRoot($file, InkRouter_Models_Side $side)
+    public function testPackWithoutRoot($file, Side $side)
     {
         $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/' . $file, $side->pack());
     }
@@ -45,11 +51,11 @@ class SideTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     private function getSide()
     {
-        $printAsset = new InkRouter_Models_PrintAsset();
+        $printAsset = new PrintAsset();
         $printAsset->setPositionX(4.98)
             ->setPositionY(3.1)
             ->setRotation(-90)
@@ -57,7 +63,7 @@ class SideTest extends PHPUnit_Framework_TestCase
             ->setHeight(0.543)
             ->setWidth(2.12);
 
-        $side = new InkRouter_Models_Side();
+        $side = new Side();
         $side->setPageNumber(10)
             ->setFileUrl('http://server/images/business_cards/front/0.tif')
             ->setFileHash('0a0825909aa15a98b00574661f23aee7')
@@ -72,11 +78,11 @@ class SideTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     private function getSideWithTexture()
     {
-        $side = new InkRouter_Models_Side();
+        $side = new Side();
         $side->setPageNumber(0)
             ->setFileUrl('http://server/images/business_cards/front/0.tif')
             ->setFileHash('0a0825909aa15a98b00574661f23aee7')
@@ -89,11 +95,11 @@ class SideTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     private function getSideWithFoil()
     {
-        $side = new InkRouter_Models_Side();
+        $side = new Side();
         $side->setPageNumber(0)
             ->setFileUrl('http://server/images/business_cards/front/0.tif')
             ->setFileHash('0a0825909aa15a98b00574661f23aee7')

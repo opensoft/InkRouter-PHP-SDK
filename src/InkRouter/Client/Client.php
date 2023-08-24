@@ -10,4 +10,7 @@
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Client_Client extends InkRouter_Client_SoapClient {}
+
+namespace Opensoft\InkRouterSdk\Client;
+
+class Client extends SoapClient {}

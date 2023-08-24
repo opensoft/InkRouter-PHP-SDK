@@ -6,13 +6,16 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \XMLWriter;
 
 /**
  * Contains information about one side of product
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Models_Side
+class Side
 {
     /**
      * Side number
@@ -65,7 +68,7 @@ class InkRouter_Models_Side
     private $laminating;
 
     /**
-     * @var InkRouter_Models_PrintAsset[]
+     * @var PrintAsset[]
      */
     private $printAssets;
 
@@ -104,7 +107,7 @@ class InkRouter_Models_Side
 
     /**
      * @param string $laminate
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     public function setLaminating($laminate)
     {
@@ -123,7 +126,7 @@ class InkRouter_Models_Side
 
     /**
      * @param int $pageNumber
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     public function setPageNumber($pageNumber)
     {
@@ -142,7 +145,7 @@ class InkRouter_Models_Side
 
     /**
      * @param string $fileUrl
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     public function setFileUrl($fileUrl)
     {
@@ -161,7 +164,7 @@ class InkRouter_Models_Side
 
     /**
      * @param string $fileHash
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     public function setFileHash($fileHash)
     {
@@ -180,7 +183,7 @@ class InkRouter_Models_Side
 
     /**
      * @param string $coating
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     public function setCoating($coating)
     {
@@ -199,7 +202,7 @@ class InkRouter_Models_Side
 
     /**
      * @param string $orientation
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     public function setOrientation($orientation)
     {
@@ -210,7 +213,7 @@ class InkRouter_Models_Side
 
     /**
      * @param string $spotUvFileHash
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     public function setSpotUvFileHash($spotUvFileHash)
     {
@@ -229,7 +232,7 @@ class InkRouter_Models_Side
 
     /**
      * @param string $spotUvFileUrl
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     public function setSpotUvFileUrl($spotUvFileUrl)
     {
@@ -247,10 +250,10 @@ class InkRouter_Models_Side
     }
 
     /**
-     * @param InkRouter_Models_PrintAsset $printAsset
-     * @return InkRouter_Models_Side
+     * @param PrintAsset $printAsset
+     * @return Side
      */
-    public function addPrintAsset(InkRouter_Models_PrintAsset $printAsset)
+    public function addPrintAsset(PrintAsset $printAsset)
     {
         $this->printAssets[] = $printAsset;
 
@@ -275,7 +278,7 @@ class InkRouter_Models_Side
 
     /**
      * @param string $variableUvFileUrl
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     public function setVariableUvFileUrl($variableUvFileUrl)
     {
@@ -294,7 +297,7 @@ class InkRouter_Models_Side
 
     /**
      * @param string $variableUvFileHash
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     public function setVariableUvFileHash($variableUvFileHash)
     {
@@ -313,7 +316,7 @@ class InkRouter_Models_Side
 
     /**
      * @param string $foilFileUrl
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     public function setFoilFileUrl($foilFileUrl)
     {
@@ -332,7 +335,7 @@ class InkRouter_Models_Side
 
     /**
      * @param string $foilFileHash
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     public function setFoilFileHash($foilFileHash)
     {
@@ -351,7 +354,7 @@ class InkRouter_Models_Side
 
     /**
      * @param string $foilColor
-     * @return InkRouter_Models_Side
+     * @return Side
      */
     public function setFoilColor($foilColor)
     {

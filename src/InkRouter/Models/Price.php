@@ -5,12 +5,16 @@
  * Copyright (c) 2023 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \XMLWriter;
+
 /**
  * Contains information about a order item pricing
  *
  * @author Scott Driscoll
  */
-class InkRouter_Models_Price
+class Price
 {
     /**
      * @var string

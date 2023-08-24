@@ -5,12 +5,16 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \XMLWriter;
+
 /**
  * Contains information about shipping
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Models_ShipType
+class ShipType
 {
     const SIGNATURE_REQUIRED = "required";
     const SIGNATURE_REQUIRED_ADULT = "required-adult";
@@ -49,7 +53,7 @@ class InkRouter_Models_ShipType
 
     /**
      * @param string $method
-     * @return InkRouter_Models_ShipType
+     * @return ShipType
      */
     public function setMethod($method)
     {
@@ -67,7 +71,7 @@ class InkRouter_Models_ShipType
 
     /**
      * @param string $serviceLevel
-     * @return InkRouter_Models_ShipType
+     * @return ShipType
      */
     public function setServiceLevel($serviceLevel)
     {
@@ -103,7 +107,7 @@ class InkRouter_Models_ShipType
      */
     public function getValidSignatures()
     {
-        return array(InkRouter_Models_ShipType::SIGNATURE_REQUIRED, InkRouter_Models_ShipType::SIGNATURE_REQUIRED_ADULT);
+        return array(ShipType::SIGNATURE_REQUIRED, ShipType::SIGNATURE_REQUIRED_ADULT);
     }
 
     /**

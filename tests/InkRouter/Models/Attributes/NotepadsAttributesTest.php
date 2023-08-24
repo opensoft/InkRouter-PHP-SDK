@@ -3,13 +3,19 @@
 /**
  * @author James Taylor <james.taylor@opensoftdev.com>
  */
-class NotepadsAttributesTest extends PHPUnit_Framework_TestCase
+
+namespace Tests\InkRouter\Models\Attributes;
+
+use Opensoft\InkRouterSdk\Models\Attributes\NotepadsAttributes;
+use PHPUnit\Framework\TestCase;
+
+class NotepadsAttributesTest extends TestCase
 {
     private $attributes;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->attributes = new InkRouter_Models_Attributes_NotepadsAttributes();
+        $this->attributes = new NotepadsAttributes();
         $this->attributes->setPages(50);
     }
 

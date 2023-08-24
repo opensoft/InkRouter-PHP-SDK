@@ -5,13 +5,20 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Client;
+
+use Opensoft\InkRouterSdk\Exceptions\AuthenticationException;
+use Opensoft\InkRouterSdk\Exceptions\InkRouterNotAvailableException;
+use Opensoft\InkRouterSdk\Exceptions\ProcessingException;
+use Opensoft\InkRouterSdk\Exceptions\RejectionException;
+use Opensoft\InkRouterSdk\Models\OrderInfo;
 
 /**
  * Client for sending requests to InkRouter
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Client_RestClient implements InkRouter_Client_ClientInterface
+class RestClient implements ClientInterface
 {
 
     private static $CREATE_PATH = 'orders/%s';
@@ -54,11 +61,11 @@ class InkRouter_Client_RestClient implements InkRouter_Client_ClientInterface
 
     /**
      * @param int $timestamp
-     * @param InkRouter_Models_OrderInfo $orderInfo
+     * @param OrderInfo $orderInfo
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
-    public function createOrder($timestamp, InkRouter_Models_OrderInfo $orderInfo)
+    public function createOrder($timestamp, OrderInfo $orderInfo)
     {
         return $this->sendRequest(sprintf($this->baseUrl . self::$CREATE_PATH, $timestamp), 'POST', 
             array('Content-Type: application/xml'), $orderInfo->pack());
@@ -67,11 +74,11 @@ class InkRouter_Client_RestClient implements InkRouter_Client_ClientInterface
     /**
      * @param int $orderId
      * @param int $timestamp
-     * @param InkRouter_Models_OrderInfo $orderInfo
+     * @param OrderInfo $orderInfo
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
-    public function updateOrder($orderId, $timestamp, InkRouter_Models_OrderInfo $orderInfo)
+    public function updateOrder($orderId, $timestamp, OrderInfo $orderInfo)
     {
         return $this->sendRequest(sprintf($this->baseUrl . self::$UPDATE_PATH, $orderId, $timestamp), 'PUT',
             array('Content-Type: application/xml'), $orderInfo->pack());
@@ -81,7 +88,7 @@ class InkRouter_Client_RestClient implements InkRouter_Client_ClientInterface
      * @param int $orderId
      * @param int $timestamp
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
     public function placeOnHold($orderId, $timestamp)
     {
@@ -93,7 +100,7 @@ class InkRouter_Client_RestClient implements InkRouter_Client_ClientInterface
      * @param int $orderId
      * @param int $timestamp
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
     public function removeHold($orderId, $timestamp)
     {
@@ -105,7 +112,7 @@ class InkRouter_Client_RestClient implements InkRouter_Client_ClientInterface
      * @param int $orderId
      * @param int $timestamp
      * @return mixed
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      */
     public function cancelOrder($orderId, $timestamp)
     {
@@ -114,7 +121,7 @@ class InkRouter_Client_RestClient implements InkRouter_Client_ClientInterface
     }
 
     /**
-     * @throws InkRouter_Exceptions_InkRouterNotAvailableException|InkRouter_Exceptions_AuthenticationException|InkRouter_Exceptions_ProcessingException|InkRouter_Exceptions_RejectionException
+     * @throws InkRouterNotAvailableException|AuthenticationException|ProcessingException|RejectionException
      **/
     private function sendRequest($url, $httpMethod, $headers, $body = null) {
         $curlResource = curl_init();
@@ -143,7 +150,7 @@ class InkRouter_Client_RestClient implements InkRouter_Client_ClientInterface
         curl_setopt($curlResource, CURLOPT_RETURNTRANSFER, true);
         $responseMessage = curl_exec($curlResource);
         if ($responseMessage === false) {
-            throw new InkRouter_Exceptions_InkRouterNotAvailableException();
+            throw new InkRouterNotAvailableException();
         }
 
         $statusCode = curl_getinfo($curlResource, CURLINFO_HTTP_CODE);
@@ -153,13 +160,13 @@ class InkRouter_Client_RestClient implements InkRouter_Client_ClientInterface
             case 200:
                 return $responseMessage;
             case 401:
-                throw new InkRouter_Exceptions_AuthenticationException($responseMessage);
+                throw new AuthenticationException($responseMessage);
             case 500:
-                throw new InkRouter_Exceptions_ProcessingException($responseMessage);
+                throw new ProcessingException($responseMessage);
             case 409:
-                throw new InkRouter_Exceptions_RejectionException($responseMessage);
+                throw new RejectionException($responseMessage);
             default:
-                throw new InkRouter_Exceptions_ProcessingException('Unknown error occured');
+                throw new ProcessingException('Unknown error occured');
         }
     }
 }

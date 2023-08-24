@@ -6,10 +6,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models\Attributes;
+
 /**
  * @author Kirill Gusakov
  */
-interface InkRouter_Models_Attributes_AttributeInterface
+interface AttributeInterface
 {
     /**
      * @abstract

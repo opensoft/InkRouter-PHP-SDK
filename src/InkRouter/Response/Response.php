@@ -6,12 +6,16 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Response;
+
+use \DOMDocument;
+
 /**
  * Class for parsing response from InkRouter to http service
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Response_Response
+class Response
 {
 
     /**
@@ -24,7 +28,7 @@ class InkRouter_Response_Response
     /**
      * @static
      * @param string $pack with xml from InkRouter
-     * @return InkRouter_Response_Response
+     * @return Response
      */
     public static function fromPack($pack)
     {
@@ -32,7 +36,7 @@ class InkRouter_Response_Response
         $xml->loadXML($pack);
         $response = new self();
         foreach ($xml->getElementsByTagName('client_update') as $update) {
-            $updateObj = new InkRouter_Response_Update();
+            $updateObj = new Update();
             foreach ($update->childNodes as $property) {
                 $nodeValue = $property->nodeValue;
                 if ($property->attributes && $property->attributes->length > 0) {
@@ -98,8 +102,8 @@ class InkRouter_Response_Response
     }
 
     /**
-     * @param InkRouter_Response_Update $update
-     * @return InkRouter_Response_Response
+     * @param Update $update
+     * @return Response
      */
     private function addUpdate($update)
     {

@@ -6,12 +6,14 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Response;
+
 /**
  * Information about update from InkRouter
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Response_Update
+class Update
 {
 
     /**
@@ -99,7 +101,7 @@ class InkRouter_Response_Update
 
     /**
      * @param int $id
-     * @return InkRouter_Response_Update
+     * @return Update
      */
     public function setId($id)
     {
@@ -117,7 +119,7 @@ class InkRouter_Response_Update
 
     /**
      * @param string $type
-     * @return InkRouter_Response_Update
+     * @return Update
      */
     public function setType($type)
     {
@@ -135,7 +137,7 @@ class InkRouter_Response_Update
 
     /**
      * @param int $quantity
-     * @return InkRouter_Response_Update
+     * @return Update
      */
     public function setQuantity($quantity)
     {
@@ -153,7 +155,7 @@ class InkRouter_Response_Update
 
     /**
      * @param string $orderItemId
-     * @return InkRouter_Response_Update
+     * @return Update
      */
     public function setOrderItemId($orderItemId)
     {
@@ -171,7 +173,7 @@ class InkRouter_Response_Update
 
     /**
      * @param string $comment
-     * @return InkRouter_Response_Update
+     * @return Update
      */
     public function setComment($comment)
     {
@@ -189,7 +191,7 @@ class InkRouter_Response_Update
 
     /**
      * @param string $replyUrl
-     * @return InkRouter_Response_Update
+     * @return Update
      */
     public function setReplyUrl($replyUrl)
     {
@@ -199,7 +201,7 @@ class InkRouter_Response_Update
 
     /**
      * @param float
-     * @return InkRouter_Response_Update
+     * @return Update
      */
     public function setCost($cost)
     {
@@ -217,7 +219,7 @@ class InkRouter_Response_Update
 
     /**
      * @param string $misc
-     * @return InkRouter_Response_Update
+     * @return Update
      */
     public function setMisc($misc)
     {
@@ -235,7 +237,7 @@ class InkRouter_Response_Update
 
     /**
      * @param string $printCustomerInvoice
-     * @return InkRouter_Response_Update
+     * @return Update
      */
     public function setPrintCustomerInvoice($printCustomerInvoice)
     {
@@ -253,7 +255,7 @@ class InkRouter_Response_Update
 
     /**
      * @param string $printProviderInvoice
-     * @return InkRouter_Response_Update
+     * @return Update
      */
     public function setPrintProviderInvoice($printProviderInvoice)
     {
@@ -271,7 +273,7 @@ class InkRouter_Response_Update
 
     /**
      * @param int $timestamp
-     * @return InkRouter_Response_Update
+     * @return Update
      */
     public function setTimestamp($timestamp)
     {
@@ -289,7 +291,7 @@ class InkRouter_Response_Update
 
     /**
      * @param string $trackingNumber
-     * @return InkRouter_Response_Update
+     * @return Update
      */
     public function setTrackingNumber($trackingNumber)
     {
@@ -307,7 +309,7 @@ class InkRouter_Response_Update
 
     /**
      * @param float $weight
-     * @return InkRouter_Response_Update
+     * @return Update
      */
     public function setWeight($weight)
     {

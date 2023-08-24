@@ -6,10 +6,15 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models\Attributes;
+
+use \XMLWriter;
+use Opensoft\InkRouterSdk\Models\ReturnAddress;
+
 /**
  * @author Kirill Gusakov
  */
-class InkRouter_Models_Attributes_HolidayCardAttributes implements InkRouter_Models_Attributes_AttributeInterface
+class HolidayCardAttributes implements AttributeInterface
 {
     /**
      * @var bool
@@ -22,13 +27,13 @@ class InkRouter_Models_Attributes_HolidayCardAttributes implements InkRouter_Mod
     private $stuffing;
 
     /**
-     * @var InkRouter_Models_ReturnAddress
+     * @var ReturnAddress
      */
     private $returnAddress;
 
     /**
-     * @param InkRouter_Models_ReturnAddress $returnAddress
-     * @return InkRouter_Models_Attributes_HolidayCardAttributes
+     * @param ReturnAddress $returnAddress
+     * @return HolidayCardAttributes
      */
     public function setReturnAddress($returnAddress)
     {
@@ -37,7 +42,7 @@ class InkRouter_Models_Attributes_HolidayCardAttributes implements InkRouter_Mod
     }
 
     /**
-     * @return InkRouter_Models_ReturnAddress
+     * @return ReturnAddress
      */
     public function getReturnAddress()
     {
@@ -46,7 +51,7 @@ class InkRouter_Models_Attributes_HolidayCardAttributes implements InkRouter_Mod
 
     /**
      * @param bool $sendToSelf
-     * @return InkRouter_Models_Attributes_HolidayCardAttributes
+     * @return HolidayCardAttributes
      */
     public function setSendToSelf($sendToSelf)
     {
@@ -64,7 +69,7 @@ class InkRouter_Models_Attributes_HolidayCardAttributes implements InkRouter_Mod
 
     /**
      * @param bool $stuffing
-     * @return InkRouter_Models_Attributes_HolidayCardAttributes
+     * @return HolidayCardAttributes
      */
     public function setStuffing($stuffing)
     {

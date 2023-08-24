@@ -5,12 +5,16 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \XMLWriter;
+
 /**
  * Contains information about shipping address
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Models_ReturnAddress
+class ReturnAddress
 {
     /**
      * @var string
@@ -49,7 +53,7 @@ class InkRouter_Models_ReturnAddress
 
     /**
      * @param string $city
-     * @return InkRouter_Models_ReturnAddress
+     * @return ReturnAddress
      */
     public function setCity($city)
     {
@@ -67,7 +71,7 @@ class InkRouter_Models_ReturnAddress
 
     /**
      * @param string $firstName
-     * @return InkRouter_Models_ReturnAddress
+     * @return ReturnAddress
      */
     public function setFirstName($firstName)
     {
@@ -85,7 +89,7 @@ class InkRouter_Models_ReturnAddress
 
     /**
      * @param string $lastName
-     * @return InkRouter_Models_ReturnAddress
+     * @return ReturnAddress
      */
     public function setLastName($lastName)
     {
@@ -103,7 +107,7 @@ class InkRouter_Models_ReturnAddress
 
     /**
      * @param string $middleInitial
-     * @return InkRouter_Models_ReturnAddress
+     * @return ReturnAddress
      */
     public function setMiddleInitial($middleInitial)
     {
@@ -121,7 +125,7 @@ class InkRouter_Models_ReturnAddress
 
     /**
      * @param string $state
-     * @return InkRouter_Models_ReturnAddress
+     * @return ReturnAddress
      */
     public function setState($state)
     {
@@ -139,7 +143,7 @@ class InkRouter_Models_ReturnAddress
 
     /**
      * @param string $streetAddress
-     * @return InkRouter_Models_ReturnAddress
+     * @return ReturnAddress
      */
     public function setStreetAddress($streetAddress)
     {
@@ -157,7 +161,7 @@ class InkRouter_Models_ReturnAddress
 
     /**
      * @param string $zip
-     * @return InkRouter_Models_ReturnAddress
+     * @return ReturnAddress
      */
     public function setZip($zip)
     {

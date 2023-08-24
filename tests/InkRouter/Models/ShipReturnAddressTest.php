@@ -6,7 +6,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class ShipReturnAddressTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models;
+
+use Opensoft\InkRouterSdk\Models\ShipReturnAddress;
+use PHPUnit\Framework\TestCase;
+
+class ShipReturnAddressTest extends TestCase
 {
     private $shipReturnAddress;
 
@@ -22,9 +27,9 @@ class ShipReturnAddressTest extends PHPUnit_Framework_TestCase
             $this->shipReturnAddress->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->shipReturnAddress = new InkRouter_Models_ShipReturnAddress();
+        $this->shipReturnAddress = new ShipReturnAddress();
         $this->shipReturnAddress
             ->setCompanyName('Crymerik Industries')
             ->setPersonName('Roger Heath')

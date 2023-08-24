@@ -6,10 +6,14 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models\Attributes;
+
+use \XMLWriter;
+
 /**
  * @author Kirill Gusakov
  */
-class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_Attributes_AttributeInterface
+class MailingAttributes implements AttributeInterface
 {
     /**
      * @var string
@@ -43,7 +47,7 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
 
     /**
      * @param string $clientInvoice
-     * @return InkRouter_Models_Attributes_MailingAttributes
+     * @return MailingAttributes
      */
     public function setClientInvoice($clientInvoice)
     {
@@ -61,7 +65,7 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
 
     /**
      * @param string $csvUrl
-     * @return InkRouter_Models_Attributes_MailingAttributes
+     * @return MailingAttributes
      */
     public function setCsvUrl($csvUrl)
     {
@@ -79,7 +83,7 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
 
     /**
      * @param string $mailClass
-     * @return InkRouter_Models_Attributes_MailingAttributes
+     * @return MailingAttributes
      */
     public function setMailClass($mailClass)
     {
@@ -97,7 +101,7 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
 
     /**
      * @param string $mailPolitical
-     * @return InkRouter_Models_Attributes_MailingAttributes
+     * @return MailingAttributes
      */
     public function setPoliticalMailer($politicalMailer)
     {
@@ -115,7 +119,7 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
 
     /**
      * @param int $shipExtra
-     * @return InkRouter_Models_Attributes_MailingAttributes
+     * @return MailingAttributes
      */
     public function setShipExtra($shipExtra)
     {
@@ -141,7 +145,7 @@ class InkRouter_Models_Attributes_MailingAttributes implements InkRouter_Models_
 
     /**
      * @param string $mailingFont
-     * @return InkRouter_Models_Attributes_MailingAttributes
+     * @return MailingAttributes
      */
     public function setMailingFont($mailingFont)
     {

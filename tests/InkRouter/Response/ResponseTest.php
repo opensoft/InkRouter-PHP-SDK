@@ -6,14 +6,20 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class ResponseTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Response;
+
+use Opensoft\InkRouterSdk\Response\Response;
+use Opensoft\InkRouterSdk\Response\Update;
+use PHPUnit\Framework\TestCase;
+
+class ResponseTest extends TestCase
 {
     private $xml;
 
     public function testFromPack()
     {
-        $response = InkRouter_Response_Response::fromPack($this->xml);
-        $update = new InkRouter_Response_Update();
+        $response = Response::fromPack($this->xml);
+        $update = new Update();
         $update->setId(2)
             ->setType('PRINT')
             ->setQuantity(500)
@@ -28,7 +34,7 @@ class ResponseTest extends PHPUnit_Framework_TestCase
             ->setCost(11.1)
             ->setPrintProviderInvoice('1236433fd1123rf');
 
-        $updateShip = new InkRouter_Response_Update();
+        $updateShip = new Update();
         $updateShip->setId(3)
             ->setType('SHIP')
             ->setQuantity(500)
@@ -47,7 +53,7 @@ class ResponseTest extends PHPUnit_Framework_TestCase
         $this->assertNull($response->getUpdates()[1]->getCost());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $fileName = dirname(__FILE__) . '/../fixtures/client_updates.xml';
         $file = fopen($fileName, 'r');

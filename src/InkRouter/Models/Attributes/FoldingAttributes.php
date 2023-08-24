@@ -6,10 +6,14 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models\Attributes;
+
+use \XMLWriter;
+
 /**
  * @author Kirill Gusakov
  */
-class InkRouter_Models_Attributes_FoldingAttributes implements InkRouter_Models_Attributes_AttributeInterface
+class FoldingAttributes implements AttributeInterface
 {
     /**
      * @var string
@@ -29,7 +33,7 @@ class InkRouter_Models_Attributes_FoldingAttributes implements InkRouter_Models_
 
     /**
      * @param bool $flipTopPanel
-     * @return InkRouter_Models_Attributes_FoldingAttributes
+     * @return FoldingAttributes
      */
     public function setFlipTopPanel($flipTopPanel)
     {
@@ -47,7 +51,7 @@ class InkRouter_Models_Attributes_FoldingAttributes implements InkRouter_Models_
 
     /**
      * @param string $foldingType
-     * @return InkRouter_Models_Attributes_FoldingAttributes
+     * @return FoldingAttributes
      */
     public function setFoldingType($foldingType)
     {
@@ -65,7 +69,7 @@ class InkRouter_Models_Attributes_FoldingAttributes implements InkRouter_Models_
 
     /**
      * @param bool $insideOut
-     * @return InkRouter_Models_Attributes_FoldingAttributes
+     * @return FoldingAttributes
      * @deprecated
      */
     public function setInsideOut($insideOut)

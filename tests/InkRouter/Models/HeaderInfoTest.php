@@ -5,7 +5,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class HeaderInfoTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models;
+
+use Opensoft\InkRouterSdk\Models\HeaderInfo;
+use PHPUnit\Framework\TestCase;
+
+class HeaderInfoTest extends TestCase
 {
 
     private $headerInfo;
@@ -20,9 +25,9 @@ class HeaderInfoTest extends PHPUnit_Framework_TestCase
         $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/header_info.xml', $this->headerInfo->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->headerInfo = new InkRouter_Models_HeaderInfo();
+        $this->headerInfo = new HeaderInfo();
         $this->headerInfo->setFromDomain('myprintingdomain.com')
             ->setFromIdentity('BRENT');
     }

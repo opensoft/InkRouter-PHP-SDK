@@ -8,10 +8,26 @@
 /**
  * @author Alexey Nikolaev <alexey.nikolaev@opensoftdev.ru>
  */
-class OrderProcessorTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models;
+
+use Opensoft\InkRouterSdk\Models\Attributes\ScalarBooleanAttribute;
+use Opensoft\InkRouterSdk\Models\Attributes\ScalarStringAttribute;
+use Opensoft\InkRouterSdk\Models\Contact;
+use Opensoft\InkRouterSdk\Models\Attributes\MailingAttributes;
+use Opensoft\InkRouterSdk\Models\Order;
+use Opensoft\InkRouterSdk\Models\OrderItem;
+use Opensoft\InkRouterSdk\Models\PrintAsset;
+use Opensoft\InkRouterSdk\Models\Requester;
+use Opensoft\InkRouterSdk\Models\ShipAddress;
+use Opensoft\InkRouterSdk\Models\ShipReturnAddress;
+use Opensoft\InkRouterSdk\Models\ShipType;
+use Opensoft\InkRouterSdk\Models\Side;
+use PHPUnit\Framework\TestCase;
+
+class OrderProcessorTest extends TestCase
 {
     /**
-     * @var InkRouter_Models_Order
+     * @var Order
      */
     private $order;
 
@@ -25,20 +41,20 @@ class OrderProcessorTest extends PHPUnit_Framework_TestCase
         $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../fixtures/order_processor.xml', $this->order->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
 
-        $contact = new InkRouter_Models_Contact();
+        $contact = new Contact();
         $contact->setName('contactName')
             ->setPhone('contactPhone')
             ->setEmail('contactEmail');
 
-        $shipType = new InkRouter_Models_ShipType();
+        $shipType = new ShipType();
         $shipType->setMethod('UPS')
             ->setServiceLevel('GROUND')
             ->setSignature("required");
 
-        $shipAddress = new InkRouter_Models_ShipAddress();
+        $shipAddress = new ShipAddress();
         $shipAddress->setCompanyName('Company Name')
             ->setAttention('Attention')
             ->setStreetAddress('742 Evergreen Terrace')
@@ -47,7 +63,7 @@ class OrderProcessorTest extends PHPUnit_Framework_TestCase
             ->setZip('92614')
             ->setCountry('country');
 
-        $shipReturnAddress = new InkRouter_Models_ShipReturnAddress();
+        $shipReturnAddress = new ShipReturnAddress();
         $shipReturnAddress
             ->setCompanyName('Crymerik Industries')
             ->setPersonName('Roger Heath')
@@ -58,13 +74,13 @@ class OrderProcessorTest extends PHPUnit_Framework_TestCase
             ->setZip('92612')
             ->setCountry('US');
 
-        $requester = new InkRouter_Models_Requester();
+        $requester = new Requester();
         $requester->setName('Jaisor Prints')
             ->setContract('STANDARD')
             ->setPayTerm('FREE');
 
         // order item without envelopes
-        $side1 = new InkRouter_Models_Side();
+        $side1 = new Side();
         $side1->setPageNumber(1)
             ->setFileUrl('http://server/images/front/0.tif')
             ->setFileHash('0a0825909aa15a98b00574661f23aee7')
@@ -73,7 +89,7 @@ class OrderProcessorTest extends PHPUnit_Framework_TestCase
             ->setSpotUvFileUrl('http://server/images/business_cards/front/spot_uv.tif')
             ->setSpotUvFileHash('120825909aa15s2b00574661f23aee7');;
 
-        $orderItem = new InkRouter_Models_OrderItem();
+        $orderItem = new OrderItem();
         $orderItem->setPrintGroupId('pg4f7969f8a4800')
             ->setProductType('business cards')
             ->setPaperType('14PT')
@@ -82,7 +98,7 @@ class OrderProcessorTest extends PHPUnit_Framework_TestCase
             ->setCost('cost')
             ->addSide($side1);
 
-        $printAsset = new InkRouter_Models_PrintAsset();
+        $printAsset = new PrintAsset();
         $printAsset->setPositionX(4.98)
             ->setPositionY(3.1)
             ->setRotation(-90)
@@ -91,7 +107,7 @@ class OrderProcessorTest extends PHPUnit_Framework_TestCase
             ->setWidth(2.12);
 
         // order item with envelopes
-        $side2 = new InkRouter_Models_Side();
+        $side2 = new Side();
         $side2->setPageNumber(1)
             ->setFileUrl('http://server/images/front/1.tif')
             ->setFileHash('0a0825909aa15a98b00574661f23aee7')
@@ -99,11 +115,11 @@ class OrderProcessorTest extends PHPUnit_Framework_TestCase
             ->setOrientation('Landscape')
             ->addPrintAsset($printAsset);
 
-        $envelopeAttribute1 = new InkRouter_Models_Attributes_ScalarStringAttribute();
+        $envelopeAttribute1 = new ScalarStringAttribute();
         $envelopeAttribute1->setType('ENVELOPE_TYPE')
             ->setValue('white');
 
-        $envelopeOrderItem = new InkRouter_Models_OrderItem();
+        $envelopeOrderItem = new OrderItem();
         $envelopeOrderItem->setPrintGroupId('pg4f7969f8a4801')
             ->setProductType('4x6 postcards')
             ->setPaperType('14PT')
@@ -114,29 +130,29 @@ class OrderProcessorTest extends PHPUnit_Framework_TestCase
             ->addSide($side2);
 
         // order item with envelopes and mailing
-        $side3 = new InkRouter_Models_Side();
+        $side3 = new Side();
         $side3->setPageNumber(1)
             ->setFileUrl('http://server/images/front/2.tif')
             ->setFileHash('0a0825909aa15a98b00574661f23aee7')
             ->setCoating('NONE')
             ->setOrientation('Landscape');
 
-        $mailingAttributes = new InkRouter_Models_Attributes_MailingAttributes();
+        $mailingAttributes = new MailingAttributes();
         $mailingAttributes
             ->setMailClass('firstclass')
             ->setCsvUrl('http://csv.url')
             ->setClientInvoice('')
             ->setShipExtra(10);
 
-        $envelopeAttribute2 = new InkRouter_Models_Attributes_ScalarStringAttribute();
+        $envelopeAttribute2 = new ScalarStringAttribute();
         $envelopeAttribute2->setType('ENVELOPE_TYPE')
             ->setValue('green');
 
-        $booleanAttribute = new InkRouter_Models_Attributes_ScalarBooleanAttribute();
+        $booleanAttribute = new ScalarBooleanAttribute();
         $booleanAttribute->setType('LABELING')
             ->setValue(true);
 
-        $mailingOrderItem = new InkRouter_Models_OrderItem();
+        $mailingOrderItem = new OrderItem();
         $mailingOrderItem->setPrintGroupId('pg4f7969f8a4802')
             ->setProductType('5.5x8.5 stationery')
             ->setPaperType('14PT')
@@ -148,7 +164,7 @@ class OrderProcessorTest extends PHPUnit_Framework_TestCase
             ->addAttributes($envelopeAttribute2)
             ->addSide($side3);
 
-        $this->order = new InkRouter_Models_Order();
+        $this->order = new Order();
         $this->order->setPrintCustomerInvoice(44164524)
             ->setTsCreated('2012-04-04T19:25:21+04:00')
             ->setPriority(0)

@@ -5,12 +5,18 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \InvalidArgumentException;
+use \XMLWriter;
+use Opensoft\InkRouterSdk\Models\Attributes\AttributeInterface;
+
 /**
  * Contains information about a specific order item
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Models_OrderItem
+class OrderItem
 {
 
     /**
@@ -44,22 +50,22 @@ class InkRouter_Models_OrderItem
     private $cost;
 
     /**
-     * @var InkRouter_Models_Attributes_AttributeInterface[]
+     * @var AttributeInterface[]
      */
     private $attributes = array();
 
     /**
-     * @var InkRouter_Models_Price[]
+     * @var Price[]
      */
     private $prices = array();
 
     /**
-     * @var InkRouter_Models_Side[]
+     * @var Side[]
      */
     private $sides = array();
 
     /**
-     * @var InkRouter_Models_Face[]
+     * @var Face[]
      */
     private $faces = array();
 
@@ -98,7 +104,7 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param string $printGroupId
-     * @return InkRouter_Models_OrderItem
+     * @return OrderItem
      */
     public function setPrintGroupId($printGroupId)
     {
@@ -117,7 +123,7 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param string $productType
-     * @return InkRouter_Models_OrderItem
+     * @return OrderItem
      */
     public function setProductType($productType)
     {
@@ -136,7 +142,7 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param string $paperType
-     * @return InkRouter_Models_OrderItem
+     * @return OrderItem
      */
     public function setPaperType($paperType)
     {
@@ -155,7 +161,7 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param int $quantity
-     * @return InkRouter_Models_OrderItem
+     * @return OrderItem
      */
     public function setQuantity($quantity)
     {
@@ -174,7 +180,7 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param string $regionSize
-     * @return InkRouter_Models_OrderItem
+     * @return OrderItem
      */
     public function setRegionSize($regionSize)
     {
@@ -193,7 +199,7 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param float $cost
-     * @return InkRouter_Models_OrderItem
+     * @return OrderItem
      */
     public function setCost($cost)
     {
@@ -212,7 +218,7 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param array $attributes array of InkRouter_Models_Attributes_AttributeInterface
-     * @return InkRouter_Models_OrderItem
+     * @return OrderItem
      */
     public function setAttributes(array $attributes)
     {
@@ -221,7 +227,7 @@ class InkRouter_Models_OrderItem
         return $this;
     }
 
-    public function addAttributes(InkRouter_Models_Attributes_AttributeInterface $attribute)
+    public function addAttributes(AttributeInterface $attribute)
     {
         $this->attributes[] = $attribute;
 
@@ -238,7 +244,7 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param array $prices array of InkRouter_Models_Price
-     * @return InkRouter_Models_OrderItem
+     * @return OrderItem
      */
     public function setPrices(array $prices)
     {
@@ -247,7 +253,7 @@ class InkRouter_Models_OrderItem
         return $this;
     }
 
-    public function addPrice(InkRouter_Models_Price $price)
+    public function addPrice(Price $price)
     {
         $this->prices[] = $price;
 
@@ -263,8 +269,8 @@ class InkRouter_Models_OrderItem
     }
 
     /**
-     * @param InkRouter_Models_Side[] $sides
-     * @return InkRouter_Models_OrderItem
+     * @param Side[] $sides
+     * @return OrderItem
      */
     public function setSides(array $sides)
     {
@@ -274,8 +280,8 @@ class InkRouter_Models_OrderItem
     }
 
     /**
-     * @param InkRouter_Models_Side $side
-     * @return InkRouter_Models_OrderItem
+     * @param Side $side
+     * @return OrderItem
      */
     public function addSide($side)
     {
@@ -293,8 +299,8 @@ class InkRouter_Models_OrderItem
     }
 
     /**
-     * @param InkRouter_Models_Face[] $faces
-     * @return InkRouter_Models_OrderItem
+     * @param Face[] $faces
+     * @return OrderItem
      */
     public function setFaces(array $faces)
     {
@@ -304,8 +310,8 @@ class InkRouter_Models_OrderItem
     }
 
     /**
-     * @param InkRouter_Models_Face $face
-     * @return InkRouter_Models_OrderItem
+     * @param Face $face
+     * @return OrderItem
      */
     public function addFace($face)
     {
@@ -316,7 +322,7 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param string $inspection
-     * @return InkRouter_Models_OrderItem
+     * @return OrderItem
      */
     public function setInspection($inspection)
     {
@@ -343,7 +349,7 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param string $generatedId
-     * @return InkRouter_Models_OrderItem
+     * @return OrderItem
      */
     public function setGeneratedId($generatedId)
     {
@@ -362,7 +368,7 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param string $daVinciDesignId
-     * @return InkRouter_Models_OrderItem
+     * @return OrderItem
      */
     public function setDaVinciDesignId($daVinciDesignId)
     {
@@ -381,13 +387,13 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param int $qualityPriority
-     * @return InkRouter_Models_OrderItem
-     * @throws \InvalidArgumentException if the qualityPriority is not between 1 and 10
+     * @return OrderItem
+     * @throws InvalidArgumentException if the qualityPriority is not between 1 and 10
      */
     public function setQualityPriority($qualityPriority)
     {
         if ($qualityPriority < 1 || $qualityPriority > 10) {
-            throw new \InvalidArgumentException('The specified value for qualityPriority is not valid');
+            throw new InvalidArgumentException('The specified value for qualityPriority is not valid');
         }
         $this->qualityPriority = $qualityPriority;
 
@@ -404,13 +410,13 @@ class InkRouter_Models_OrderItem
 
     /**
      * @param int $slaPriority
-     * @return InkRouter_Models_OrderItem
-     * @throws \InvalidArgumentException if the slaPriority is not between 1 and 10
+     * @return OrderItem
+     * @throws InvalidArgumentException if the slaPriority is not between 1 and 10
      */
     public function setSlaPriority($slaPriority)
     {
         if ($slaPriority < 1 || $slaPriority > 10) {
-            throw new \InvalidArgumentException('The specified value for slaPriority is not valid');
+            throw new InvalidArgumentException('The specified value for slaPriority is not valid');
         }
         $this->slaPriority = $slaPriority;
 
@@ -496,28 +502,28 @@ class InkRouter_Models_OrderItem
         return $writer->outputMemory();
     }
 
-    private function packattributes()
+    private function packAttributes()
     {
-        $writer = new xmlwriter();
-        $writer->openmemory();
-        $writer->startelement('attributes');
+        $writer = new XMLWriter();
+        $writer->openMemory();
+        $writer->startElement('attributes');
         foreach ($this->attributes as $attribute) {
-            $writer->writeraw($attribute->pack());
+            $writer->writeRaw($attribute->pack());
         }
-        $writer->endelement();
+        $writer->endElement();
 
-        return $writer->outputmemory();
+        return $writer->outputMemory();
     }
     private function packPrices()
     {
-        $writer = new xmlwriter();
-        $writer->openmemory();
-        $writer->startelement('prices');
+        $writer = new XMLWriter();
+        $writer->openMemory();
+        $writer->startElement('prices');
         foreach ($this->prices as $price) {
-            $writer->writeraw($price->pack());
+            $writer->writeRaw($price->pack());
         }
-        $writer->endelement();
+        $writer->endElement();
 
-        return $writer->outputmemory();
+        return $writer->outputMemory();
     }
 }

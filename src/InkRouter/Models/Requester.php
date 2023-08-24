@@ -5,12 +5,16 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
+namespace Opensoft\InkRouterSdk\Models;
+
+use \XMLWriter;
+
 /**
  * Contains information about the contract under which the request is being made.
  *
  * @author Kirill Gusakov
  */
-class InkRouter_Models_Requester
+class Requester
 {
 
     /**
@@ -46,7 +50,7 @@ class InkRouter_Models_Requester
 
     /**
      * @param string $name
-     * @return InkRouter_Models_Requester
+     * @return Requester
      */
     public function setName($name)
     {
@@ -64,7 +68,7 @@ class InkRouter_Models_Requester
 
     /**
      * @param string $contract
-     * @return InkRouter_Models_Requester
+     * @return Requester
      */
     public function setContract($contract)
     {
@@ -82,7 +86,7 @@ class InkRouter_Models_Requester
 
     /**
      * @param float $payTerm
-     * @return InkRouter_Models_Requester
+     * @return Requester
      */
     public function setPayTerm($payTerm)
     {

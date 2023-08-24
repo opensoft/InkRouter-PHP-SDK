@@ -6,7 +6,12 @@
  * Copyright (c) 2012 Opensoft (http://opensoftdev.com)
  */
 
-class BookletAttributesTest extends PHPUnit_Framework_TestCase
+namespace Tests\InkRouter\Models\Attributes;
+
+use Opensoft\InkRouterSdk\Models\Attributes\BookletAttributes;
+use PHPUnit\Framework\TestCase;
+
+class BookletAttributesTest extends TestCase
 {
     private $attributes;
 
@@ -20,9 +25,9 @@ class BookletAttributesTest extends PHPUnit_Framework_TestCase
         $this->assertXmlStringEqualsXmlFile(dirname(__FILE__) . '/../../fixtures/booklet_attributes.xml', $this->attributes->pack());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->attributes = new InkRouter_Models_Attributes_BookletAttributes();
+        $this->attributes = new BookletAttributes();
         $this->attributes
             ->setCover('plus')
             ->setBinding('saddle')
